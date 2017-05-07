@@ -437,7 +437,8 @@
 						localStorage.setItem("index_li",eq_li);
 					}
 					
-					location.reload(true);//设置为true，不从缓存中重载
+					//location.reload(true);
+					location.reload();//设置为true，不从缓存中重载，根据需要设置。不写true可以节省流量
 				});
 				
 				navSec.on("click", function() {
