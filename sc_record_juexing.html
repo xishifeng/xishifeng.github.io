@@ -380,6 +380,14 @@
 			function quZheng(num){
 				return num<10?("0"+num):num;
 			}
+			
+			function updateData(a,b,c){
+				localStorage.setItem("last_time",a);
+				localStorage.setItem("index_page",b);
+				localStorage.setItem("index_li",c);
+				//location.reload(true);
+				location.reload();//设置为true，不从缓存中重载，根据需要设置。不写true可以节省流量
+			}
 
 			$(function() {
 				var index_page_ori = localStorage.getItem("index_page");
@@ -409,6 +417,8 @@
 					});
 				}
 				
+				$("#complete_order").html(order.originList);
+				
 				$(".treasure_box").on("click",function(){
 					var _this = $(this);
 					var eq_page = _this.parent().parent().data("eq");
@@ -420,25 +430,30 @@
 					
 					var time = new Date();
 					if(last_time_new !== null){
+						//有缓存
 						var yue = new Date(Number(last_time_new)).getMonth();
 						var ri = new Date(Number(last_time_new)).getDate();
 						console.log(yue);
 						console.log(ri);
 						if(yue == time.getMonth() && ri == time.getDate()){
+							//有缓存,且是当天第二次点击
 							if(confirm("确认更新序列吗？")){
-								localStorage.setItem("last_time",time.getTime());
-								localStorage.setItem("index_page",eq_page);
-								localStorage.setItem("index_li",eq_li);
+								//点击了确认
+								updateData(time.getTime(),eq_page,eq_li);
+							}else{
+								//点击了取消
+								return false;
 							}
+						}else{
+							//有缓存,当天第一次点击
+							updateData(time.getTime(),eq_page,eq_li);
 						}
 					}else{
-						localStorage.setItem("last_time",time.getTime());
-						localStorage.setItem("index_page",eq_page);
-						localStorage.setItem("index_li",eq_li);
+						//没有缓存，第一次登录
+						updateData(time.getTime(),eq_page,eq_li);
 					}
 					
-					//location.reload(true);
-					location.reload();//设置为true，不从缓存中重载，根据需要设置。不写true可以节省流量
+					
 				});
 				
 				navSec.on("click", function() {
