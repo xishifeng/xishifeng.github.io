@@ -382,17 +382,17 @@
 			}
 			
 			function updateData(a,b,c){
-				localStorage.setItem("last_time_141",a);
-				localStorage.setItem("index_page_141",b);
-				localStorage.setItem("index_li_141",c);
+				localStorage.setItem("last_time_143",a);
+				localStorage.setItem("index_page_143",b);
+				localStorage.setItem("index_li_143",c);
 				//location.reload(true);
 				location.reload();//设置为true，不从缓存中重载，根据需要设置。不写true可以节省流量
 			}
 
 			$(function() {
-				var index_page_ori = localStorage.getItem("index_page_141");
-				var index_li_ori = localStorage.getItem("index_li_141");
-				var last_time_ori = localStorage.getItem("last_time_141");
+				var index_page_ori = localStorage.getItem("index_page_143");
+				var index_li_ori = localStorage.getItem("index_li_143");
+				var last_time_ori = localStorage.getItem("last_time_143");
 				
 				var box = $(".ul_box");
 				var navSec = $("nav>section");
@@ -424,9 +424,9 @@
 					var eq_page = _this.parent().parent().data("eq");
 					var eq_li = _this.parent().index();
 					
-					var index_page_new = localStorage.getItem("index_page_141");
-					var index_li_new = localStorage.getItem("li_141");
-					var last_time_new = localStorage.getItem("last_time_141");
+					var index_page_new = localStorage.getItem("index_page_143");
+					var index_li_new = localStorage.getItem("li_143");
+					var last_time_new = localStorage.getItem("last_time_143");
 					
 					var time = new Date();
 					if(last_time_new !== null){
