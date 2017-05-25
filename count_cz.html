@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			td,th{
+				border-right: 1px solid blueviolet;
+				width: 15%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="form_area">
+			<ul>
+				<li><select id="role_select"></select></li>
+				<li><label>等级：<input type="text" id="role_level" /></label></li>
+				<li>
+					<label>神兵天赋：
+						<select id="role_shenbing_talent">
+							<option value="0">0</option>
+							<option value="500">500</option>
+							<option value="1000">1000</option>
+							<option value="1500">1500</option>
+							<option value="2000">2000</option>
+							<option value="2500">2500</option>
+							<option value="3000">3000</option>
+						</select>
+					</label>
+				</li>
+				<li>
+					<label>觉醒等级：
+						<select id="role_awake">
+							<option value="0">0</option>
+							<option value="0.1">1.0+10%</option>
+							<option value="0.15">1.6+5%</option>
+							<option value="0.23">2.6+8%</option>
+							<option value="0.33">3.6+10%</option>
+							<option value="0.48">4.6+15%</option>
+							<option value="0.63">5.6+15%</option>
+						</select>
+					</label>
+				</li>
+				<li><label>实际血：<input type="text" id="shiji_xue" /></label></li>
+				<li><label>实际攻：<input type="text" id="shiji_gong" /></label></li>
+				<li><label>实际防：<input type="text" id="shiji_fang" /></label></li>
+				<li><label>实际智：<input type="text" id="shiji_zhi" /></label></li>
+				<li><button id="btn_count">计算</button></li>
+			</ul>
+		</div>
+		
+		<div id="preview_area">
+			<table border="0" cellspacing="0" cellpadding="10">
+				<tr>
+					<th>table</th>
+					<th>基础</th>
+					<th>普单后</th>
+					<th>实际</th>
+					<th>差值</th>
+					<th>灵芝</th>
+				</tr>
+				<tr>
+					<td>血</td>
+					<td id="count_xue_jichu"></td>
+					<td id="count_xue_lilun"></td>
+					<td id="count_xue_shiji"></td>
+					<td id="count_xue_chazhi"></td>
+					<td id="count_xue_lingzhi"></td>
+				</tr>
+				<tr>
+					<td>攻</td>
+					<td id="count_gong_jichu"></td>
+					<td id="count_gong_lilun"></td>
+					<td id="count_gong_shiji"></td>
+					<td id="count_gong_chazhi"></td>
+					<td id="count_gong_lingzhi"></td>
+				</tr>
+				<tr>
+					<td>防</td>
+					<td id="count_fang_jichu"></td>
+					<td id="count_fang_lilun"></td>
+					<td id="count_fang_shiji"></td>
+					<td id="count_fang_chazhi"></td>
+					<td id="count_fang_lingzhi"></td>
+				</tr>
+				<tr>
+					<td>智</td>
+					<td id="count_zhi_jichu"></td>
+					<td id="count_zhi_lilun"></td>
+					<td id="count_zhi_shiji"></td>
+					<td id="count_zhi_chazhi"></td>
+					<td id="count_zhi_lingzhi"></td>
+				</tr>
+				<tr>
+					<td>天赋</td>
+					<td id="count_talent"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>总</td>
+					<td id="count_total"></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var roleSelectItem = document.querySelector("#role_select");
+				var roleLevelItem = document.querySelector("#role_level");
+				var roleShenbingTalentItem = document.querySelector("#role_shenbing_talent");
+				var roleAwakeItem = document.querySelector("#role_awake");
+				var btnCountItem = document.querySelector("#btn_count");
+				var xueShiItem = document.querySelector("#shiji_xue");
+				var gongShiItem = document.querySelector("#shiji_gong");
+				var fangShiItem = document.querySelector("#shiji_fang");
+				var zhiShiItem = document.querySelector("#shiji_zhi");
+				
+				
+				var optionHtml = "";
+				for(var i in objSc){
+					optionHtml += '<option value="'+i+'">'+objSc[i].name+'</option>';
+				}
+				roleSelectItem.innerHTML = optionHtml;
+				
+				btnCountItem.onclick = function(){
+					var _role = roleSelectItem.value;
+					var _level = Number(roleLevelItem.value);
+					var _talent = Number(roleShenbingTalentItem.value);
+					var _awake = Number(roleAwakeItem.value);
+					var _xueshi = Number(xueShiItem.value);
+					var _gongshi = Number(gongShiItem.value);
+					var _fangshi = Number(fangShiItem.value);
+					var _zhishi = Number(zhiShiItem.value);
+					
+					
+					//基础值计算
+					var _xue = (objSc[_role]["xueOri"] + objSc[_role]["xueAdd"]*(_level-1))*(1.65+_awake);
+					var _gong = (objSc[_role]["gongOri"] + objSc[_role]["gongAdd"]*(_level-1))*(1.65+_awake);
+					var _fang = (objSc[_role]["fangOri"] + objSc[_role]["fangAdd"]*(_level-1))*(1.65+_awake);
+					var _zhi = (objSc[_role]["zhiOri"] + objSc[_role]["zhiAdd"]*(_level-1))*(1.65+_awake);
+					var _talent = (_level-1)*15 + _talent;
+					var _total = _xue+_gong+_fang+_zhi+_talent;
+					document.querySelector("#count_xue_jichu").innerHTML = Math.ceil(_xue);
+					document.querySelector("#count_gong_jichu").innerHTML = Math.ceil(_gong);
+					document.querySelector("#count_fang_jichu").innerHTML = Math.ceil(_fang);
+					document.querySelector("#count_zhi_jichu").innerHTML = Math.ceil(_zhi);
+					document.querySelector("#count_talent").innerHTML = Math.ceil(_talent);
+					document.querySelector("#count_total").innerHTML = Math.ceil(_total);
+					
+					//理论值计算
+					var a,b,c,d;
+					if(objSc[_role]["mainPro"] === "zhi"){
+						a = Math.ceil(_xue) + Math.ceil(_talent/3);
+						b = Math.ceil(_gong) + Math.ceil(_talent/3);
+						c = Math.ceil(_fang) + Math.ceil(_talent/3);
+						d = Math.ceil(_zhi) + Math.ceil(_talent*2);
+					}else{
+						a = Math.ceil(_xue) + Math.ceil(_talent/3);
+						b = Math.ceil(_gong) + Math.ceil(_talent*2);
+						c = Math.ceil(_fang) + Math.ceil(_talent/3);
+						d = Math.ceil(_zhi) + Math.ceil(_talent/3);
+					}
+					document.querySelector("#count_xue_lilun").innerHTML = a;
+					document.querySelector("#count_gong_lilun").innerHTML = b;
+					document.querySelector("#count_fang_lilun").innerHTML = c;
+					document.querySelector("#count_zhi_lilun").innerHTML = d;
+					
+					//实际值填写
+					document.querySelector("#count_xue_shiji").innerHTML = _xueshi;
+					document.querySelector("#count_gong_shiji").innerHTML = _gongshi;
+					document.querySelector("#count_fang_shiji").innerHTML = _fangshi;
+					document.querySelector("#count_zhi_shiji").innerHTML = _zhishi;
+					
+					//差值计算
+					document.querySelector("#count_xue_chazhi").innerHTML = numberFuhao(_xueshi-a);
+					document.querySelector("#count_gong_chazhi").innerHTML = numberFuhao(_gongshi-b);
+					document.querySelector("#count_fang_chazhi").innerHTML = numberFuhao(_fangshi-c);
+					document.querySelector("#count_zhi_chazhi").innerHTML = numberFuhao(_zhishi-d);
+					
+					//所需灵芝计算
+					if(objSc[_role]["mainPro"] === "zhi"){
+						if(_zhishi-d <0){
+							document.querySelector("#count_zhi_lingzhi").innerHTML = Math.abs(_zhishi-d)*4*5;
+						}
+					}else{
+						if(_gongshi-b <0){
+							document.querySelector("#count_zhi_lingzhi").innerHTML = Math.abs(_zhishi-d)*4*5;
+						}
+					}
+				}
+			}
+			
+			function numberFuhao(num){
+				return num>=0?("+"+num):num;
+			}
+			
+			
+			var objSc = {
+				"xiaoqiao":{
+					"name":"小乔",
+					"id":131018,
+					"xueOri":376.63,
+					"gongOri":148.76,
+					"fangOri":186.06,
+					"zhiOri":151.76,
+					"xueAdd":16.06,
+					"gongAdd":6.35,
+					"fangAdd":7.41,
+					"zhiAdd":6.35,
+					"mainPro":"zhi"
+				},
+				"xuemeixiaoqiao":{
+					"name":"学妹小乔",
+					"id":171003,
+					"xueOri":372.63,
+					"gongOri":148.76,
+					"fangOri":189.06,
+					"zhiOri":153.76,
+					"xueAdd":14.06,
+					"gongAdd":6.35,
+					"fangAdd":8.41,
+					"zhiAdd":7.35,
+					"mainPro":"zhi"
+				},
+				"dengai":{
+					"name":"邓艾",
+					"id":111025,
+					"xueOri":369.00,
+					"gongOri":152.00,
+					"fangOri":150.00,
+					"zhiOri":198.00,
+					"xueAdd":17.50,
+					"gongAdd":6.20,
+					"fangAdd":6.80,
+					"zhiAdd":8.90,
+					"mainPro":"zhi"
+				},
+				"zhugeliang":{
+					"name":"诸葛亮",
+					"id":121011,
+					"xueOri":355.60,
+					"gongOri":142.20,
+					"fangOri":171.60,
+					"zhiOri":196.80,
+					"xueAdd":16.80,
+					"gongAdd":6.60,
+					"fangAdd":7.80,
+					"zhiAdd":8.40,
+					"mainPro":"zhi"
+				},
+				"jiaxu":{
+					"name":"贾诩",
+					"id":141010,
+					"xueOri":343.00,
+					"gongOri":159.00,
+					"fangOri":141.00,
+					"zhiOri":189.00,
+					"xueAdd":14.70,
+					"gongAdd":6.27,
+					"fangAdd":7.11,
+					"zhiAdd":8.22,
+					"mainPro":"zhi"
+				},
+				"shusunshangxiang":{
+					"name":"蜀·孙尚香",
+					"id":121014,
+					"xueOri":357.67,
+					"gongOri":150.29,
+					"fangOri":176.71,
+					"zhiOri":188.71,
+					"xueAdd":16.11,
+					"gongAdd":6.90,
+					"fangAdd":8.10,
+					"zhiAdd":8.10,
+					"mainPro":"zhi"
+				},
+				"luxun":{
+					"name":"陆逊",
+					"id":131009,
+					"xueOri":345.80,
+					"gongOri":135.60,
+					"fangOri":163.80,
+					"zhiOri":185.40,
+					"xueAdd":15.12,
+					"gongAdd":5.94,
+					"fangAdd":7.02,
+					"zhiAdd":7.56,
+					"mainPro":"zhi"
+				},
+				"shenzhouyu":{
+					"name":"神·周瑜",
+					"id":131001,
+					"xueOri":399.00,
+					"gongOri":162.00,
+					"fangOri":201.00,
+					"zhiOri":219.00,
+					"xueAdd":16.80,
+					"gongAdd":6.60,
+					"fangAdd":7.80,
+					"zhiAdd":8.40,
+					"mainPro":"zhi"
+				},
+				"lvbu":{
+					"name":"吕布",
+					"id":141002,
+					"xueOri":376.60,
+					"gongOri":196.80,
+					"fangOri":174.60,
+					"zhiOri":139.20,
+					"xueAdd":16.80,
+					"gongAdd":8.40,
+					"fangAdd":7.80,
+					"zhiAdd":6.60,
+					"mainPro":"dao"
+				},
+				"zhangliao":{
+					"name":"张辽",
+					"id":111006,
+					"xueOri":336.00,
+					"gongOri":189.00,
+					"fangOri":183.00,
+					"zhiOri":153.00,
+					"xueAdd":16.10,
+					"gongAdd":8.10,
+					"fangAdd":7.80,
+					"zhiAdd":7.20,
+					"mainPro":"dao"
+				},
+				"guanyu":{
+					"name":"关羽",
+					"id":121006,
+					"xueOri":345.80,
+					"gongOri":182.40,
+					"fangOri":163.80,
+					"zhiOri":138.60,
+					"xueAdd":15.12,
+					"gongAdd":7.56,
+					"fangAdd":7.02,
+					"zhiAdd":5.94,
+					"mainPro":"dao"
+				},
+				"shenguanyu":{
+					"name":"神·关羽",
+					"id":121001,
+					"xueOri":437.50,
+					"gongOri":225.00,
+					"fangOri":206.25,
+					"zhiOri":131.25,
+					"xueAdd":17.50,
+					"gongAdd":9.00,
+					"fangAdd":8.25,
+					"zhiAdd":5.25,
+					"mainPro":"dao"
+				}
+			}
+		</script>
+	</body>
+</html>
