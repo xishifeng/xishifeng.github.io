@@ -1,0 +1,73 @@
+@charset "utf-8";
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1;
+	line-height: 0.8rem;
+	text-align: center;
+	font-size: 0.3rem;
+	color: white;
+	background-color: orangered;
+}
+#pbBox{
+	margin-top: 0.8rem;
+}
+#pbBox>ul{
+	width: 100%;
+	position: relative;
+}
+li{
+	overflow: hidden;
+	width: 46%;
+	margin: 2%;
+	box-sizing: border-box;
+	position: absolute;
+	display: none;
+}
+ul>li:nth-of-type(n+3){
+	margin-top: 0;
+}
+li>a,li>a>figure{
+	float: left;
+	overflow: hidden;
+	width: 100%;
+	background: url(../img/lazyload.gif) no-repeat 50% 50%;
+}
+li>a>figure>img{
+	float: left;
+	width: 100%;
+}
+li>a>figure>figcaption{
+	font-size: 0.32rem;
+}
+span.log-re::before{
+	content: "HOT";
+	position: absolute;
+	top: 0;
+	left: -0.5rem;
+	width: 2rem;
+	-webkit-transform: rotateZ(-45deg);
+	background-color: #f53049;
+	letter-spacing: 0.1rem;
+	color: white;
+	font-size: 0.26rem;
+	line-height: 0.6rem;
+	text-align: center;
+}
+
+p{
+	width: 100%;
+	text-align: center;
+	display: none;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	font-size: 0.28rem;
+}
+p.process::before{
+	content: "加载中ing";
+}
+p.process.no_more::before{
+	content: "没有更多了...";
+}

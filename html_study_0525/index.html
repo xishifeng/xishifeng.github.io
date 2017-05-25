@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p id="showIn">一段测试文字</p>
+		<button id="btn">点击</button>
+		<p>这里是主页面链接入口</p>
+		<a href="img_related.html"></a>
+		<div id="qr_area"></div>
+		
+		<button id="btn2" data-num="123">DATA</button>
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript">
+			document.querySelector("#btn2").onclick = function(){
+				console.log($(this).data("num"));
+			}
+		</script>
+		
+		
+		<script type="text/javascript">
+			var arr1 = [1,2,3,4,54];
+			var arr2 = new Array(2,3453,545,"2342");
+			var arr3 = [];
+			var arr4 = new Array();
+			
+			var obj1 = {};
+			var obj2 = new Object();
+			var obj3 = new Person("小明",23);
+			console.log(obj3);
+			console.log(obj3.constructor);
+			console.log(obj3 instanceof Person);//true
+			console.log(Person.prototype);
+			console.log(obj3.__proto__);
+			console.log(Person.prototype === obj3.__proto__);//true
+			
+			for(var i in obj3){
+				console.log(i+'=>'+obj3[i]);
+			}
+			
+			
+			
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+				this.sex = "male";//female
+				this.married = false;
+			}
+			
+			function shiyan(){
+				this.num = 12;
+			}
+			
+		</script>
+	</body>
+</html>

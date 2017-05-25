@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title></title>
+		<script type="text/javascript" src="js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="js/libs/rem750_1.js"></script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<style type="text/css">
+			.swiper_box {
+				width: 7.5rem;
+				display: none;
+			}
+			
+			.swiper-slide>a {
+				display: block;
+				overflow: hidden;
+			}
+			
+			.swiper-slide>a>img {
+				float: left;
+				width: 7.5rem;
+				height: 5rem;
+			}
+			
+			.pre_img_box {
+				overflow: hidden;
+			}
+			
+			.pre_img_box>img {
+				float: left;
+				width: 2.4rem;
+				height: 1.6rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="pre_img_box">
+			<img src="img/ajax_list/json_img_1.jpg" />
+			<img src="img/ajax_list/json_img_2.jpg" />
+			<img src="img/ajax_list/json_img_3.jpg" />
+			<img src="img/ajax_list/json_img_4.jpg" />
+			<img src="img/ajax_list/json_img_5.jpg" />
+			<img src="img/ajax_list/json_img_6.jpg" />
+		</div>
+
+		<div class="swiper_box swiper-container">
+			<ul class="swiper-wrapper">
+				<li class="swiper-slide">
+					<a href="javascript:;"><img src="img/ajax_list/json_img_1.jpg" /></a>
+				</li>
+				<li class="swiper-slide">
+					<a href="javascript:;"><img src="img/ajax_list/json_img_2.jpg" /></a>
+				</li>
+				<li class="swiper-slide">
+					<a href="javascript:;"><img src="img/ajax_list/json_img_3.jpg" /></a>
+				</li>
+				<li class="swiper-slide">
+					<a href="javascript:;"><img src="img/ajax_list/json_img_4.jpg" /></a>
+				</li>
+				<li class="swiper-slide">
+					<a href="javascript:;"><img src="img/ajax_list/json_img_5.jpg" /></a>
+				</li>
+				<li class="swiper-slide">
+					<a href="javascript:;"><img src="img/ajax_list/json_img_6.jpg" /></a>
+				</li>
+			</ul>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+
+		<script type="text/javascript" src="js/libs/swiper-3.4.2.jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var mySwiper;
+				$(".pre_img_box").on("click", "img", function() {
+					var index = $(this).index(),
+						box = $(".swiper_box");
+					box.show();
+					if(!mySwiper) {
+						console.log(1);
+						mySwiper = new Swiper('.swiper-container', {
+							pagination: '.swiper-pagination',
+							lazyLoading: true, //设为true开启图片延迟加载，使preloadImages无效。
+							lazyLoadingOnTransitionStart: false, //默认当过渡到slide后开始加载图片，如果你想在过渡一开始就加载，设置为true...
+							paginationClickable: true, //此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+							spaceBetween: 0, //slide之间的距离（单位px）。
+							centeredSlides: true, //设定为true时，活动块会居中，而不是默认状态下的居左。
+							initialSlide: index,
+						});
+					}else{
+						mySwiper.slideTo(index, 0, false);//切换到第一个slide，速度为0秒
+					}
+					
+					//绑定点击之后隐藏的事件
+					box.on("click", function() {
+						$(this).hide();
+					})
+				})
+			})
+		</script>
+	</body>
+
+</html>

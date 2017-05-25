@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="code_box" data-xsf="xishifeng">
+			<code>$(".code_box").click(function(){console.log(234);});</code>
+		</div>
+		
+		<ul id="ul_sy">
+			<li class="a_1 b_1 c_1">AA</li>
+			<li class="a_2">AA</li>
+			<li class="a_3">AA</li>
+			<li class="a_4">AA</li>
+			<li class="a_5">AA</li>
+			<li class="a_6">AA</li>
+		</ul>
+		<a href="code_2.html">CODE2</a>
+		<audio></audio>
+		
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript">
+		//jQuery对象的数据缓存
+			$(".code_box").data("data",{"name":"xiaoming","age":24,"sex":"female","married":false});
+			console.log($(".code_box").data("data"));
+			console.log($(".code_box").data("xsf"));
+			
+			var ob = {"name":"xiaohua","page":567};
+			$(document).on("dblclick",ob,function(e){
+				console.log(e.data);//.on绑定数据
+			});
+			
+			//var aa = document.fileSize;//不支持？
+			//console.log(aa);
+			
+			console.log(document.querySelector("#ul_sy>li").classList);//a_1 b_1 c_1
+			console.log(document.querySelectorAll("#ul_sy>li").classList);//undefined
+		</script>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			/*第一组*/
+			#page {
+				counter-reset: jsq_1;
+			}
+			
+			h1{
+				counter-reset: jsq_2;
+			}
+			
+			h1:before {
+				content: counter(jsq_1)") ";
+				counter-increment: jsq_1;
+			}
+			
+			h2 {
+				text-indent: 2em;
+			}
+			
+			h2:before {
+				content: counter(jsq_1) "-" counter(jsq_2) ")";
+				counter-increment: jsq_2;
+			}
+
+			/*第二组*/
+			.counter_w {
+				counter-reset: wangxiaoer 2 wangxiaosan 3;
+				font-size: 24px;
+				font-family: arial black;
+				color: #cd0000;
+			}
+			
+			.counter_w:before {
+				content: counter(wangxiaoer) '\A' counter(wangxiaosan);
+				white-space: pre;/*//使用这个后"\a"变为转义字符*/
+			}
+
+			/*第三组*/
+			.reset {
+				padding-left: 20px;
+				counter-reset: wangxiaoer;
+				line-height: 1.6;
+				color: #666;
+			}
+			
+			.counter:before {
+				content: counters(wangxiaoer, '-') '. ';
+				counter-increment: wangxiaoer;
+				font-family: arial black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 第一组 -->
+		<div id="page">
+			<h1>标题1</h1>
+			<h2>副标题1-1</h2>
+			<h2>副标题1-2</h2>
+			<h2>副标题1-3</h2>
+			<h1>标题2</h1>
+			<h2>副标题2-1</h2>
+			<h2>副标题2-2</h2>
+			<h1>标题3</h1>
+		</div>
+		
+		<!-- 第二组 -->
+		<strong>我叫王小二，万万没想到，会出现另外一个数字：</strong>
+		<p class="counter_w"></p> <strong>我是王小二，下面跟了个小三，早知道下饺子的！</strong>
+
+		<!-- 第三组 -->
+		<div class="reset">
+			<div class="counter">我是王小二
+				<div class="reset">
+					<div class="counter">我是王小二的大儿子</div>
+					<div class="counter">我是王小二的二儿子
+						<div class="reset">
+							<div class="counter">我是王小二的二儿子的大孙子</div>
+							<div class="counter">我是王小二的二儿子的二孙子</div>
+							<div class="counter">我是王小二的二儿子的小孙子</div>
+						</div>
+					</div>
+					<div class="counter">我是王小二的三儿子</div>
+				</div>
+			</div>
+			<div class="counter">我是王小三</div>
+			<div class="counter">我是王小四
+				<div class="reset">
+					<div class="counter">我是王小四的大儿子</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

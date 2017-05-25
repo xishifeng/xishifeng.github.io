@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="file" name="file" id="file" value="" />
+		<input type="file" name="file2" id="file2" value="" />
+		
+		<script type="text/javascript">
+			function createObjectURL(blob){
+				if(window.URL){
+					return window.URL.createObjectURL(blob);
+				}else if(window.webkitURL){
+					return window.webkitURL.createObjectURL(blob);
+				}else{
+					return null;
+				}
+			}
+			
+			window.onload = function(){
+				var input = document.querySelector("#file");
+				var input2 = document.querySelector("#file2");
+				input.addEventListener("change",function(){
+					var file = input.files[0];
+					var reader = new FileReader();
+					console.log(file);
+					console.log(typeof file);
+					console.dir(file);
+					var fileSlice = file.slice(0,32);
+					reader.readAsText(fileSlice);
+					reader.onload = function(){
+						console.log(reader.result);
+					}
+				});
+				
+				input2.addEventListener("change",function(){
+					var file = input2.files[0];
+					var url = createObjectURL(input2);
+					var reader = new FileReader();
+					var newImage = new Image();
+					newImage.src = url;
+					document.body.appendChild(newImage);
+				});
+			}
+			
+		</script>
+	</body>
+</html>

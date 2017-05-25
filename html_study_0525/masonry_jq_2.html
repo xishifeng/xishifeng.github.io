@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<base href="/lianxi_fj_0227/" />
+		<!--为页面上的所有相对链接规定默认地址或默认目标-->
+		<script type="text/javascript" src="js/libs/rem750_1.js"></script>
+		<link rel="stylesheet" href="css/reset_170324.css" />
+		<link rel="stylesheet" href="css/masonry3.css" />
+	</head>
+
+	<body>
+		<section id="pbBox">
+			<ul class="left_area"></ul>
+			<p class="process"></p>
+		</section>
+		<script type="text/javascript" src="js/libs/jquery.min.js"></script>
+		<script type="text/javascript">
+			//节流函数
+			function throttleV2(fn, delay, mustRunDelay) {
+				var timer = null;
+				var t_start;
+				return function() {
+					var context = this,
+						args = arguments,
+						t_curr = +new Date();
+					clearTimeout(timer);
+					if(!t_start) {
+						t_start = t_curr;
+					}
+					if(t_curr - t_start >= mustRunDelay) {
+						fn.apply(context, args);
+						t_start = t_curr;
+					} else {
+						timer = setTimeout(function() {
+							fn.apply(context, args);
+						}, delay);
+					}
+				}
+			}
+
+			var common = {
+				ajaxGetting: true,
+				page: 0,
+				clientWidth: $(window).width(),
+				leftArr: [],
+				rightArr: [],
+				sum: function(arr) {
+					var sum = 0;
+					$.each(arr, function(i, n) {
+						sum += arr[i];
+					});
+					return Number(sum);
+				},
+				comPare: function(arr1, arr2) {
+					var diff = common.sum(arr1) - common.sum(arr2);
+					if(diff <= 0) {
+						return true;
+					} else {
+						return false;
+					}
+				},
+				scroll: throttleV2(function() {
+					var scrollTop = $(this).scrollTop();
+					var scrollHeight = $(document).height();
+					var windowHeight = $(this).height();
+					var distance = Math.max(scrollHeight - scrollTop - windowHeight);
+					if(distance < 100) {
+						if(!common.ajaxGetting) {
+							return false;
+						}
+						var imgCount = $("figure>img[src]").length;
+						console.log(imgCount);
+						console.log(common.page);
+						console.log(imgCount/8);
+						if(imgCount/8 === common.page){
+							//pic_list_文件里数据的个数是8,判断页面里的有src属性的图片(load完毕的图片)的个数,从而确定上一个ajax异步操作图片是否全部加载完成
+							//在上一个pic_list中的数据没有开始加载(这时也是8的倍数),或没有全部加载完毕时.阻止执行
+							common.loadAjax(common.page++);
+						}else{
+							console.log("prev imgList not complet, please wait some time");
+							return false;
+						}
+					}
+				}, 300, 500),
+				loadAjax: function(i) {
+					$.ajax({
+						type: "get",
+						url: "js/json/pic-list-" + i + ".json",
+						async: true,
+						cache:false,//通过给URL添加时间戳来禁用浏览器缓存
+						success: function(ret) {
+							console.log(ret.data.length);
+							$(".process").show();
+							common.renderHtml(i, ret.data);
+						},
+						error: function() {
+							console.warn("no more json!");
+							common.ajaxGetting = false;
+							//window.onscroll = null;//如果是onclick事件，用这种方法重写
+							window.removeEventListener("scroll", common.scroll);//解绑事件
+							$(".process").show().addClass("no_more");
+						}
+					});
+				},
+				renderHtml: function(i, arr) {
+					(function fun(times) {
+						if(times >= arr.length) {
+							$(".process").hide();
+							return false;
+						}
+						var picName = arr[times].src.substr(arr[times].src.lastIndexOf("/")+1),
+						isMark = arr[times].isRecommend?'<span class="log-re"></span>':'';
+						$("ul").append($('<li class="json_pic_' + i + '_' + times + '"><a href = "###"><figure><figcaption>'+picName+'</figcaption></figure>'+isMark+'</a></li>'));
+						var newImg = new Image();
+						newImg.setAttribute("data-picid",arr[times].id)
+						newImg.src = arr[times].src;
+						newImg.onload = function() {
+							var $tempLi = $(".json_pic_" + i + "_" + times);
+							var $this = $(this);
+							//image onload之后，可以获取到图片元素的width和height
+							var comFlag = common.comPare(common.leftArr, common.rightArr);
+							if(comFlag) {
+								//注意下面两条语句的先后顺序
+								$tempLi.show().css({
+									"left": 0,
+									"top": common.sum(common.leftArr)
+								}).find("a>figure").prepend($this);
+								common.leftArr.push($tempLi.outerHeight(true));
+							} else {
+								$tempLi.show().css({
+									"left": common.clientWidth / 2,
+									"top": common.sum(common.rightArr)
+								}).find("a>figure").prepend($this);
+								common.rightArr.push($tempLi.outerHeight(true));
+							}
+							$("ul").height(Math.max(common.sum(common.leftArr),common.sum(common.rightArr)));
+							fun(++times); //递归调用,for循环中无法暂停等待异步调用，必须用递归才能实现异步操作
+						}
+					})(0);
+				}
+			}
+
+			window.onload = function() {
+				console.log(123);
+				common.loadAjax(common.page++);
+				window.addEventListener("scroll", common.scroll);
+			}
+		</script>
+	</body>
+
+</html>

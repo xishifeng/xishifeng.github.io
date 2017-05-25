@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/libs/rem750_1.js"></script>
+		<link rel="stylesheet" href="css/reset_170324.css" />
+		<link rel="stylesheet" href="css/denglu_cookie.css" />
+	</head>
+
+	<body>
+
+		<form id="form1">
+			<fieldset class="area_1">
+				<legend>头像等</legend>
+				<div>
+					<section>
+						<img id="head_pic" src="img/lxus.png" />
+						<input id="head_pic_upload" type="file" />
+					</section>
+					<section>
+						<p>这是第<span id="login_times"></span>次登录</p>
+						<p>上一次的登陆时间是：</p>
+						<p id="login_relate"></p>
+					</section>
+				</div>
+			</fieldset>
+
+			<fieldset class="area_2">
+				<legend>基本信息</legend>
+				<div>
+					<label for="name">name:</label>
+					<input type="text" id="name" placeholder="pelease enter a word" />
+				</div>
+				<div>
+					<label for="password">password:</label>
+					<input type="password" id="password" placeholder="pelease enter a word" />
+				</div>
+				<div>
+					<label>male:<input type="radio" name="sex" value="male" /></label>
+					<label>female:<input type="radio" name="sex" value="female" /></label>
+				</div>
+				<div>
+					<textarea id="mottom" name="mottom" placeholder="please write your mottom" rows="5" cols="24"></textarea>
+				</div>
+			</fieldset>
+			
+			<fieldset class="area_3">
+				<div>
+					<button id="btn_login">login</button>
+				</div>
+				<div>
+					<button id="btn_clearCookie">clearCookie</button>
+				</div>
+				<div>
+					<button id="btn_clearStorage">clearStorage</button>
+				</div>
+			</fieldset>
+
+				
+
+		</form>
+		
+		<script type="text/javascript" src="js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="js/libs/CookieUtil.js"></script>
+		<script type="text/javascript" src="js/libs/lrz.all.bundle.js" ></script>
+		<script type="text/javascript">
+			
+		
+			$(function() {
+				console.log("原始的cookie==>",document.cookie);//""
+				console.log(typeof document.cookie);//string
+				console.log(Boolean(document.cookie));//false
+				console.log("原始的localStorage==>",window.localStorage);//obj
+				console.log(typeof window.localStorage);//obj
+				console.log(Boolean(window.localStorage));//true
+				
+				//初始化一个user的localStorage
+				if(!localStorage.getItem("user")){
+					localStorage.setItem("user","{}");
+				}
+				
+				if(document.cookie) {
+					//判断浏览器的cookie是否有值,所有浏览器都支持cookie,所以没必要判断
+					var old_name = CookieUtil.get("name");
+					var old_password = CookieUtil.get("password");
+					var old_mottom = CookieUtil.get("mottom");
+					var old_sex = CookieUtil.get("sex");
+					$("#name").val(old_name);
+					$("#password").val(old_password);
+					$("#mottom").val(old_mottom);
+					if(old_sex === "0"){
+						$("input[type='radio']")[0].checked = true;
+					}else{
+						$("input[type='radio']")[1].checked = true;
+					}
+				} else {
+					console.log("no cookie");
+				}
+				
+				if(window.localStorage){
+					//判断浏览器是否支持localStorage,即使没有值,这个条件也是true
+					var count = window.localStorage.getItem("count");
+					localStorage.setItem("count",++count);//存在类型的隐式转换,localStorage只能存srting类型
+					$("#login_times").text(localStorage.getItem("count"));
+					
+					
+					var login_relate = localStorage_getValueInObj("user","login_relate");
+					if(login_relate){
+						console.log(login_relate);
+						var loginDate = new Date(Number(login_relate));
+						$("#login_relate").text(loginDate.getFullYear()+'-'+(loginDate.getMonth() + 1)+'-'+loginDate.getDate()+','+loginDate.getHours()+':'+loginDate.getMinutes()+':'+loginDate.getSeconds());
+					}else{
+						$("#login_relate").text("no login time");
+					}
+					
+					localStorage_setValueInObj("user","login_relate",String(new Date().getTime()));
+					
+					var head_pic = localStorage_getValueInObj("user","head_pic");
+					if(head_pic){
+						$("#head_pic")[0].src = head_pic;
+					}else{
+						console.warn("no head_pic");
+					}
+				}else{
+					console.log("浏览器不支持 localStorage");
+				}
+
+				$("#btn_login").click(function(event) {
+					event.preventDefault();
+					var _name = $("#name").val();
+					var _password = $("#password").val();
+					var _mottom = $("#mottom").val();
+					CookieUtil.set("name", _name, new Date(2017, 4, 1));
+					CookieUtil.set("password", _password, new Date(2017, 4, 1));
+					CookieUtil.set("mottom", _mottom, new Date(2017, 4, 1));
+					if($("input[type='radio']")[0].checked){
+						CookieUtil.set("sex", "0", new Date(2017, 4, 1));
+					}else if($("input[type='radio']")[1].checked){
+						CookieUtil.set("sex", "1", new Date(2017, 4, 1));
+					}
+					//CookieUtil.set的第三个参数必须是date对象(实际上是转换之后的字符串),new Date(2017,4,1)指5月1号
+					console.log("缓存成功");
+				});
+
+				$("#btn_clearCookie").click(function(event) {
+					event.preventDefault();
+					clearCookie();
+					console.log("清楚Cookie成功");
+				});
+				
+				$("#head_pic_upload").change(function(){
+					lrz(this.files[0],{width:200}).then(function(rst){
+						$("#head_pic")[0].src = rst.base64;
+						localStorage_setValueInObj("user","head_pic",rst.base64);
+					});
+				});
+				
+				$("#btn_clearStorage").click(function(event){
+					event.preventDefault();
+					localStorage.clear();
+					console.log("清楚localStorage成功");
+				});
+			});
+			
+			function localStorage_getValueInObj(objName, eleName){
+				var obj = JSON.parse(window.localStorage.getItem(objName));
+				return obj?obj[eleName]:false;
+			}
+			
+			function localStorage_setValueInObj(objName, eleName, newValue){
+				var obj = JSON.parse(window.localStorage.getItem(objName));
+				//增加或修改,无需判断obj.eleName是否存在
+				obj[eleName] = newValue;
+				//若对象的属性名未知，也是变量。则用obj[eleName]的形式,obj.eleName设置的属性名直接就是eleName
+				window.localStorage.setItem(objName,JSON.stringify(obj));
+			}
+			
+			function localStorage_delValueInObj(objName, eleName){
+				var obj = JSON.parse(window.localStorage.getItem(objName));
+				if(obj[eleName]){
+					delete obj[eleName];//删除一个对象的属性
+				}else{
+					return false;
+				}
+			}
+		</script>
+	</body>
+
+</html>

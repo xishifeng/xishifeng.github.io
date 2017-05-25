@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form method="post" id="form1">
+			<label>Name:<input type="text" name="name" /></label>
+			<br />
+			<label>Picture:<input type="file" name="img" /></label>
+			<br />
+			<a href="javascript:;" id="btn1">点击提交</a>
+		</form>
+		<br />
+		<input type="file" id="img1" />
+		
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#btn1").click(function(e){
+					e.preventDefault();
+					var data = new FormData($("#form1")[0]);
+					console.log(data);
+					$.ajax({
+						type:"post",
+						data:data,
+						url:"php/post_sy.php",
+						dataType:"json",
+						async: false,  
+				        cache: false,  
+				        contentType: false,  
+				        processData: false,  
+						success:function(data){
+							console.log(data);
+						},
+						error:function(){
+							console.warn("请求失败");
+						}
+					});
+				})
+			})
+		</script>
+	</body>
+</html>

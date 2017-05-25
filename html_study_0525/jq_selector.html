@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			::selection{
+				color: red;
+			}
+			table{
+				border-collapse: collapse;
+				/*border-radius: 50%;*/
+			}
+			table th,table td{
+				/*border-radius: 50%;*/
+			}
+			
+		</style>
+	</head>
+	<body>
+		<table border="1px" cellpadding="0" cellspacing="0">
+			<caption>课程表</caption>
+			<thead>
+				<tr>
+					<th>周一</th>
+					<th>周二</th>
+					<th>周三</th>
+					<th>周四</th>
+					<th>周五</th>
+					<th>周六</th>
+					<th>周日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+				</tr>
+				<tr>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+				</tr>
+				<tr>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+				</tr>
+				<tr>
+					<td colspan="7">BB</td>
+				</tr>
+				<tr>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+				</tr>
+				<tr>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+				</tr>
+				<tr>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+					<td>AA</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="7">结束</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+		<p id="viewInfo"></p>
+		<p id="viewInfo2">wgfwegwe</p>
+		
+		
+		
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+				$("tbody>tr:even>td:odd").css({"color":"red"});
+				$("tbody>tr:nth-of-type(2n+1)>td:nth-of-type(2n+1)").css({"background-color":"#BECEEB"});
+				$("tbody>tr:nth-of-type(3)>td:eq(3)").css({"background-color":"blue"});
+				//$("tbody>tr:even>td:first")通过:eq():lt():gt():even:odd:first:lat得到的是所有满足tr:even>td:first的元素的集合,实际中css自带的:nth-of-type()选择器可能用的更多
+				$("tbody>tr:even>td:first").css({"text-align":"center"});
+				$("tbody>tr:even>td:last").css({"color":"orange"});
+				$("tbody>tr:even>td:lt(5)").css({"background-color":"yellow"});
+				//$("tbody>tr:even>td:nth-of-type(-n+3)").css({"background-color":"yellow"});
+				$("tbody>tr:even>td:gt(21)").css({"background-color":"cyan"});
+				
+				
+				$("tbody>tr:nth-of-type(3)>td:eq(4)").click(function(){
+					$("#viewInfo").text("this is created after click");
+				});
+				
+				//$("tbody>tr:nth-of-type(3)>td:eq(4)")[0].click();//js原生方法
+				//$("tbody>tr:nth-of-type(3)>td:eq(4)").click();//jq方法1
+				$("tbody>tr:nth-of-type(3)>td:eq(4)").trigger("click");//jq方法2
+				$("#viewInfo")[0].onclick = function(e){
+					console.log(e);
+					console.log(e.timeStamp);//添加时间戳
+				}
+				$("#viewInfo2").click(function(e){
+					console.log(e);
+				})
+			});
+		</script>
+	</body>
+</html>

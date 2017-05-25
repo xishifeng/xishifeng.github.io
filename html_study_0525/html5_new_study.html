@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.user_name{
+				-webkit-appearance: none;
+				border: none;
+				outline: none;
+			}
+			.user_name::-webkit-input-placeholder{
+				color: red;
+			}
+			/*虚拟DOM类似于伪元素,伪对象*/
+			/*里面的所有元素样式更改，都直接是伪元素的样式添加，部分直接子元素和子代子元素*/
+			
+			meter{
+				-webkit-appearance: none;
+			}
+			meter::-webkit-meter-inner-element{
+				width: 50%;
+			}
+			meter::-webkit-meter-optimum-value{
+				width: 45%!important;
+			}
+		</style>
+	</head>
+	<body>
+		<label for="input1">data-list数据：</label>
+		<input type="text" list="list1" />
+		<datalist id="list1">
+			<option value="zhangsan"></option>
+			<option value="lisi"></option>
+			<option value="wangwu"></option>
+			<!--注意，值写在value里-->
+		</datalist>
+		<!--<datalist></datalist>兼容性并不好-->
+		
+		<div>下载进度：<progress value="30" max="100"></progress></div>
+		<!--progress的value值默认为1，max默认为1，取值范围0-1。max和value都可以修改-->
+		
+		<br />
+		<label>输入框：<input class="user_name" type="text" placeholder="请输入用户名" /></label>
+		
+		<meter max="100" min="0" low="10" high="90" value="25"></meter>
+		<!--<meter></meter>支持度也不好-->
+		
+		
+		<script type="text/javascript">
+		</script>
+	</body>
+</html>

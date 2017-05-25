@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form id="form1" method="post" action="./php/input_submit.php" target="iframe2">
+			<!--target里写iframe的name名-->
+			<div><label>用户名：<input type="text" name="uname" placeholder="请输入用户名" /></label></div>
+			<div><label>密码：<input type="password" name="pwd" placeholder="请输入密码" /></label></div>
+			<div><input type="submit" value="提交" /></div>
+			<iframe id="iframe_2" name="iframe2"></iframe>
+		</form>
+		
+		<form id="form2">
+			<div><label>邮箱:<input type="text" id="form2_email" /></label></div>
+			<div><label>电话:<input type="text" id="form2_tel" /></label></div>
+		</form>
+		
+		
+		
+		<button id="btn2">点击注册</button>
+		
+		
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#btn2").click(function(){
+					var email = $.trim($("#form2_email").val());
+					var tel = $.trim($("#form2_tel").val());
+					if(email == ''||tel == ''){
+						alert("输入不能为空");
+						return false;
+					}
+					$.ajax({
+						type:"post",
+						url:"./php/input_submit_2.php",
+						async:true,
+						dataType:"json",
+						data:{"tel":tel,"email":email},
+						//data:"tel="+tel+"&email="+email,
+						success:function(data){
+							console.log(data.tel);
+						},
+						error:function(){
+							console.warn("error");
+						}
+					});
+					
+				})
+			})
+		</script>
+		
+	</body>
+</html>

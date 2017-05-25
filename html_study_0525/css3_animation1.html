@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div#animation1 {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: relative;
+				animation: myfirst 5s infinite;
+				animation-direction: alternate;
+				/* Safari and Chrome */
+				-webkit-animation: myfirst 5s infinite;
+				-moz-animation: myfirst 5s infinite;
+				-o-animation: myfirst 5s infinite;
+				-webkit-animation-direction: alternate;
+				-moz-animation-direction: alternate;
+				-o-animation-direction: alternate;
+				/*
+				 * animation-direction值的选取
+				 * normal	默认值。动画应该正常播放。
+				 * alternate	动画应该轮流反向播放。
+				 * 
+				*/
+			}
+			
+			@keyframes myfirst {
+				0% {
+					background: red;
+					left: 0px;
+					top: 0px;
+				}
+				25% {
+					background: yellow;
+					left: 200px;
+					top: 0px;
+				}
+				50% {
+					background: blue;
+					left: 200px;
+					top: 200px;
+				}
+				75% {
+					background: green;
+					left: 0px;
+					top: 200px;
+				}
+				100% {
+					background: red;
+					left: 0px;
+					top: 0px;
+				}
+			}
+			
+			@-webkit-keyframes myfirst
+			/* Safari and Chrome */
+			
+			{
+				0% {
+					background: red;
+					left: 0px;
+					top: 0px;
+				}
+				25% {
+					background: yellow;
+					left: 200px;
+					top: 0px;
+				}
+				50% {
+					background: blue;
+					left: 200px;
+					top: 200px;
+				}
+				75% {
+					background: green;
+					left: 0px;
+					top: 200px;
+				}
+				100% {
+					background: red;
+					left: 0px;
+					top: 0px;
+				}
+			}
+			
+			.transiton1 {
+				overflow: hidden;
+				width: 100px;
+				height: 100px;
+				transition: transform 1s;
+			}
+			
+			.transiton1:hover {
+				transform: translateY(180px);
+				-webkit-transform: rotateY(180deg);
+			}
+			
+			.transiton1>img {
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p><strong>注释：</strong>Internet Explorer 9 以及更早的版本不支持 animation-direction 属性。</p>
+		<div id="animation1"></div>
+
+		<div class="transiton1">
+			<img src="img/lbxx.jpg" />
+		</div>
+	</body>
+
+</html>

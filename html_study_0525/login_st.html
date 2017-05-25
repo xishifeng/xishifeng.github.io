@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<p>
+			<label>用户名：<input type="text" id="name" /></label>
+		</p>
+		<p>
+			<label>密码：<input type="password" id="pwd" /></label>
+		</p>
+		<p>
+			<button id="denglu">登录</button>
+		</p>
+		<p>
+			<button id="clear">手动清楚localStorage</button>
+		</p>
+		<script type="text/javascript" src="js/libs/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				//获取localStorage信息
+				var username = localStorage.getItem("username");
+				var password = localStorage.getItem("password");
+				console.log(username);
+				console.log(password);
+				//如果localStorage中存的有username和password的值，就直接登录
+				if(username !== null && password !== null){
+					dengLu(username, username);
+				}else{
+					//如果localStorage中没有存值，就添加点击登录的事件
+					$("#denglu").click(function(e) {
+						e.preventDefault();
+						var name = $("#name").val(),
+							pwd = $("#pwd").val();
+						//每次触发点击登录的事件的时候，就更新一下localStorage中username和password
+						localStorage.setItem("username",name);
+						localStorage.setItem("password",pwd);
+						dengLu(name, pwd);
+					});
+				}
+				
+				
+				$("#clear").click(function(e){
+					e.preventDefault();
+					localStorage.clear();
+					console.log("清楚localStorage成功");
+				})
+			});
+
+			function dengLu(a, b) {
+				$.ajax({
+					type: "post",
+					url: "php/login_2.php",
+					data: {
+						name: a,
+						pwd: b
+					},
+					dataType: "json",
+					success: function(data) {
+						console.log(data);
+						console.log("登录成功");
+					},
+					error: function() {
+						console.warn("数据获取错误");
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

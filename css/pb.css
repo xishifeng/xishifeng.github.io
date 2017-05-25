@@ -1,0 +1,92 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+
+#pbBox{
+	overflow: hidden;
+}
+
+figure {
+    float: left;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin-top: 0.075rem;
+    margin-bottom: 0.15rem;
+    width: 3.625rem;
+    box-shadow: 2px 2px 3px 0 rgba(0,0,0,.3);
+    cursor: pointer;
+}
+figure:nth-of-type(2n){
+	margin-left: 0.075rem;
+	margin-right: 0.05rem;
+}
+figure:nth-of-type(2n+1) {
+    margin-left: 0.05rem;
+    margin-right: 0.075rem;
+}
+figure:nth-of-type(n+3){
+	margin-top: 0;
+}
+figure>img{
+	width: 100%;
+}
+figure>figcaption{
+	font-size: 0.32rem;
+	color: #a3a3a3;
+}
+figure>figcaption>p{
+	width: 100%;
+	float: left;
+	line-height: 0.4rem;
+}
+
+/**
+ * 列表加载效果样式
+ */
+.l_botjz {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 10px;
+    line-height: 0.6rem;
+    text-align: center;
+    font-size: 0.3rem;
+    color: #808080;
+}
+
+.l_botjz span:nth-child(2) {
+    display: none;
+}
+
+.l_botjz.l_loading span:nth-child(1) {
+    display: none;
+}
+
+.l_botjz.l_loading span:nth-child(2) {
+    display: inherit;
+}
+
+/*
+ * 
+ * 
+ *没有找到相关内容 
+ * 
+ * 
+ * */
+div.no-product{
+	padding: 1.76rem 0 0.24rem 0.86rem;
+	display: none;
+}
+div.no-product>img{
+	width: 1.8rem;
+	height: 2.48rem;
+	float: left;
+}
+div.no-product>p{
+	padding-left: 0.54rem;
+	line-height: 2.48rem;
+	font-size: 0.32rem;
+	color: #a5a5a5;
+	float: left;
+}

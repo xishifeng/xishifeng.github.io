@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			section{
+				position: relative;
+				width: 600px;
+				height: 400px;
+				background-color: orchid;
+			}
+			ul{
+				list-style: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 3;
+			}
+			ul>li{
+				float: left;
+				background-color: #BECEEB;
+				margin: 0 10px;
+				background-color: orangered;
+				color: white;
+				line-height: 30px;
+				width: 100px;
+				text-align: center;
+				border-radius: 30px 0/30px 0;
+			}
+			section>article{
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding-top: 60px;
+				width: 100%;
+				height: 100%;
+				background-size: 600px 400px;
+				background-repeat: no-repeat;
+			}
+			article#article1{
+				background-image: url(img/fengjing_01.jpg);
+			}
+			article#article2{
+				background-image: url(img/lbxx.jpg);
+			}
+			article#article3{
+				background-image: url(img/katong_01.jpg);
+			}
+			article:target{
+				z-index: 2;
+			}
+		</style>
+	</head>
+	<body>
+		<p>:target伪类要配合a标签，选择器才能生效</p>
+		<section>
+			<ul>
+				<li><a href="#article1">选项卡1</a></li>
+				<li><a href="#article2">选项卡2</a></li>
+				<li><a href="#article3">选项卡3</a></li>
+			</ul>
+			<article id="article1">内容1</article>
+			<article id="article2">内容2</article>
+			<article id="article3">内容3</article>
+		</section>
+	</body>
+</html>

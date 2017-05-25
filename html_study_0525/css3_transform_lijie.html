@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.title_area {
+				text-align: center;
+				font-size: 1.1em;
+			}
+			
+			.range_area {
+				text-align: center;
+			}
+			
+			[type="range"] {
+				width: 500px;
+			}
+			
+			.stage_area {
+				width: 900px;
+				height: 100px;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 100px 50px;
+				background-color: #f0f0f0;
+				box-shadow: inset 0 0 3px rgba(0, 0, 0, .35);
+				-webkit-transition: top .5s;
+				-moz-perspective: 201px;
+				-webkit-perspective: 201px;
+				perspective: 201px;
+				position: relative;
+				z-index: 2;
+				top: 0;
+			}
+			
+			.transalte {
+				color: #cd0000;
+			}
+			
+			.piece {
+				width: 100px;
+				height: 100px;
+				margin: 0 auto;
+				background-color: #cad5eb;
+				padding: 10px;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				position: relative;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="main">
+			<h1>借助translateZ方法理解perspective视角含义实例页面</h1>
+			<div id="body" class="light">
+				<div id="content" class="show">
+					<div class="demo">
+						<h4 class="title_area">舞台视角大小201像素，子元素translateZ值为: <span id="transalteZ" class="transalte">0</span>px;
+</h4>
+						<p class="range_area">-100 <input type="range" id="range" min="-100" max="300" step="50" value="0" autocomplete="off" /> 300</p>
+						<!--
+							autocomplete 属性规定输入字段是否应该启用自动完成功能。
+							step 属性规定输入字段的合法数字间隔（假如 step="3"，则合法数字应该是 -3、0、3、6，以此类推）。
+						-->
+						<div id="stage" class="stage_area">
+							<div class="piece"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var randomHsl = function() {
+					return "hsla(" + Math.round(360 * Math.random()) + "," + "60%, 50%, .75)";
+				}
+				// CSS transform变换应用
+				,
+				transform = function(element, value, key) {
+					key = key || "Transform";
+					console.log(key);
+					["Moz", "O", "Ms", "Webkit", ""].forEach(function(prefix) {
+						element.style[prefix + key] = value;
+						console.log(element.style[prefix + key]);
+					});
+
+					return element;
+				}
+				// 浏览器选择器API
+				,
+				$ = function(selector) {
+					return document.querySelector(selector);
+				},
+				$$ = function(selector) {
+					return document.querySelectorAll(selector);
+				};
+
+			// 元素
+			var eleStage = $("#stage"),
+				eleRange = $("#range"),
+				elePiece = $(".piece");
+
+			eleRange.addEventListener("change", function() {
+				transform(elePiece, "translateZ(" + eleRange.value + "px)");
+				$("#transalteZ").innerHTML = this.value;
+			});
+			transform(elePiece, "translateZ(" + eleRange.value + "px)");
+			elePiece.style.backgroundColor = randomHsl();
+		</script>
+	</body>
+
+</html>

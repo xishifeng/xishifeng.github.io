@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/libs/flexible0-3-4.js"></script>
+		<link rel="stylesheet" href="css/pb.css" />
+	</head>
+
+	<body>
+		<div id="pbBox"></div>
+		<div class="l_botjz l_loading"><span>没有更多了</span><span>正在加载 ...</span></div>
+		<div class="no-product hid" style="display: none;">
+			<img src="img/xr.png" />
+			<p>抱歉没扎到相关内容！</p>
+		</div>
+
+		<script type="text/javascript" src="js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="js/libs/masonry.pkgd.min.js"></script>
+		<script type="text/javascript" src="js/libs/imagesloaded.pkgd.min.js"></script>
+		<script type="text/javascript">
+			//pb2的加强版
+			var page = 0;
+			var masonryFlag = true;
+			var ajaxGetting = true; //ajax是否可以执行
+			window.onload = function() {
+				common.loadAjax(0);
+			}
+
+			$(window).scroll(function() {
+				setTimeout(function() {
+					var scrollTop = $(this).scrollTop();
+					var scrollHeight = $(document).height();
+					var windowHeight = $(this).height();
+					var distance = Math.max(scrollHeight - scrollTop - windowHeight);
+					if(distance < 100) {
+						if(!ajaxGetting) {
+							return false;
+						} else {
+							ajaxGetting = false;
+							page++;
+							common.loadAjax(page);
+						}
+					}
+				}, 200); //延迟一秒钟执行，看到过程
+
+			});
+
+			var common = {
+				weiCuo: function() {
+					return new Date().getTime();
+				},
+				loadAjax: function(page) {
+					var url = "js/json/pic-list-" + page + ".json?";
+					$.ajax({
+						type: "get",
+						dataType: "json",
+						data: null,
+						cache: false, //通过给URL添加时间戳来禁用浏览器缓存
+						url: url,
+						async: true,
+						success: function(ret) {
+							console.log(ret.data.length);
+							if(!ret.data.length) {
+								ajaxGetting = false;
+								console.log("no more json");
+								$('.l_loading').removeClass('l_loading');
+								$(window).unbind('scroll');
+								return false;
+							} else {
+								var newHtml = common.renderHtml(ret.data);
+								common.addHtml(newHtml);
+								return ajaxGetting = true;
+							}
+						},
+						error: function(data) {
+							ajaxGetting = false;
+							return null;
+							//貌似是必要的，防止加载最后一个时控制台报错
+						}
+					});
+				},
+				addHtml: function(aHtml) {
+					var aa = $(aHtml);
+					var pbBox = $("#pbBox");
+					pbBox.append(aa);
+					if(masonryFlag) {
+						console.log(1); //测试用
+						masonryFlag = false; //第一次masonry的时候要初始化，后面则不用
+					} else {
+						console.log(2); //测试用
+						pbBox.masonry('appended', aa);
+					}
+					common.photoMasonry();
+				},
+				renderHtml: function(r) {
+					var _html = "";
+					for(var i = 0; i < r.length; i++) {
+						var rsrc = r[i].src,
+							_html = _html + "<figure class='pbBox-item'><img src='" + rsrc + "?" + common.weiCuo() + "' /><figcaption><p>测试文字</p><p>收藏</p></figcaption></figure>";
+					}
+					return _html;
+				},
+				photoMasonry: function() {
+					var $container = $('#pbBox');
+					$container.imagesLoaded(function() {
+						$container.masonry({
+							itemSelector: '.pbBox-item'
+						});
+					});
+				}
+			}
+		</script>
+	</body>
+
+</html>

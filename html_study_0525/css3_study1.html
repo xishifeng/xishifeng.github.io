@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+
+		.music-box {
+			width: 300px;
+			height: 300px;
+			position: relative;
+		}
+		
+		.music-box::after, .music-box::before {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			border-radius: 150px;
+		}
+
+		.music-box::after {
+			border: 1px solid red;
+			background: url(img/lbxx.jpg);
+			background-size: 100% 100%;
+			transform-origin: center bottom;
+			transition: all 1s;
+		}
+
+		.music-box::before {
+			background: url(img/katong_01.jpg);
+			background-size: 100% 100%;
+		}
+
+		.music-box:hover::after {
+			transform: rotateX(-100deg);
+		}
+	</style>
+	</head>
+	<body>
+		<div class="music-box"></div>
+	</body>
+</html>
