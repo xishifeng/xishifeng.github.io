@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul ng-app="">
+			<li><input type="text" ng-model="name" /></li>
+			<li><p ng-bind="name"></p></li>
+			<li ng-init="xiaoming='xm';xiaohong='xh'"></li>
+			<li>上一行li绑定的是：{{xiaoming+"**"+xiaohong}}</li>
+		</ul>
+		
+		
+		<script type="text/javascript" src="js/libs/angular.min.js" ></script>
+		<script type="text/javascript">
+			
+		</script>
+	</body>
+</html>
+
+<!--
+ng-app 指令告诉 AngularJS，<div> 元素是 AngularJS 应用程序 的"所有者"。
+ng-model 指令把输入域的值绑定到应用程序变量 name。
+ng-bind 指令把应用程序变量 name 绑定到某个段落的 innerHTML。
+ng-init 指令初始化 AngularJS 应用程序变量。
+
+HTML5 允许扩展的（自制的）属性，以 data- 开头。
+AngularJS 属性以 ng- 开头，但是您可以使用 data-ng- 来让网页对 HTML5 有效。
+使用 ng-init 不是很常见。您将在控制器一章中学习到一个更好的初始化数据的方式。
+ng-repeat 指令会重复一个 HTML 元素：
+
+ng-repeat 指令是通过数组来循环 HTML 代码来创建下拉列表，但 ng-options 指令更适合创建下拉列表，它有以下优势：
+使用 ng-options 的选项的一个对象， ng-repeat 是一个字符串。
+-->

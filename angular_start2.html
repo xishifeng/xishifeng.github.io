@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn" ng-disabled="ddd">开始</button>
+		<input type="text" ng-model="ddd" />
+		<ul ng-app="myFi" ng-controller="myFiCtr">
+			<li ng-repeat="x in ooh">{{x.id+"=>"+x.name}}</li>
+			<!--<li ng-repeat="x in oog">{{x.id+"=>"+x.src}}</li>-->
+		</ul>
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/libs/angular.min.js" ></script>
+		<script type="text/javascript">
+			var app = angular.module('myFi', []);
+			app.controller('myFiCtr', function($scope) {
+			    //$scope.ooo = data1.data;
+			    //$scope.ooh = ["Emil", "Tobias", "Linus"];
+			    $scope.ooh = [{"name":"Emil","id":1}, {"name":"Tobias","id":2}, {"name":"Linus","id":3}];
+			    $(document).on('click','#btn',function(){
+			    	$scope.oog = ajax();
+			    }
+			});
+			
+			function ajax(){
+				$.ajax({
+					type:"post",
+					url:"js/json/pic-list-0.json",
+					dataType:"json",
+					data:{"id":"888c"},
+					success:function(data){
+						console.log(data);
+						return data.data;
+					},
+					error:function(){
+						console.warn("ajax error");
+					}
+				});
+			}
+		</script>
+	</body>
+</html>
+
+<!--
+	在wamp开启的情况下，可以用type:"post",或者type:"get",
+	hbuilder里的环境用get才行
+-->
