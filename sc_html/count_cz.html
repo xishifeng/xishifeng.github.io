@@ -149,25 +149,25 @@
 					var _zhi = (objSc[_role]["zhiOri"] + objSc[_role]["zhiAdd"]*(_level-1))*(1.65+_awake);
 					var _talent = (_level-1)*15 + _talent;
 					var _total = _xue+_gong+_fang+_zhi+_talent;
-					document.querySelector("#count_xue_jichu").innerHTML = Math.ceil(_xue);
-					document.querySelector("#count_gong_jichu").innerHTML = Math.ceil(_gong);
-					document.querySelector("#count_fang_jichu").innerHTML = Math.ceil(_fang);
-					document.querySelector("#count_zhi_jichu").innerHTML = Math.ceil(_zhi);
-					document.querySelector("#count_talent").innerHTML = Math.ceil(_talent);
-					document.querySelector("#count_total").innerHTML = Math.ceil(_total);
+					document.querySelector("#count_xue_jichu").innerHTML = Math.round(_xue);
+					document.querySelector("#count_gong_jichu").innerHTML = Math.round(_gong);
+					document.querySelector("#count_fang_jichu").innerHTML = Math.round(_fang);
+					document.querySelector("#count_zhi_jichu").innerHTML = Math.round(_zhi);
+					document.querySelector("#count_talent").innerHTML = Math.round(_talent);
+					document.querySelector("#count_total").innerHTML = Math.round(_total);
 					
 					//理论值计算
 					var a,b,c,d;
 					if(objSc[_role]["mainPro"] === "zhi"){
-						a = Math.ceil(_xue) + Math.ceil(_talent/3);
-						b = Math.ceil(_gong) + Math.ceil(_talent/3);
-						c = Math.ceil(_fang) + Math.ceil(_talent/3);
-						d = Math.ceil(_zhi) + Math.ceil(_talent*2);
+						a = Math.round(_xue-_talent/3);
+						b = Math.round(_gong-_talent/3);
+						c = Math.round(_fang-_talent/3);
+						d = Math.round(_zhi+_talent*2);
 					}else{
-						a = Math.ceil(_xue) + Math.ceil(_talent/3);
-						b = Math.ceil(_gong) + Math.ceil(_talent*2);
-						c = Math.ceil(_fang) + Math.ceil(_talent/3);
-						d = Math.ceil(_zhi) + Math.ceil(_talent/3);
+						a = Math.round(_xue-_talent/3);
+						b = Math.round(_gong+_talent*2);
+						c = Math.round(_fang-_talent/3);
+						d = Math.round(_zhi-_talent/3);
 					}
 					document.querySelector("#count_xue_lilun").innerHTML = a;
 					document.querySelector("#count_gong_lilun").innerHTML = b;
