@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/libs/angular.min.js" ></script>
+	</head>
+	<body>
+		<ul ng-app="myApp" ng-controller="myCtrl">
+			<li><input type="text" ng-model="input_one" /></li>
+			<li><p ng-bind="input_one"></p></li>
+			<li>{{input_one}}</li><!--这里和ng-bind的形式实现的效果一致-->
+			
+			<li><input type="text" ng-model="personOne.firstName" /></li>
+			<li><input type="text" ng-model="personOne.lastName" /></li>
+			<li>{{personOne.fullName()}}</li>
+			
+			<li ng-show="false">这一行绑定了数据</li>
+			<li ng-repeat="xx in person | filter:'China' | orderBy:'age'"><span>{{xx.name}}</span><span>{{xx.age}}</span><span>{{xx.country}}</span></li>
+			<li ng-repeat="xx in box">{{xx+'&&'+box[xx]}}</li>
+			
+			<li ng-repeat="xx in lsitPic"><span>{{xx.id}}</span><span>{{xx.src}}</span><span>{{xx.isRecommend}}</span></li>
+		</ul>
+		
+		
+		
+		<script type="text/javascript">
+			var app = angular.module('myApp', []);
+
+			app.controller('myCtrl', function($scope, $http) {
+			    $scope.person = [{
+			    	"name":"xiaoming",
+			    	"age":23,
+			    	"country":"China",
+			    	"sex":"male"
+			    },{
+			    	"name":"xiaohong",
+			    	"age":20,
+			    	"country":"China",
+			    	"sex":"female"
+			    },{
+			    	"name":"xiaohui",
+			    	"age":16,
+			    	"country":"America",
+			    	"sex":"male"
+			    },{
+			    	"name":"xiaomei",
+			    	"age":11,
+			    	"country":"Japan",
+			    	"sex":"female"
+			    },{
+			    	"name":"xiaodu",
+			    	"age":10,
+			    	"country":"China",
+			    	"sex":"male"
+			    }];
+			    
+			    $scope.box = {
+			    	"color":"red",
+			    	"count":100,
+			    	"isUsed":false
+			    };
+			    $scope.personOne = {
+			    	"firstName": "aa",
+			    	"lastName": "bb",
+			    	"fullName": function(){
+			    		return $scope.personOne.firstName + $scope.personOne.lastName;
+			    		//$scope.不能少
+			    	}
+			    };
+			    
+			    $http.get("js/json/pic-list-4.json").then(function (response) {
+			        $scope.lsitPic = response.data.data;
+			    });
+			});
+		</script>
+	</body>
+</html>
+
+<!--
+ng-app 指令告诉 AngularJS，<div> 元素是 AngularJS 应用程序 的"所有者"。
+ng-model 指令把输入域的值绑定到应用程序变量 name。
+ng-bind 指令把应用程序变量 name 绑定到某个段落的 innerHTML。
+ng-init 指令初始化 AngularJS 应用程序变量。
+
+HTML5 允许扩展的（自制的）属性，以 data- 开头。
+AngularJS 属性以 ng- 开头，但是您可以使用 data-ng- 来让网页对 HTML5 有效。
+使用 ng-init 不是很常见。您将在控制器一章中学习到一个更好的初始化数据的方式。
+ng-repeat 指令会重复一个 HTML 元素：
+
+ng-repeat 指令是通过数组来循环 HTML 代码来创建下拉列表，但 ng-options 指令更适合创建下拉列表，它有以下优势：
+使用 ng-options 的选项的一个对象， ng-repeat 是一个字符串。
+$rootScope 可作用于整个应用中。是各个 controller 中 scope 的桥梁。用 rootscope 定义的值，可以在各个 controller 中使用。
+-->

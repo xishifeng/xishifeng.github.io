@@ -26,5 +26,5 @@ snippet '$.ajax({});' do |s|
             alert("请求超时");
         }
     }
-);'
+});'
 end

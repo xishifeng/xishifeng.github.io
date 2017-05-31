@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul ng-app="myFi" ng-controller="myFiCtr">
+			<li><button id="btn" ng-disabled="ddd">开始</button><input type="checkbox" ng-model="ddd" /></li>
+			<li><p ng-show="true">我是可见的</p></li>
+			<li><p ng-show="false">我是不可见的</p></li>
+			<li ng-repeat="x in ooh"><strong>start</strong>{{x.id+"=>"+x.name}}</li>
+			<li ng-repeat="x in oog">{{x.id+"=>"+x.src}}</li>
+		</ul>
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/libs/angular.min.js" ></script>
+		<script type="text/javascript">
+			var app = angular.module('myFi', []);
+		    app.controller('myFiCtr', function($scope, $http) {
+		    	$scope.ooh = [{"name":"Emil","id":1}, {"name":"Tobias","id":2}, {"name":"Linus","id":3}];
+//angular自带的方法
+//			    $http.get("js/json/pic-list-0.json").then(function (response) {
+//			        $scope.oog = response.data.data;
+//			    });
+
+//jquery的ajax方法在angular中的应用
+			    $.ajax({
+					type:"get",
+					url:"js/json/pic-list-0.json",
+					dataType:"json",
+					data:{"id":"888c"},
+					success:function(data){
+						console.log(data);
+//方法1
+//						$scope.$apply(function () {  
+//			                $scope.oog = data.data;
+//			            });
+//方法2
+						$scope.oog = data.data;
+						$scope.$apply();  
+					},
+					error:function(){
+						console.warn("ajax error");
+					}
+				});
+			});
+			
+		</script>
+	</body>
+</html>
+
+<!--
+	在wamp开启的情况下，可以用type:"post",或者type:"get",
+	hbuilder里的环境用get才行
+-->

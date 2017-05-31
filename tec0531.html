@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="ulHtml"></ul>
+		
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript">
+			//字符串格式化
+			String.prototype.stringFormat = function(){
+				var formatted = this;
+				for(var i = 0;i < arguments.length;i++){
+					var _regexp = new RegExp('\\{'+ i + '\\}','gi');
+					formatted = formatted.replace(_regexp, arguments[i]);
+				};
+				return formatted;
+			};
+			
+			$(function(){
+				var _ul = $("#ulHtml");
+				
+			    $.ajax({
+				    type: "get",
+				    url: "js/json/pic-list-2.json",
+				    data: "",
+				    timeout: 10000,
+				    datatype: "json",
+				    beforeSend: function() {},
+				    success: function(data) {
+				        console.log(data);
+				        var _html = "";
+				        $.each(data.data, function(i ,item) {
+				        	var _htmlTemp = "<li><srtong>{0}</strong><span>{1}</span></li>";
+				        	_html += _htmlTemp.stringFormat(item.id,item.src);
+				        });
+				        _ul.append(_html);
+				    },
+				    error: function() {
+				        console.warn("error");
+				    },
+				    complete: function(xhr, textStatus){
+				        if(textStatus === "timeout"){
+				            //处理超时的逻辑
+				            alert("请求超时");
+				        }
+				    }
+				});
+			});
+		</script>
+	</body>
+</html>
