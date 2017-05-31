@@ -189,11 +189,11 @@
 					//所需灵芝计算
 					if(objSc[_role]["mainPro"] === "zhi"){
 						if(_zhishi-d <0){
-							document.querySelector("#count_zhi_lingzhi").innerHTML = Math.abs(_zhishi-d)*4*5;
+							document.querySelector("#count_zhi_lingzhi").innerHTML = Math.round((_zhishi-d)*4*5);
 						}
 					}else{
 						if(_gongshi-b <0){
-							document.querySelector("#count_zhi_lingzhi").innerHTML = Math.abs(_zhishi-d)*4*5;
+							document.querySelector("#count_gong_lingzhi").innerHTML = Math.round((_gongshi-b)*4*5);
 						}
 					}
 				}
