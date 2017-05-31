@@ -1,0 +1,34 @@
+snippet "console.warn();" do |s|
+    s.trigger = "cw"
+    s.expansion = "console.warn($1);"
+  end
+  
+  snippet "console.log();" do |s|
+    s.trigger = "clog"
+    s.expansion = "console.log($1);"
+  end
+    
+  snippet "return true;" do |s|
+  s.trigger = "rtr"
+  s.expansion = "return true;"
+  end
+  
+  snippet "return false;" do |s|
+  s.trigger = "rf"
+  s.expansion = "return false;"
+  end
+  
+  snippet "document.querySelector();" do |s|
+  s.trigger = "dq"
+  s.expansion = "document.querySelector(\"$1\");$0"
+  end
+  
+  snippet "document.querySelectorAll();" do |s|
+  s.trigger = "dqa"
+  s.expansion = "document.querySelectorAll(\"$1\");$0"
+  end
+  
+  snippet "e.preventDefault();" do |s|
+  s.trigger = "e.pr"
+  s.expansion = "e.preventDefault();$0"
+  end

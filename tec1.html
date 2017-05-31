@@ -6,5 +6,49 @@
 	</head>
 	<body>
 		<p>welcome</p>
+		<script type="text/javascript">
+			$(function(){
+//			    $.ajax({
+//			    	type: "psot",
+//			    	url: "",
+//			    	data: "",
+//					timeout: 10000,
+//					datatype: "json",
+//					beforeSend: function() {},
+//					success: function(data) {},
+//					error: function(xhr,textStatus) {
+//						if(textStatus === 'timeout'){
+//					        //处理超时的逻辑
+//					        alert("请求超时");
+//					    }else{
+//					        //其他错误的逻辑
+//					        alert("操作失败");
+//					    }
+//					}
+//			    });
+
+$.ajax({
+    type: "psot",
+    url: "",
+    data: "",
+    timeout: 10000,
+    datatype: "json",
+    beforeSend: function() {},
+    success: function(data) {
+        
+    },
+    error: function() {
+        
+    },
+    complete: function(xhr, textStatus){
+        if(textStatus === "timeout"){
+            //处理超时的逻辑
+            alert("请求超时");
+        }
+    }
+);
+
+			});
+		</script>
 	</body>
 </html>

@@ -116,7 +116,7 @@
 						isMark = arr[times].isRecommend?'<span class="log-re"></span>':'';
 						$("ul").append($('<li class="json_pic_' + i + '_' + times + '"><a href = "###"><figure><figcaption>'+picName+'</figcaption></figure>'+isMark+'</a></li>'));
 						var newImg = new Image();
-						newImg.setAttribute("data-picid",arr[times].id)
+						newImg.setAttribute("data-picid",arr[times].id);
 						newImg.src = arr[times].src;
 						newImg.onload = function() {
 							var $tempLi = $(".json_pic_" + i + "_" + times);

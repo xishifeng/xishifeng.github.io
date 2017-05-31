@@ -1,0 +1,173 @@
+snippet "background" do |s|             
+    s.trigger = "bg"                   
+    s.expansion = 'background: $1;$0'    
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "background-color" do |s|             
+    s.trigger = "bgc"                   
+    s.expansion = 'background-color: $1;$0'          
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "background-image" do |s|             
+    s.trigger = "bgi"                   
+    s.expansion = 'background-image: url($1);$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "background-size" do |s|             
+    s.trigger = "bgs"                   
+    s.expansion = 'background-size: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "border-radius" do |s|             
+    s.trigger = "bra"                   
+    s.expansion = 'border-radius: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "margin-top" do |s|             
+    s.trigger = "mt"                   
+    s.expansion = 'margin-top: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "margin-bottom" do |s|             
+    s.trigger = "mb"                   
+    s.expansion = 'margin-bottom: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "margin-left" do |s|             
+    s.trigger = "ml"                   
+    s.expansion = 'margin-left: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "margin-right" do |s|             
+    s.trigger = "mr"                   
+    s.expansion = 'margin-right: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "padding-top" do |s|             
+    s.trigger = "pt"                   
+    s.expansion = 'padding-top: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "padding-bottom" do |s|             
+    s.trigger = "pb"                   
+    s.expansion = 'padding-bottom: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "padding-left" do |s|             
+    s.trigger = "pl"                   
+    s.expansion = 'padding-left: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "padding-right" do |s|             
+    s.trigger = "pr"                   
+    s.expansion = 'padding-right: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "font-size" do |s|             
+    s.trigger = "fs"                   
+    s.expansion = 'font-size: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "line-height" do |s|             
+    s.trigger = "lh"                   
+    s.expansion = 'line-height: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "border-bottom" do |s|             
+    s.trigger = "bb"                   
+    s.expansion = 'border-bottom: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "border-bottom: 1px solid #" do |s|             
+    s.trigger = "bbs"                   
+    s.expansion = 'border-bottom: 1px solid $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "border-top" do |s|             
+    s.trigger = "bt"                
+    s.expansion = 'border-top: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "border-top: 1px solid #" do |s|             
+    s.trigger = "bts"                   
+    s.expansion = 'border-top: 1px solid $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "text-align: center;" do |s|             
+    s.trigger = "tc"                
+    s.expansion = 'text-align: center;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "text-align: right;" do |s|             
+    s.trigger = "ter"                
+    s.expansion = 'text-align: right;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "float: left;" do |s|             
+    s.trigger = "fl"           
+    s.expansion = 'float: left;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "float: right;" do |s|             
+    s.trigger = "fr"       
+    s.expansion = 'float: right;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "position: relative;" do |s|             
+    s.trigger = "por"       
+    s.expansion = 'position: relative;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "position: absolute;" do |s|             
+    s.trigger = "poa"       
+    s.expansion = 'position: absolute;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "position: fixed;" do |s|             
+    s.trigger = "pof"     
+    s.expansion = 'position: fixed;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "overflow: hidden;" do |s|             
+    s.trigger = "oh"     
+    s.expansion = 'overflow: hidden;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "box-sizing" do |s|             
+    s.trigger = "bsi"                
+    s.expansion = 'box-sizing: $1;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end
+  
+  snippet "box-sizing: border-box;" do |s|             
+    s.trigger = "bsb"     
+    s.expansion = 'box-sizing: border-box;$0'       
+    s.needApplyReContentAssist = true                                                                      
+  end

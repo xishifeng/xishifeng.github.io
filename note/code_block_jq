@@ -1,0 +1,30 @@
+snippet '$(function(){});' do |s|
+  s.trigger = '$f'
+  s.expansion = '\$(function(){
+    $1
+});'
+end
+
+snippet '$.ajax({});' do |s|
+  s.trigger = '$a'
+  s.expansion = '\$.ajax({
+    type: "psot",
+    url: "",
+    data: "",
+    timeout: 10000,
+    datatype: "json",
+    beforeSend: function() {},
+    success: function(data) {
+        
+    },
+    error: function() {
+        
+    },
+    complete: function(xhr, textStatus){
+        if(textStatus === "timeout"){
+            //处理超时的逻辑
+            alert("请求超时");
+        }
+    }
+);'
+end
