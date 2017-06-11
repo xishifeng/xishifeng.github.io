@@ -3,21 +3,78 @@
 	<head>
 		<meta charset="UTF-8">
 		<base href="../" />
-		<title></title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="Keywords" content="" />
+		<meta name="Description" content="" />
+		<meta name="author" content="xishifeng" />
+		<link rel="icon" type="image/x-icon" href="img/favicon_guojia.ico" />
+		<link rel="stylesheet" href="css/reset_170324.css" />
+		<script type="text/javascript" src="js/libs/rem750_1.js"></script>
 		<style type="text/css">
+			body{
+				font-size: 0.3rem;
+			}
+			.form_area{
+				overflow: hidden;
+			}
+			.form_area>ul{
+				width: 4.6rem;
+				float: left;
+			}
+			.form_area>button{
+				float: left;
+				width: 2.6rem;
+    			height: 4rem;
+    			background-color: #669acc;
+    			font-size: 0.6rem;
+			}
+			.form_area>ul>li{
+				padding-left: 0.3rem;
+			}
+			li>label{
+				display: block;
+				overflow: hidden;
+			}
+			li>label>span,li>label>input,li>label>select{
+				float: left;
+				height: 0.5rem;
+				line-height: 0.5rem;
+			}
+			li>label>span{
+				width: 1.6rem;
+			}
+			li select,li input{
+				box-sizing: border-box;
+				width: 2.4rem;
+			}
 			td,th{
-				border-right: 1px solid blueviolet;
-				width: 15%;
+				box-sizing: border-box;
+				height: 0.6rem;
+				line-height: 0.6rem;
+				width: 16.6%;
+			}
+			td+td,th+th{
+				border-left: 1px solid blueviolet;
+			}
+			div#preview_area{
+				padding: 0 0.3rem;
+				margin-top: 0.6rem;
+			}
+			table{
+				width: 6.9rem;
+				box-sizing: border-box;
+				padding: 0 0.3rem;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="form_area">
 			<ul>
-				<li><select id="role_select"></select></li>
-				<li><label>等级：<input type="text" id="role_level" /></label></li>
+				<li><label><span class="li-name">角色：</span><select id="role_select"></select></label></li>
+				<li><label><span class="li-name">等级：</span><input type="number" id="role_level" /></label></li>
 				<li>
-					<label>神兵天赋：
+					<label><span class="li-name">神兵天赋：</span>
 						<select id="role_shenbing_talent">
 							<option value="0">0</option>
 							<option value="500">500</option>
@@ -25,12 +82,12 @@
 							<option value="1500">1500</option>
 							<option value="2000">2000</option>
 							<option value="2500">2500</option>
-							<option value="3000">3000</option>
+							<option value="3000" selected="selected">3000</option>
 						</select>
 					</label>
 				</li>
 				<li>
-					<label>觉醒等级：
+					<label><span class="li-name">觉醒等级：</span>
 						<select id="role_awake">
 							<option value="0">0</option>
 							<option value="0.1">1.0+10%</option>
@@ -38,16 +95,16 @@
 							<option value="0.23">2.6+8%</option>
 							<option value="0.33">3.6+10%</option>
 							<option value="0.48">4.6+15%</option>
-							<option value="0.63">5.6+15%</option>
+							<option value="0.63" selected="selected">5.6+15%</option>
 						</select>
 					</label>
 				</li>
-				<li><label>实际血：<input type="text" id="shiji_xue" /></label></li>
-				<li><label>实际攻：<input type="text" id="shiji_gong" /></label></li>
-				<li><label>实际防：<input type="text" id="shiji_fang" /></label></li>
-				<li><label>实际智：<input type="text" id="shiji_zhi" /></label></li>
-				<li><button id="btn_count">计算</button></li>
+				<li><label><span class="li-name">实际血：</span><input type="number" id="shiji_xue" /></label></li>
+				<li><label><span class="li-name">实际攻：</span><input type="number" id="shiji_gong" /></label></li>
+				<li><label><span class="li-name">实际防：</span><input type="number" id="shiji_fang" /></label></li>
+				<li><label><span class="li-name">实际智：</span><input type="number" id="shiji_zhi" /></label></li>
 			</ul>
+			<button id="btn_count">count</button>
 		</div>
 		
 		<div id="preview_area">
@@ -189,10 +246,12 @@
 					//所需灵芝计算
 					if(objSc[_role]["mainPro"] === "zhi"){
 						if(_zhishi-d <0){
+							document.querySelector("#count_gong_lingzhi").innerHTML = "";
 							document.querySelector("#count_zhi_lingzhi").innerHTML = Math.round((_zhishi-d)*4*5);
 						}
 					}else{
 						if(_gongshi-b <0){
+							document.querySelector("#count_zhi_lingzhi").innerHTML = "";
 							document.querySelector("#count_gong_lingzhi").innerHTML = Math.round((_gongshi-b)*4*5);
 						}
 					}
@@ -359,6 +418,19 @@
 					"gongAdd":9.00,
 					"fangAdd":8.25,
 					"zhiAdd":5.25,
+					"mainPro":"dao"
+				},
+				"degulaweiyan":{
+					"name":"德古拉魏延",
+					"id":171014,
+					"xueOri":334.32,
+					"gongOri":186.96,
+					"fangOri":180.72,
+					"zhiOri":134.64,
+					"xueAdd":16.13,
+					"gongAdd":8.06,
+					"fangAdd":7.49,
+					"zhiAdd":6.34,
 					"mainPro":"dao"
 				}
 			}

@@ -36,6 +36,25 @@
 				border-radius: 0.5rem;
 			}
 			
+			.mulu-icon{
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 1rem;
+				height: 1rem;
+				box-sizing: border-box;
+				padding: 0.25rem 0.2rem;
+			}
+			.mulu-icon>span{
+				display: block;
+				background-color: white;
+				height: 0.1rem;
+				border-radius: 0.05rem;
+			}
+			.mulu-icon>span+span{
+				margin-top: 0.1rem;
+			}
+			
 			a.contents {
 				position: fixed;
 				width: 1.2rem;
@@ -184,19 +203,6 @@
 				padding-left: 0.5em;
 			}
 			
-			#clear{
-				position: fixed;
-				bottom: 0.5rem;
-				left: 0.5rem;
-				font-size: 0.3rem;
-				background-color: #ccc;
-				width: 2rem;
-				height: 1rem;
-				line-height: 1rem;
-				text-align: center;
-				border-radius: 0.5rem 0;
-			}
-			
 			span#xiezi{
 				position: absolute;
 				right: 0.3rem;
@@ -205,14 +211,35 @@
 				line-height: 0.8rem;
 				font-size: 0.28rem;
 			}
+			
+			#mulu_list{
+				position: fixed;
+				right: 0;
+				top: 1rem;
+				font-size: 0.3rem;
+				z-index: 3;
+				background-color: #669acc;
+				color: white;
+				display: none;
+			}
+			#mulu_list>li>a{
+				display: block;
+				height: 0.5rem;
+				line-height: 0.5rem;
+				border-bottom: 1px solid white;
+				padding: 0 1em;
+			}
 		</style>
 	</head>
 
 	<body>
-		<header><img class="header_pic" src="img/header_jiaxu.jpg" />觉醒宝箱记录141</header>
+		<header><img class="header_pic" src="img/header_jiaxu.jpg" />觉醒宝箱记录141<div class="mulu-icon"><span></span><span></span><span></span></div></header>
 		<a class="contents">explain</a>
 		
-		<a href="javascript:;" onclick="delJiLu()" id="clear">清除记录</a>
+		<ul id="mulu_list">
+			<li><a href="sc_html/count_cz.html">成长值计算</a></li>
+			<li><a href="javascript:;" onclick="delJiLu()">清除记录</a></li>
+		</ul>
 		<nav>
 			<section>7,10(一)</section>
 			<section>7,10(二)</section>
@@ -473,6 +500,10 @@
 				$(".contents").click(function(e){
 					e.preventDefault();
 					details_area.animate({"left":0+"rem"},300);
+				});
+				
+				$(".mulu-icon").on("click",function(){
+					$("#mulu_list").slideToggle();
 				})
 			});
 		</script>
