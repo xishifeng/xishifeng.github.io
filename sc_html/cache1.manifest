@@ -1,0 +1,19 @@
+CACHE MANIFEST
+# version 1.0.0
+
+CACHE:
+  /img/favicon_guojia.ico
+  /css/reset_170324.css
+  /js/libs/rem750_1.js
+  /js/libs/jquery.min.js
+  /img/header_jiaxu.jpg
+  /toy.png
+  /img/xuemei_xiaoqiao.jpg
+  /img/zhugeliang.jpg
+  /img/zhenji.jpg
+  /img/guojia.jpg
+  sc_record_juexing.html
+  count_cz.html
+
+NETWORK:
+  *

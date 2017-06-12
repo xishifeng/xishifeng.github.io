@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.active{
+				color: red;
+				background-color: orchid;
+			}
+			ul{
+				list-style: none;
+			}
+			ul>li{
+				float: left;
+				width: 50px;
+				height: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li class="ss rww active">sgsg</li>
+			<li class="li_1">sgsg</li>
+			<li class="vf mi sqq">sgsg</li>
+		</ul>
+		<script type="text/javascript">
+			var lis = document.querySelectorAll("li");
+			lis.forEach(function(v,i){
+				v.addEventListener("click",function(){
+					console.log(this.classList.contains("active"));
+					//this.classList.toggle("active");
+				});
+			});
+			
+			console.log(new Date().toLocaleDateString());
+		</script>
+	</body>
+</html>

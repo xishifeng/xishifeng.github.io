@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<base href="../" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="Keywords" content="" />
+		<meta name="Description" content="" />
+		<meta name="author" content="xishifeng" />
+		<link rel="icon" type="image/x-icon" href="img/favicon_guojia.ico" />
+		<link rel="stylesheet" href="css/reset_170324.css" />
+		<script type="text/javascript" src="js/libs/rem750_1.js"></script>
+		<style type="text/css">
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
+				margin: 0;
+				padding: 0;
+			}
+			
+			aside {
+				background-color: #ccc;
+				width: 2rem;
+				float: left;
+				height: 100%;
+			}
+			
+			aside ul {
+				font-size: 0.3rem;
+				line-height: 2;
+			}
+			
+			aside ul li {
+				cursor: pointer;
+			}
+			
+			article {
+				background-color: #f5f5f5;
+				margin-left: 2rem;
+				padding: 0.2rem;
+				height: 100%;
+				overflow: scroll;
+				font-size: 0.3rem;
+			}
+			
+			#content {
+				white-space: pre;
+			}
+		</style>
+	</head>
+
+	<body>
+		<aside>
+			<ul id="list"></ul>
+		</aside>
+		<article>
+			<button id="full_screen">全屏显示</button>
+			<p id="content"></p>
+		</article>
+
+		<script type="text/javascript" src="js/json/lyric.js"></script>
+		<script type="text/javascript">
+			(function() {
+				var btn1 = document.querySelector("#full_screen");
+				btn1.addEventListener("click",function(e){
+					e.preventDefault();
+					var elem = document.body;
+					if (elem.webkitRequestFullScreen) {
+						console.log("zhichi");
+					  elem.webkitRequestFullScreen();
+					} else if (elem.mozRequestFullScreen) {
+					  elem.mozRequestFullScreen();
+					} else if (elem.requestFullScreen){
+					  elem.requestFullScreen();
+					}
+				});
+				
+				
+				var _href_ori = window.location.href.split("?")[0];
+				var listElement = document.querySelector('#list');
+				for(var title in lyric) {
+					var liElement = document.createElement('li');
+					liElement.innerHTML = '⭐️' + title;
+					liElement.setAttribute('data-title', title);
+					listElement.appendChild(liElement);
+				}
+
+				var liElements = document.querySelectorAll('#list>li');
+
+				var content = document.querySelector('#content');
+				// 注册美哦一个元素事件
+				for(var i = 0; i < liElements.length; i++) {
+					liElements[i].addEventListener('click', function() {
+						// 拿到被点击title
+						var title = this.dataset['title'];
+						// 赋值
+						content.innerHTML = lyric[title];
+						// 操作历史记录
+						if(window.history && history.pushState) {
+							// 添加一个新的历史记录
+							history.pushState(title, 'title没有任何浏览器支持', _href_ori + '?t=' + title);
+						} else {
+							console.log('不支持');
+						}
+					});
+				}
+
+				// 当我们在伪造的访问历史中前进或后退时会执行一个popstate事件
+				window.addEventListener('popstate', function(e) {
+					//content.innerHTML = lyric[e.state];
+					console.log(location.search);
+					urlpra();
+				});
+
+				// 第一次请求过来 获取地址栏中的t参数
+				// window.location可以拿到当前网页中跟地址相关的信息
+				urlpra();
+
+			})();
+
+			function urlpra() {
+				var search = window.location.search; // ?t=jkaljdksfla
+				// 如果地址栏中的地址有中文，会以URL编码方式呈现
+				// decodeURI 可以转换到之前中文
+				var title = search.split('=')[1]; // ['?t','jkaljdksfla']
+				if(title) {
+					// 有值 decodeURI作用就是从URL编码转换到之前的状态
+					console.log(decodeURI(title));
+					content.innerHTML = lyric[decodeURI(title)];
+				}
+			}
+		</script>
+	</body>
+
+</html>
