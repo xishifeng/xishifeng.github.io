@@ -122,9 +122,14 @@
 			})();
 
 			function urlpra() {
+				var _href_ori = window.location.href.split("?")[0];
 				var search = window.location.search; // ?t=jkaljdksfla
 				// 如果地址栏中的地址有中文，会以URL编码方式呈现
 				// decodeURI 可以转换到之前中文
+				if(!search){
+					history.replaceState(null, 'title没有任何浏览器支持', _href_ori + '?t=水手');//替换到原有的url
+					search = window.location.search; // ?t=jkaljdksfla
+				}
 				var title = search.split('=')[1]; // ['?t','jkaljdksfla']
 				if(title) {
 					// 有值 decodeURI作用就是从URL编码转换到之前的状态

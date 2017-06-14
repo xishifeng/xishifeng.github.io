@@ -23,6 +23,12 @@
 		</style>
 	</head>
 	<body>
+		<ul id="teding">
+			<li data-paraone="sdgv">第一个参数</li>
+			<li data-paraone="rtet">第二个参数</li>
+		</ul>
+		
+		
 		<ul>
 			<li class="ss rww active">sgsg</li>
 			<li class="li_1">sgsg</li>
@@ -38,6 +44,13 @@
 			});
 			
 			console.log(new Date().toLocaleDateString());
+			console.log(new Date().toLocaleTimeString());
+			
+			var _lis = document.querySelectorAll("#teding>li");
+			_lis.forEach(function(i,ii){
+				console.log(i.dataset);
+				console.log(i.dataset["paraone"]);//原生js 读取data-自定义属性
+			});
 		</script>
 	</body>
 </html>
