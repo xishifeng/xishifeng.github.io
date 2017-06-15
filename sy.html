@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="num" id="num" />
+		<button id="btn">测试</button>
+		<script type="text/javascript">
+			(function(){
+				var _je  = /^(([1-9]\d{0,9})|0)(\.\d{1,2})?$/;//金额的正则表达式
+				var _tel = /^1[34578]\d{9}$/;//手机号码的正则表达式
+				var _num = document.querySelector("#num");
+				var _btn = document.querySelector("#btn");
+				_btn.addEventListener("click", function(e){
+					e.preventDefault();
+					console.log(_zy.test(_num.value));
+				});
+				var _new_str = "http://www.baidu.com/index.html";
+				console.log(_new_str.replace("http://","https://"));
+			})();
+		</script>
+	</body>
+</html>
