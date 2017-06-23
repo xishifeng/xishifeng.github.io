@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta http-equiv="X-UA-Compatible" content="IE=10">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<script type="text/javascript" src="js/common.js" ></script>
+	</head>
+	<body>
+		<button id="btn">出现弹框</button>
+		
+		<!--<script type="text/javascript" src="js/libs/jquery.min.js" ></script>-->
+		<!--<script type="text/javascript" src="js/libs/layer.js" ></script>-->
+		<script type="text/javascript" src="js/libs/sea.js" ></script>
+		<script type="text/javascript">
+			seajs.config({
+				alias: {
+				    'jquery': 'jquery.min.js',
+				    'layer': 'layer.js'
+				}
+			});
+			
+			define(function(require, exports, module) {
+			  	// 加载一个模块
+			  	var bb = require('layer', 'need/layer.css');
+			  	var $ = require('jquery');
+			  	$('#btn').click(function(){
+		  			bb.layer.open({
+					    content: "是否退出当前账号？",
+					    btn: ['确定', '取消'],
+					    yes: function(){
+							  	console.log(23422);;
+							}   
+					});
+			  	});
+			});
+			
+			
+		</script>
+	</body>
+</html>
