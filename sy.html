@@ -3,10 +3,25 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<style type="text/css">
+			.jz{
+				position: fixed;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				width: 500px;
+				height: 500px;
+				background-color: orangered;
+			}
+		</style>
 	</head>
 	<body>
 		<input type="num" id="num" />
 		<button id="btn">测试</button>
+		
+		<div class="jz"></div>
 		<script type="text/javascript">
 			(function(){
 				var _je  = /^(([1-9]\d{0,9})|0)(\.\d{1,2})?$/;//金额的正则表达式

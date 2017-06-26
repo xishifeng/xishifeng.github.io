@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="suijishu"></div>
+		<script type="text/javascript">
+			window.onload = function(){
+				var _number = Math.ceil(Math.random()*100);
+				//Math.random()生成一个随机数，0-1之间，不包含0和1,
+				//Math.ceil()向上取整,Math.floor()向上取整,Math.round()四舍五入
+				//&,|,^与或非
+				var _suijishu = document.querySelector('.suijishu');
+				_suijishu.innerHTML = _number;
+			}
+		</script>
+	</body>
+</html>
