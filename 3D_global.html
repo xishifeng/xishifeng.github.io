@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.ball {
+				width: 400px;
+				height: 400px;
+				border-radius: 50%;
+				/*border: solid 1px red;*/
+				margin: 50px auto;
+				position: relative;
+			}
+			
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul li {
+				position: absolute;
+				left: 0;
+				top: 0;
+				list-style: none;
+				padding: 0 0.2em;
+				white-space: nowrap;
+			}
+			
+			ul li:hover {
+				border: solid 1px black;
+			}
+			
+			ul li a {
+				color: red;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="ball">
+			<ul id="tags">
+				<li>
+					<a href="#">AAAA</a>
+				</li>
+				<li>
+					<a href="#">BBBB</a>
+				</li>
+				<li>
+					<a href="#">CCCC</a>
+				</li>
+				<li>
+					<a href="#">DDDD</a>
+				</li>
+				<li>
+					<a href="#">EEEE</a>
+				</li>
+				<li>
+					<a href="#">FFFF</a>
+				</li>
+				<li>
+					<a href="#">AAAA</a>
+				</li>
+				<li>
+					<a href="#">BBBB</a>
+				</li>
+				<li>
+					<a href="#">CCCC</a>
+				</li>
+				<li>
+					<a href="#">DDDD</a>
+				</li>
+				<li>
+					<a href="#">EEEE</a>
+				</li>
+				<li>
+					<a href="#">FFFF</a>
+				</li>
+				<li>
+					<a href="#">AAAA</a>
+				</li>
+				<li>
+					<a href="#">BBBB</a>
+				</li>
+				<li>
+					<a href="#">CCCC</a>
+				</li>
+				<li>
+					<a href="#">DDDD</a>
+				</li>
+				<li>
+					<a href="#">EEEE</a>
+				</li>
+				<li>
+					<a href="#">FFFF</a>
+				</li>
+				<li>
+					<a href="#">AAAA</a>
+				</li>
+				<li>
+					<a href="#">BBBB</a>
+				</li>
+				<li>
+					<a href="#">CCCC</a>
+				</li>
+				<li>
+					<a href="#">DDDD</a>
+				</li>
+				<li>
+					<a href="#">EEEE</a>
+				</li>
+				<li>
+					<a href="#">FFFF</a>
+				</li>
+				<li>
+					<a href="#">AAAA</a>
+				</li>
+				<li>
+					<a href="#">BBBB</a>
+				</li>
+				<li>
+					<a href="#">CCCC</a>
+				</li>
+				<li>
+					<a href="#">DDDD</a>
+				</li>
+				<li>
+					<a href="#">EEEE</a>
+				</li>
+				<li>
+					<a href="#">FFFF</a>
+				</li>
+
+			</ul>
+		</div>
+
+		<script type="text/javascript">
+			var ball = document.getElementsByClassName("ball")[0];
+			var tags = document.getElementById("tags").children;
+			var r = 200; // 半径
+			var count = tags.length; //标签数量
+			var angleX = 1; // X轴旋转角度
+			var angleY = 1; // Y轴旋转角度
+			var tagObjArr = [];
+
+			// 标签 类
+			function tag(t, x, y, z) {
+				this.t = t;
+				this.x = x;
+				this.y = y;
+				this.z = z;
+				var A = t.getElementsByTagName('a')[0];
+				// 生成一个随机颜色
+				var R = Math.floor(Math.random() * 255);
+				var G = Math.floor(Math.random() * 255);
+				var B = Math.floor(Math.random() * 255);
+				var color = "rgb(" + R + "," + G + "," + B + ")";
+				A.style.color = color;
+				// 设置坐标位置
+				this.setPosition = function(x, y, z) {
+					// 根据 Z 轴坐标 计算字体大小
+					this.size = (this.z + 2 * r) / (2 * r) * 20;
+					t.style.top = r + this.y -this.t.offsetHeight/2 + "px";
+					t.style.left = r + this.x -this.t.offsetWidth/2 + "px";
+					t.style.fontSize = this.size + "px";
+				}
+				this.setPosition(x, y, z);
+				// X轴旋转
+				this.rotateX = function(X) {
+					X = Math.PI / 180 * X;
+					var cos = Math.cos(X);
+					var sin = Math.sin(X);
+					var tmpY = this.y * cos - this.z * sin;
+					var tmpZ = this.z * cos + this.y * sin;
+					this.y = tmpY;
+					this.z = tmpZ;
+					this.setPosition(this.x, this.y, this.z);
+				}
+				// Y轴旋转
+				this.rotateY = function(Y) {
+					Y = Math.PI / 180 * Y;
+					var cos = Math.cos(Y);
+					var sin = Math.sin(Y);
+					var tmpX = this.x * cos - this.z * sin;
+					var tmpZ = this.z * cos + this.x * sin;
+					this.x = tmpX;
+					this.z = tmpZ;
+					this.setPosition(this.x, this.y, this.z);
+				}
+
+			}
+
+			// 将获取的所有标签添加 计算出 空间位置并添加到 对象数组中
+			for(var i = 0; i < count; i++) {
+				var a = Math.acos((2 * (i + 1) - 1) / count - 1);
+				var b = a * Math.sqrt(count * Math.PI);
+				var x = r * Math.sin(a) * Math.cos(b);
+				var y = r * Math.sin(a) * Math.sin(b);
+				var z = r * Math.cos(a);
+				var t = new tag(tags[i], x, y, z);
+				tagObjArr.push(t);
+			}
+
+			// 开启定时器 按指定的角度 旋转
+			var time = setInterval(function() {
+				for(var i = 0; i < count; i++) {
+					tagObjArr[i].rotateX(angleX);
+					tagObjArr[i].rotateY(angleY);
+				}
+
+			}, 50);
+
+			var X = 0;
+			var Y = 0;
+
+			ball.onmouseenter = function(e) {
+				X = e.clientX;
+				Y = e.clientY;
+			}
+
+			ball.onmousemove = function(e) {
+				var tmpX = e.clientX;
+				var tmpY = e.clientY;
+				if(tmpX > X) {
+					angleY -= 0.3;
+				} else {
+					angleY += 0.3;
+				}
+
+				if(tmpY > Y) {
+					angleX -= 0.3;
+				} else {
+					angleX += 0.3;
+				}
+
+				X = tmpX;
+				Y = tmpY;
+				// 防止速度过快，设置一个边界
+				angleY = angleY > 2 ? 2 : angleY;
+				angleY = angleY < -2 ? -2 : angleY;
+				angleX = angleX > 2 ? 2 : angleX;
+				angleX = angleX < -2 ? -2 : angleX;
+			}
+		</script>
+	</body>
+
+</html>
