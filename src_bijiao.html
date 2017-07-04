@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<img class="" id="img1" src="img/ajax_list/json_img_1.jpg" />
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var img1 = document.querySelector("#img1");
+				img1.addEventListener('click', function(e){
+					e.preventDefault();
+					this.setAttribute('src', 'img/ajax_list/json_img_2.jpg');
+					console.log(this.src);
+					console.log(this.getAttribute('src'));
+				})
+			}
+		</script>
+	</body>
+</html>
