@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var _min_1 = Math.min(76,34,89,1,-56,4);
+			console.log(_min_1);
+			var arr1 = [89,242,67,88,34,-9,0,1,-1,-16];
+			console.log(Math.max.apply(null, arr1));//数组最大值
+			console.log(Math.min.apply(null, arr1));//数组最小值
+			
+			var _arr_1 = ['dfdf', 5, 667, 0];
+			var _arr_2 = ['gdgd','sgergeghe', 99999999999, -1, -45];
+			console.log(_arr_1);
+			console.log(_arr_2);
+			_arr_1.push('rr',67,1);
+			console.log(_arr_1);
+			Array.prototype.push.apply(_arr_1, _arr_2);
+			//和上面一行实现的效果一致_arr_1.push.apply(_arr_1, _arr_2);
+			//两个数组的合并，一般用forEach添加上去，用户apply可能会出错
+			console.log(_arr_1);
+			
+			/*
+			 * apply：应用某一对象的一个方法，用另一个对象替换当前对象。例如：B.apply(A, arguments);即A对象应用B对象的方法。
+			 * call：调用一个对象的一个方法，以另一个对象替换当前对象。例如：B.call(A, args1,args2);即A对象调用B对象的方法。
+			 * 实际上，apply和call的功能是一样的，只是传入的参数列表形式不同。
+			 * 
+			 * 
+			 * 
+			 * 
+			 * 
+			 * 
+			 * 
+			 * */
+		</script>
+	</body>
+</html>

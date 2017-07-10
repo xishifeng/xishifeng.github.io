@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		请输入昵称：<input type="text" id="nicheng" />
+		<input type="button" value="查询" id="btn" />
+		<div id="showInfo"></div>
+		
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var btn = document.getElementById("btn");
+				var pInfo = document.getElementById("showInfo");
+				var shuru = document.getElementById("nicheng");
+				btn.onclick = function(){
+					var xhr =null;
+					if(window.XMLHttpRequest){
+						xhr = new XMLHttpRequest();
+					}else{
+						xhr = new ActiveXObject('Microsoft.XMLHTTP');
+					}
+					
+					
+					var url = "php/json-jiexi.php?name="+shuru.value;
+					xhr.open("GET",url,true);
+					
+					xhr.onreadystatechange = function(){
+						if(xhr.readyState == 4 && xhr.status == 200){
+							var aa = xhr.responseText;
+							aa = JSON.parse(aa);
+							if(aa.status == 0){
+								pInfo.innerText = aa.info;
+							}else{
+								addUl(aa.info);
+							}
+						}
+					}
+					
+					function addUl(arr){
+						var ul = document.createElement("ul");
+							for(var i = 0;i<arr.length;i++){
+								if(arr[i].name == shuru.value){
+									ul.innerHTML = "<li>姓名："+arr[i].name+"</li>"+"<li>学号："+arr[i].password+"</li>"+"<li>性别："+arr[i].sex+"</li>";
+									pInfo.innerHTML = "";
+									pInfo.appendChild(ul);
+								}
+							}
+					}
+					
+					xhr.send(null);
+				}
+				
+				shuru.onkeypress = function(event){
+					//使按下回车触发此事件
+					if(event.keyCode == 13){
+						console.log(1);
+						btn.click();
+					}
+					
+				}
+			}
+		</script>
+	</body>
+</html>

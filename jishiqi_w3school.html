@@ -1,0 +1,49 @@
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			function startTime() {
+				var today = new Date();
+				var h = today.getHours();
+				var m = today.getMinutes();
+				var s = today.getSeconds();
+				
+				h = checkTime(h);
+				m = checkTime(m);
+				s = checkTime(s);
+				document.getElementById('txt').innerHTML = h + ":" + m + ":" + s;
+				setTimeout('startTime()', 1000);
+			}
+			
+			//function定义的可以先调用再定义
+			function checkTime(i) {
+				if (i < 10) {
+					i = "0" + i;
+				}
+				return i;
+			}
+			
+			setInterval(function(){
+				var today = new Date();
+				var h = today.getHours();
+				var m = today.getMinutes();
+				var s = today.getSeconds();
+				
+				h = checkTime(h);
+				m = checkTime(m);
+				s = checkTime(s);
+				document.getElementById('txt2').innerHTML = h + ":" + m + ":" + s;
+			},1000);
+		</script>
+	</head>
+
+	<body onload="startTime()">
+		<p>以下用setTimeout添加：</p>
+		<p id="txt"></p>
+		<p>以下用set添加：</p>
+		<p id="txt2"></p>
+	</body>
+
+</html>

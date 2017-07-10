@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			Array.prototype.quchong = function(){
+				this.sort();
+				var re = [this[0]];
+				for(var i= 0;i<this.length;i++){
+					if(this[i]!==re[re.length-1]){
+						re.push(this[i]);
+					}
+				}
+				return re;
+			}
+			
+			Array.prototype.paixu = function(){
+				for(var i =0;i<this.length;i++){
+					for(var j =i;j<this.length;j++){
+						if(this[i]<this[j]){
+							var temp = this[i];
+							this[i] = this[j];
+							this[j] = temp;
+						}
+					}
+				}
+			}
+			
+			function newPaixu(a,b){
+				return b-a;
+			}
+			
+			function suiJi(a,b){
+				return Math.random()>0.5?1:-1;
+			}
+			
+			var aa = new Array();
+			aa = [1,2,3,3,-5,99,-777,0,-1,4,4];
+			console.log(aa);
+			console.log(aa.sort(suiJi));//不能写成newPaixu()，括号不能加
+			//aa.sort(newPaixu);类似这样可以实现数组从小大到排列
+		</script>
+	</body>
+
+</html>

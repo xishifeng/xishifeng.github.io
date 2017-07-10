@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/reset_170324.css" />
+		<script type="text/javascript" src="js/libs/rem750_1.js" ></script>
+		<style type="text/css">
+			.switch{
+				width: 1.1rem;
+				height: 0.6rem;
+				background-color: #999;
+				border-radius: 0.3rem;
+				box-sizing: border-box;
+				position: relative;
+			}
+			.switch.opened{
+				background-color: #1AAD19;
+			}
+			.switch>.switch_round{
+				width: 0.52rem;
+				height: 0.52rem;
+				border-radius: 50%;
+				background-color: white;
+				position: absolute;
+				left: 0.04rem;
+				top: 0.04rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="switch">
+			<div class="switch_round"></div>
+		</div>
+		
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript">
+			$('.switch').on('click',function(){
+				var _this = $(this);
+				var _small_cir = _this.find('.switch_round');
+				if(_this.hasClass('opened')){
+					_this.removeClass('opened');
+					_small_cir.animate({
+						'left': '0.04rem'
+					},80);
+				}else{
+					_this.addClass('opened');
+					_small_cir.animate({
+						'left': '0.54rem'
+					},80);
+				}
+			});
+		</script>
+	</body>
+</html>

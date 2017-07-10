@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<h1>幻方填写</h1>
+		<form name="form1">
+			请输入幻方阶数
+			<input type="text" name="N" />
+			<input type="button" name="sub" value="Submit" onclick="main()" />
+		</form>
+		<table id="hf" border=1>
+			<tr>
+			</tr>
+		</table>
+
+		<script type="text/javascript">
+			var a = new Array();
+
+			function clear(n) {
+				for(i = 0; i < n; i++) {
+					a[i] = new Array();
+					for(j = 0; j < n; j++)
+						a[i][j] = 0;
+				}
+			}
+
+			function solve1(n) {
+				a[0][n >> 1] = 1;
+				var num = 1;
+				var i = 0,
+					j = n >> 1;
+				while(num < n * n) {
+					num++;
+					if(i == 0 && j == n - 1) {
+						i = (i + 1) % n;
+					} else {
+						var ii, jj;
+						ii = (i + n - 1) % n;
+						jj = (j + 1) % n;
+						if(a[ii][jj]) {
+							i = (i + 1) % n;
+						} else {
+							i = ii;
+							j = jj;
+						}
+					}
+					a[i][j] = num;
+				}
+			}
+
+			function swap(x1, y1, x2, y2) {
+				if(a[x1][y1] != a[x2][y2]) {
+					var t = a[x1][y1];
+					a[x1][y1] = a[x2][y2];
+					a[x2][y2] = t;
+				}
+			}
+
+			function solve2(n) {
+				var hlf = n >> 1;
+				solve1(hlf);
+				for(i = 0; i < hlf; i++)
+					for(j = 0; j < hlf; j++) {
+						a[i + hlf][j + hlf] = a[i][j] + hlf * hlf;
+						a[i][j + hlf] = a[i][j] + hlf * hlf * 2;
+						a[i + hlf][j] = a[i][j] + hlf * hlf * 3;
+					}
+				var m = (n - 2) >> 2;
+				for(i = 0; i < hlf; i++)
+					if(i != hlf / 2)
+						for(j = 0; j < m; j++)
+							swap(i, j, i + hlf, j);
+					else
+						for(j = 0; j < m; j++)
+							swap(i, j + hlf / 2, i + hlf, j + hlf / 2);
+				for(i = 0; i < hlf; i++)
+					for(j = 0; j < m - 1; j++)
+						swap(i, n - j - 1, i + hlf, n - j - 1);
+			}
+
+			function solve3(n) {
+				var tx, ty;
+				for(i = 0; i < n; i++)
+					for(j = 0; j < n; j++)
+						a[i][j] = j * n + i + 1;
+				for(i = 1; i * 4 < n; i++)
+					for(j = 0; j < i; j++)
+						for(k = 0; k < 4; k++) {
+							tx = i * 4 + k;
+							ty = j * 4 + k;
+							swap(tx, ty, n - tx - 1, n - ty - 1);
+							tx = i * 4 + 3 - k;
+							swap(tx, ty, n - tx - 1, n - ty - 1);
+						}
+				for(i = 0; i * 8 < n; i++)
+					for(k = 0; k < 4; k++) {
+						tx = i * 4 + k;
+						if(tx >= (n >> 1)) return;
+						swap(tx, tx, n - tx - 1, n - tx - 1);
+						ty = i * 4 + 3 - k;
+						swap(tx, ty, n - tx - 1, n - ty - 1);
+					}
+			}
+			/*
+			   function check(var n)
+			   {
+			   var right = (1+n*n)*n/2;
+			   for( i = 0 ; i < n ; i++)
+			   {
+			   var sum1 = 0, sum2 = 0;
+			   for( j = 0 ; j < n ; j++)
+			   {
+			   sum1 += a[i][j];
+			   sum2 += a[j][i];
+			   }
+			   if(sum1!=sum2||sum2!=right)return false;
+			   }
+			   var sum1 = 0, sum2 = 0;
+			   for( i = 0 ; i < n ; i++)
+			   {
+			   sum1 += a[i][i];
+			   sum2 += a[i][n-1-i];
+			   }
+			   return sum1 == sum2 && sum2 == right;
+			   }
+			 */
+			var n = 0;
+
+			function main() {
+				n = document.all("hf").rows.length;
+				for(i = 0; i < n; i++)
+					document.all("hf").deleteRow(0);
+				n = parseInt(document.form1.N.value);
+				clear(n);
+
+				if(n & 1) {
+					solve1(n);
+				} else
+				if(n & 2)
+					solve2(n);
+				else solve3(n);
+				for(i = 0; i < n; i++) {
+					var newRow = document.all("hf").insertRow();
+					for(j = 0; j < n; j++) {
+						var oCell = newRow.insertCell();
+						oCell.appendChild(document.createTextNode(a[i][j]));
+					}
+				}
+			}
+		</script>
+	</body>
+
+</html>

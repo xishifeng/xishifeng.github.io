@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+
+	<body>
+		<select id="city">
+			<option value="上海">上海</option>
+			<option value="武汉">武汉</option>
+			<option value="乌鲁木齐">乌鲁木齐</option>
+			<option value="十堰">十堰</option>
+			<option value="重庆">重庆</option>
+		</select>
+		<input type="button" value="查询" id="btn" />
+		<div id="showInfo"></div>
+
+		<script type="text/javascript">
+			window.onload = function() {
+//				var w = document.documentElement.clientWidth;
+//				var oHtml = document.getElementsByTagName("html")[0];
+//				oHtml.style.fontSize = w / 750 * 100 + "px";
+
+
+				
+
+				var btn = document.getElementById("btn");
+				var city = document.getElementById("city");
+				var showInfo = document.getElementById("showInfo");
+				btn.onclick = function() {
+					var xhr = null;
+					try{
+						xhr = new XMLHttpRequest();
+					}catch(e){
+						xhr = new ActiveXObject('Microsoft.XMLHTTP');
+					}
+					
+					var url = "php/weather-baidu.php?city=" + city.value;
+					xhr.open("GET",url,true);
+					xhr.send(null);
+					
+					xhr.onreadystatechange = function(){
+						if(xhr.readyState == 4 && xhr.status == 200){
+							showInfo.innerText = xhr.responseText;
+						}
+					}
+					
+				}
+			}
+		</script>
+
+	</body>
+
+</html>
