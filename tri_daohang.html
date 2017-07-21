@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/libs/rem750_1.js" ></script>
+		<style type="text/css">
+			.div-tri{
+				position: relative;
+				overflow: hidden;
+			}
+			.box-tri-1{
+				height: 0.1rem;
+				border-bottom: 2px solid #f13d2f;
+			}
+			.box-tri-2{
+				width: 0.1rem;
+				height: 0.1rem;
+				border: 2px solid #f13d2f;
+				-webkit-transform: rotate(45deg);
+				transform: rotate(45deg);
+				position: absolute;
+				top: 0.07rem;
+				left: 50%;
+				background-color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div-tri">
+			<div class="box-tri-1"></div>
+			<div class="box-tri-2"></div>
+		</div>
+	</body>
+</html>
