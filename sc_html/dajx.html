@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var objSc = {
+				"dengai":{
+					"name":"邓艾",
+					"id":111025,
+					"xueOri":369.00,
+					"gongOri":152.00,
+					"fangOri":150.00,
+					"zhiOri":198.00,
+					"xueAdd":17.50,
+					"gongAdd":6.20,
+					"fangAdd":6.80,
+					"zhiAdd":8.90,
+					"mainPro":"zhi"
+				},
+				"jiaxu":{
+					"name":"贾诩",
+					"id":141010,
+					"xueOri":343.00,
+					"gongOri":159.00,
+					"fangOri":141.00,
+					"zhiOri":189.00,
+					"xueAdd":14.70,
+					"gongAdd":6.27,
+					"fangAdd":7.11,
+					"zhiAdd":8.22,
+					"mainPro":"zhi"
+				}
+			}
+			
+			for(var i = 1;i<520;i++){
+				var dengai_zhi = ((objSc['dengai']['zhiOri'] + objSc['dengai']['zhiAdd']*(i-1))*2.28 + ((i-1)*15+2000)*2+959)*(3.5108+0.05) + 44;
+				var jiaxu_zhi = ((objSc['jiaxu']['zhiOri'] + objSc['jiaxu']['zhiAdd']*(i-1))*2.28 + ((i-1)*15+2000)*2+959)*(3.5894+0.03+0.03);
+				var _chazhi = dengai_zhi - jiaxu_zhi;
+				if(_chazhi >= 0){
+					console.log(i);
+				}
+				if(i == 421){
+					console.log(dengai_zhi);
+					console.log(jiaxu_zhi);
+				}
+			}
+		</script>
+	</body>
+</html>
