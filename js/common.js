@@ -24,6 +24,15 @@ String.prototype.stringFormat = function(){
 	};
 	return formatted;
 }
+//字符串格式化,第二种形式
+String.prototype.stringFormatObj = function(){
+	var formatted = this;
+	for(var i in arguments[0]){
+		var _regexp = new RegExp('\\{'+ i + '\\}','gi');
+		formatted = formatted.replace(_regexp, arguments[0][i]);
+	}
+	return formatted;
+};
 
 //从location.href里获取参数
 function getUrlParam(name) {

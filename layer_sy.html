@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
 		<meta name="Keywords" content="">
 		<meta name="Description" content="">
+		<link rel="stylesheet" href="js/libs/need/layer.css" />
 		<script type="text/javascript" src="js/common.js" ></script>
 	</head>
 	<body>
@@ -25,7 +26,7 @@
 			
 			define(function(require, exports, module) {
 			  	// 加载一个模块
-			  	var bb = require('layer', 'need/layer.css');
+			  	var bb = require('layer', 'layer.js');
 			  	var $ = require('jquery');
 			  	$('#btn').click(function(){
 		  			bb.layer.open({
