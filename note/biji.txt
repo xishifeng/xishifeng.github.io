@@ -191,3 +191,15 @@ var data = {},hello = "me";
 data[hello] = "hello word";
 
 界面上的所有JS操作不会被浏览器记住，就无法回到之前的状态
+
+1. jquery 在iframe子页面获取父页面元素代码如下:
+$("#objid", parent.document)
+2. jquery在父页面 获取iframe子页面的元素
+代码如下:
+$("#objid",document.frames('iframename').document)
+3.js 在iframe子页面获取父页面元素代码如下:
+indow.parent.document.getElementByIdx_x("元素id");
+4.js 在父页面获取iframe子页面元素代码如下:
+window.frames["iframe_ID"].document.getElementByIdx_x("元素id");
+5.子类iframe内调用父类函数：
+window.parent.func();

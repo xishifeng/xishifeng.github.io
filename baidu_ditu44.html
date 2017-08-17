@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=RTimRTxtj23AYTCkSsPvNDuQkGpR2fPX"></script>
+		<script type="text/javascript">
+			$(function() {
+				var LocalSearch = new BMap.LocalSearch("上海");
+				LocalSearch.search('杨宅路');
+				LocalSearch.setSearchCompleteCallback(function(SearchResult) {
+					poi1 = SearchResult[0].getPoi(0);
+					poi2 = SearchResult[1].getPoi(0);
+				});
+			});
+		</script>
+	</body>
+
+</html>

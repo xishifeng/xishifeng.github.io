@@ -18,19 +18,39 @@
 	</head>
 
 	<body>
-		<div id="allmap"></div>
+		<!--<div id="allmap"></div>-->
+		<div id="allmap">rfgseg</div>
 		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=oUbvWIaGpQoaVB7tK0R0AWbQMohYMOG1"></script>
 		<script type="text/javascript">
-			$(function(){
-				navigator.geolocation.getCurrentPosition(function(position){
-					var map = new BMap.Map("allmap"); // 创建Map实例
-					map.centerAndZoom(new BMap.Point(position.coords.longitude, position.coords.latitude), 11); // 初始化地图,设置中心点坐标和地图级别(放大缩小程度)
-					map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
-					map.setCurrentCity("上海"); // 设置地图显示的城市 此项是必须设置的
-					map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
-				});
-			});
+//			$(function(){
+//				navigator.geolocation.getCurrentPosition(function(position){
+//					var map = new BMap.Map("allmap"); // 创建Map实例
+//					map.centerAndZoom(new BMap.Point(position.coords.longitude, position.coords.latitude), 11); // 初始化地图,设置中心点坐标和地图级别(放大缩小程度)
+//					map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
+//					map.setCurrentCity("上海"); // 设置地图显示的城市 此项是必须设置的
+//					map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+//				});
+//			});
+
+			// 百度地图API功能
+			var map = new BMap.Map("l-map");        
+			map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+		
+			var options = {
+				onSearchComplete: function(results){
+					// 判断状态是否正确
+					if (local.getStatus() == BMAP_STATUS_SUCCESS){
+						var s = [];
+						for (var i = 0; i < results.getCurrentNumPois(); i ++){
+							s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
+						}
+						document.getElementById("r-result").innerHTML = s.join("<br/>");
+					}
+				}
+			};
+			var local = new BMap.LocalSearch(map, options);
+			local.search("公园");
 			
 		</script>
 	</body>
