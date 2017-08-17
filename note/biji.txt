@@ -16,7 +16,7 @@ var fun2 = new Function("var a = 10; var b = 20; alert(a+b)");fun2();
 function $(id){
 	return document.getElementById(id);
 }
-.header-top>ul>li>a:not(.on):hover
+.header-top>ul>li>a:not(.on):hover//css选择器里也有not选择器
 DOM.children//非标准属性，只返回子元素中的HTML节点(即元素节点nodeType = 1)
 DOM.childNodes//标准属性，返回指定元素的子元素集合，包括HTML节点，所有属性/文本节点(包括空白节点)。
 DOM.children[0]第一个HTML节点
