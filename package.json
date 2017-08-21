@@ -1,0 +1,22 @@
+{
+  "name": "xishifeng.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xishifeng/xishifeng.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xishifeng/xishifeng.github.io/issues"
+  },
+  "homepage": "https://github.com/xishifeng/xishifeng.github.io#readme",
+  "description": "",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}

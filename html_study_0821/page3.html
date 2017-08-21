@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="page4">第四页</a>
+		
+		<div>
+			<p><a id="btn1" href="javascript:;">window.reload()刷新</a></p>
+			<p><a id="btn2" href="javascript:;">window.reload(true)刷新</a></p>
+			<p><a id="btn3" href="javascript:;">window.go(0)刷新</a></p>
+			<p><a id="btn4" href="javascript:;">window.replace('page1.html')刷新</a></p>
+			<p><a id="btn5" href="javascript:;">window.go('page1.html');刷新</a></p>
+		</div>
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var _btn1 = document.querySelector("#btn1");
+				_btn1.onclick = function(){
+					location.reload();
+				}
+				
+				var _btn2 = document.querySelector("#btn2");
+				_btn2.onclick = function(){
+					location.reload(true);
+				}
+				
+				var _btn3 = document.querySelector("#btn3");
+				_btn3.onclick = function(){
+					history.go(0);
+				}
+				
+				var _btn4 = document.querySelector("#btn4");
+				_btn4.onclick = function(){
+					location.replace('page2.html');
+				}
+				
+				var _btn5 = document.querySelector("#btn5");
+				_btn5.onclick = function(){
+					history.go('page1.html');//无效果
+				}
+			}
+		</script>
+	</body>
+</html>
