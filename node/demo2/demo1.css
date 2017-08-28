@@ -1,0 +1,17 @@
+body {
+  background-color: #666;
+}
+body nav {
+  width: 5rem;
+  font-size: 0.3rem;
+}
+body nav ul {
+  background-color: greenyellow;
+}
+body nav a {
+  cursor: pointer;
+  text-decoration: none;
+}
+body nav a span {
+  color: black;
+}
