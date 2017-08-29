@@ -28,15 +28,11 @@ gulp.task('auto_less', function(){
 gulp.task('webserver',function(){
 	gulp.src('demo1/*.*')
 	.pipe(webserver({
-		livereload:true,       //实时刷新
-		directoryListing:{    //要不要在浏览器中显示应用app的目录
-			enable:true,      //显示 （线上不能如此设置）
-			path:'./'         //显示与gulpfile.js同级别的子目录，也可以改路径指定显示哪些文件
-		},
-		port:'8020',
-		host:'192.168.0.197'
-	}))
-})
+	  livereload: true,
+	  directoryListing: true,
+	  open: true
+	}));
+});
 
 gulp.task('f5', function(){
 	gulp.watch('demo1/*.*', ['webserver']);
