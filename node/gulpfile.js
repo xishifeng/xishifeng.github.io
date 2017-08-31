@@ -38,6 +38,12 @@ gulp.task('f5', function(){
 	gulp.watch('demo1/*.*', ['webserver']);
 });
 
+gulp.task('one',function(){
+	gulp.watch('demo1/*.*', function(event) {
+	  console.log(event);
+	});
+})
+
 
 
 
