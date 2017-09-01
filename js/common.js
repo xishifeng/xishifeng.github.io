@@ -101,3 +101,4 @@ function cleanWhitespace(element) {
 		}
 	}
 }
+
