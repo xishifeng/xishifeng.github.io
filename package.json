@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "gulp": "^3.9.1",
     "gulp-asset-rev": "0.0.15",
     "gulp-less": "^3.3.2",
     "gulp-rev": "^8.0.0",
