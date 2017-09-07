@@ -8,6 +8,7 @@
     "gulp": "^3.9.1",
     "gulp-asset-rev": "0.0.15",
     "gulp-less": "^3.3.2",
+    "gulp-rename": "^1.2.2",
     "gulp-rev": "^8.0.0",
     "gulp-rev-append": "^0.1.8",
     "gulp-rev-append-all": "^0.1.8",
