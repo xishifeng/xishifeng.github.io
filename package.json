@@ -1,21 +1,14 @@
 {
   "name": "xishifeng.github.io",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-asset-rev": "0.0.15",
     "gulp-less": "^3.3.2",
     "gulp-rename": "^1.2.2",
-    "gulp-rev": "^8.0.0",
     "gulp-rev-append": "^0.1.8",
-    "gulp-rev-append-all": "^0.1.8",
-    "gulp-rev-collector": "^1.2.2",
-    "gulp-reversion": "^1.0.1",
-    "gulp-webserver": "^0.9.1",
-    "run-sequence": "^2.1.0"
+    "gulp-webserver": "^0.9.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/xishifeng/xishifeng.github.io/issues"
   },
-  "homepage": "https://github.com/xishifeng/xishifeng.github.io#readme"
+  "homepage": "https://github.com/xishifeng/xishifeng.github.io#readme",
+  "description": ""
 }
