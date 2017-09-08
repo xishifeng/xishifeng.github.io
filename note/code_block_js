@@ -32,3 +32,8 @@ snippet "console.warn();" do |s|
   s.trigger = "e.pr"
   s.expansion = "e.preventDefault();$0"
   end
+  
+  snippet "e.stopPropagation();" do |s|
+  s.trigger = "e.st"
+  s.expansion = "e.stopPropagation();$0"
+  end
