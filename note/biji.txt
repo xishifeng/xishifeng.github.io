@@ -203,3 +203,28 @@ indow.parent.document.getElementByIdx_x("元素id");
 window.frames["iframe_ID"].document.getElementByIdx_x("元素id");
 5.子类iframe内调用父类函数：
 window.parent.func();
+
+
+(function(window, document){
+	//对于当前作用域中，如果将window对象传入，就不用依赖全局对象了
+	var _div = document.querySelector('#cc');;
+})(window, document);
+
+function aa (){
+	console.log(111);
+}();//无法执行，只是声明了一个函数，并没有生成函数的表达式。
+
+(function aa (){
+	console.log(111);
+})();//加上括号之后，就先生成了函数的表达式
+
+var bb = function (){
+	console.log(111);
+}();//这样也可以生成一个函数的表达式
+
+//小括号,这种方法前面一定要有一个;(如函数声明必须要有一个分号)
+//复制操作
+//逻辑运算符!
+//数字运算符+
+
+devtool调试node

@@ -8,11 +8,11 @@ end
 snippet '$.ajax({});' do |s|
   s.trigger = '$a'
   s.expansion = '\$.ajax({
-    type: "psot",
+    type: "POST",
     url: "",
     data: "",
     timeout: 10000,
-    datatype: "json",
+    dataType: "json",
     beforeSend: function() {},
     success: function(data) {
         

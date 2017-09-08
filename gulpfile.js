@@ -5,6 +5,7 @@ var less = require('gulp-less'); //less转css
 var webserver = require('gulp-webserver'); //创建本地服务器环境
 var rev = require('gulp-rev-append'); //自动版本号生成
 var rename = require("gulp-rename"); //重命名文件
+var changed = require('gulp-changed'); //过滤出被修改的文件
 
 //less转css
 gulp.task('style', function() {
@@ -107,4 +108,24 @@ function sel(str){
 	var _start = str.indexOf('(');
 	var _end = str.indexOf(')');
 	return str.slice(_start+1, _end);
+}
+
+gulp.task('ch', function(){
+	gulp.src('./*.html')
+	.pipe(changed('./ch', {hasChanged: changed.compareSha1Digest}))
+	.pipe(gulp.dest('./ch'));
+});
+
+function compareLastModifiedTime(stream, cb, sourceFile, targetPath) {
+ // 获取目标文件的状态
+ fs.stat(targetPath, function (err, targetStat) {
+ // 若源文件存在
+ if (!fsOperationFailed(stream, sourceFile, err)) {
+ // 对比两者的最后修改时间
+ if (sourceFile.stat.mtime > targetStat.mtime) {
+ stream.push(sourceFile);
+ }
+ }
+ cb();
+ });
 }
