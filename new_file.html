@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			input{
+				width: 500px;
+				height: 500px;
+				display: none;
+			}
+			
+			img{
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="file" accept="image/*" capture>
+		<img src="bizhi/shili (10).jpg" />
+		
+		<button id="btn">生成</button>
+		
+		<script type="text/javascript" src="js/libs/jquery.min.js" ></script>
+		<script type="text/javascript" src="js/html2canvas.min.js" ></script>
+		<script type="text/javascript">
+			$(function(){
+//				html2canvas(obj, {
+//					width: width,
+//					height: height,
+//					background: "rgba(255,255,255,1)",
+//					onrendered: function(canvas) {
+//			            var dataUrl = canvas.toDataURL('image/jpeg');
+//			            callbackFn(dataUrl);//写成回调的形式
+//					}
+//				});
+				
+				$('#btn').click(function(){
+					html2canvas(document.body, {
+					  onrendered: function(canvas) {
+					  	var dataUrl = canvas.toDataURL('image/jpeg');
+					  	var new_img = new Image();
+					  	new_img.src = dataUrl;
+					    document.body.appendChild(new_img);
+					  },
+					  background: "rgba(255,255,255,1)",
+					});
+				});
+			    
+			});	
+		</script>
+	</body>
+</html>

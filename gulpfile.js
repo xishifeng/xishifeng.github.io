@@ -5,7 +5,7 @@ var less = require('gulp-less'); //less转css
 var webserver = require('gulp-webserver'); //创建本地服务器环境
 var rev = require('gulp-rev-append'); //自动版本号生成
 var rename = require("gulp-rename"); //重命名文件
-var changed = require('gulp-changed'); //过滤出被修改的文件
+var babel = require("gulp-babel");
 
 //less转css
 gulp.task('style', function() {
@@ -82,7 +82,6 @@ gulp.task('two', function() {
 	});
 });
 
-
 var gulp = require('gulp');
 var rename = require("gulp-rename");
 
@@ -96,36 +95,25 @@ gulp.task('three', function() {
 
 			gulp.src(item)
 				.pipe(rename(function(path) {
-					path.basename = 'create_' + sel(item) +'_end';
+					path.basename = 'create_' + sel(item) + '_end';
 				}))
 				.pipe(gulp.dest('./bizhi2'));
 		});
 	});
 });
 
-function sel(str){
+function sel(str) {
 	//截取数字字符
 	var _start = str.indexOf('(');
 	var _end = str.indexOf(')');
-	return str.slice(_start+1, _end);
+	return str.slice(_start + 1, _end);
 }
 
-gulp.task('ch', function(){
-	gulp.src('./*.html')
-	.pipe(changed('./ch', {hasChanged: changed.compareSha1Digest}))
-	.pipe(gulp.dest('./ch'));
+
+gulp.task("dd", function () {
+return gulp.src("./util.js")
+.pipe(babel({
+presets: ['es2015']
+}))
+.pipe(gulp.dest("dist"));
 });
-
-function compareLastModifiedTime(stream, cb, sourceFile, targetPath) {
- // 获取目标文件的状态
- fs.stat(targetPath, function (err, targetStat) {
- // 若源文件存在
- if (!fsOperationFailed(stream, sourceFile, err)) {
- // 对比两者的最后修改时间
- if (sourceFile.stat.mtime > targetStat.mtime) {
- stream.push(sourceFile);
- }
- }
- cb();
- });
-}
