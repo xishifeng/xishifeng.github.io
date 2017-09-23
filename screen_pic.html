@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />-->
+		<meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=1.0,user-scalable=0" />
+		<title></title>
+		<style type="text/css">
+			body{
+				width: 750px;
+			}
+			p{
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="screen_shot_area">
+			<p>测试文字</p>
+			<p>测试文字</p>
+			<p>测试文字</p>
+			<p>测试文字</p>
+			<p>测试文字</p>
+			<p>测试文字</p>
+			<p>测试文字</p>
+			<p>测试文字</p>
+			<p>测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字</p>
+		</div>
+		
+		<button id="btn_ok">点击生成</button>
+		
+		<script type="text/javascript" src="js/libs/jquery.min.js"></script>
+		<script src="js/libs/lrz.all.bundle.js"></script>
+		<script type="text/javascript" src="js/libs/html2canvas.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+			    $('#btn_ok').click(function(e){
+			    	$('#titile_before').hide();
+			    	$('#titile_after').show();
+			    	
+			    	e.preventDefault();
+					$("body,html").animate({
+						scrollTop: 0
+					}, 0); //必须把页面滚动到最顶部，不然截图会不完整
+					saveHtml2Image("screen_shot_area");
+			    });
+			    
+			    function saveHtml2Image(objId) {
+					//var _htmlObj = $('html');
+					//var _fontSize = _htmlObj.css('font-size');
+					//var _fontSizeNum = parseFloat(_htmlObj.css('font-size'));
+					//var _fontSizeNew = _fontSizeNum * 3 + 'px';
+					//_htmlObj.css('font-size', _fontSizeNew); //页面font-size更改为原来的2.5倍
+			
+					var obj = $("#" + objId);
+					var width = obj.width();
+					var height = obj.height();
+					html2canvas(obj, {
+						width: width,
+						height: height,
+						background: "rgba(255,255,255,1)",
+						onrendered: function(canvas) {
+							//_htmlObj.css('font-size', _fontSize); //页面font-size更改为原来的值
+			
+							var dataUrl = canvas.toDataURL('image/jpeg');
+							console.log(dataUrl.length);
+							var _temp_img = new Image();
+							_temp_img.src = dataUrl;
+							$(document.body).append(_temp_img);
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
