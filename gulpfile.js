@@ -108,12 +108,3 @@ function sel(str) {
 	var _end = str.indexOf(')');
 	return str.slice(_start + 1, _end);
 }
-
-
-gulp.task("dd", function () {
-return gulp.src("./util.js")
-.pipe(babel({
-presets: ['es2015']
-}))
-.pipe(gulp.dest("dist"));
-});

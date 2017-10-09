@@ -29,7 +29,7 @@
 
 				//原生态JavaScript代码-"添加指定元素"
 				var insertAfter = function(newElement, targetElement) {
-					var parent = targetElement.parentNode; // 找到指定元素的父节点   
+					var parent = targetElement.parentNode; // 找到指定元素的父节点  
 					if(parent.lastChild == targetElement) { // 判断指定元素的是否是节点中的最后一个位置 如果是的话就直接使用appendChild方法   
 						parent.appendChild(newElement, targetElement);
 					} else {

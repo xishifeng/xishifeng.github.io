@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/reset_170324.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<span>{{ message }}</span>
+			<span v-bind:title="msg2">鼠标悬停几秒钟查看此处动态绑定的提示信息！</span>
+			<div v-if="seen">this 2017-10-09</div>
+			<button v-on:click="reverseMessage">逆转消息</button>
+
+			<p>{{ msg3 }}</p>
+			<input v-model="msg3" placeholder="请输入">
+
+			<ul>
+				<li v-for="item in todos">{{item.text}}</li>
+			</ul>
+
+			<ol>
+				<todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+			</ol>
+		</div>
+		<script type="text/javascript" src="js/libs/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('todo-item', {
+				props: ['todo'],
+				template: '<li>{{ todo.text }}</li>'
+			});
+			var app = new Vue({
+				el: '#app',
+				data: {
+					'message': 'Hello Vue!',
+					'msg2': 'dfdf',
+					'msg3': '',
+					'seen': false,
+					'todos': [{
+							text: '学习 JavaScript'
+						},
+						{
+							text: '学习 Vue'
+						},
+						{
+							text: '整个牛项目'
+						}
+					],
+					'groceryList': [{
+							id: 0,
+							text: '蔬菜'
+						},
+						{
+							id: 1,
+							text: '奶酪'
+						},
+						{
+							id: 2,
+							text: '随便其他什么人吃的东西'
+						}
+					]
+				},
+				methods: {
+					reverseMessage: function() {
+						this.message = this.message.split('').reverse().join('');
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,4 +1,4 @@
-snippet "console.warn();" do |s|
+  snippet "console.warn();" do |s|
     s.trigger = "cw"
     s.expansion = "console.warn($1);"
   end
@@ -6,16 +6,6 @@ snippet "console.warn();" do |s|
   snippet "console.log();" do |s|
     s.trigger = "clog"
     s.expansion = "console.log($1);"
-  end
-    
-  snippet "return true;" do |s|
-  s.trigger = "rtr"
-  s.expansion = "return true;"
-  end
-  
-  snippet "return false;" do |s|
-  s.trigger = "rf"
-  s.expansion = "return false;"
   end
   
   snippet "document.querySelector();" do |s|
@@ -36,4 +26,41 @@ snippet "console.warn();" do |s|
   snippet "e.stopPropagation();" do |s|
   s.trigger = "e.st"
   s.expansion = "e.stopPropagation();$0"
+  end
+  
+  snippet "layer.open1" do |s|
+  s.trigger = "ly1"
+  s.expansion = "layer.open({
+    content: ,
+    btn: '我知道了'
+});"
+  end
+  
+  snippet "layer.open2" do |s|
+  s.trigger = "ly2"
+  s.expansion = "layer.open({
+    content: $0,
+    skin: 'msg',
+    time: 2
+});"
+  end
+  
+  snippet "layer.open3" do |s|
+  s.trigger = "ly3"
+  s.expansion = "layer.open({
+    content: $0,
+    btn: ['确定', '取消'],
+    yes: function(_index){
+        $1
+        layer.close(_index);
+    }
+});"
+  end
+  
+  snippet "layer.open4" do |s|
+  s.trigger = "ly4"
+  s.expansion = "layer.open({
+    type: 2,
+    content: '加载中'
+});"
   end

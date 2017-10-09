@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--<a href="http://m10.music.126.net/20171009094633/697b45b1cec3dd897e1a47feef3c64c0/ymusic/87df/95a4/6bd9/91a1d23f5f1b807c9d2009ee5d29d40f.mp3" download="ynya.mp3">下载</a>-->
+		<!--download属性不能省略不写-->
+		<script type="text/javascript">
+			String.prototype.replaceAll = function(s1, s2) {　　
+				return this.replace(new RegExp(s1, 'gm'), s2);
+			}
+			
+			var aa = 'https://admin.fujuhaofang.com/mobile4.0/login.html';
+			var bb = aa.replace('h','x');
+			console.log(bb);
+			var cc = aa.replaceAll('h','x');
+			console.log(cc);
+		</script>
+	</body>
+</html>
