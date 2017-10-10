@@ -5,16 +5,22 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" href="css/reset_170324.css" />
+		<style type="text/css">
+			body{
+				font-size: 0.3rem;
+			}
+		</style>
 	</head>
 
 	<body>
 		<div id="app">
 			<span>{{ message }}</span>
+			<span>{{ reversedMessage }}</span>
 			<span v-bind:title="msg2">鼠标悬停几秒钟查看此处动态绑定的提示信息！</span>
 			<div v-if="seen">this 2017-10-09</div>
 			<button v-on:click="reverseMessage">逆转消息</button>
 
-			<p>{{ msg3 }}</p>
+			<p>{{ msg4['one2'] }}{{msg3}}</p>
 			<input v-model="msg3" placeholder="请输入">
 
 			<ul>
@@ -27,6 +33,11 @@
 		</div>
 		<script type="text/javascript" src="js/libs/vue.min.js"></script>
 		<script type="text/javascript">
+			//app.$data
+			//app.$el
+			//app.$watch
+			//<a :href="url"></a>
+			//<a @click="doSomething"></a>
 			Vue.component('todo-item', {
 				props: ['todo'],
 				template: '<li>{{ todo.text }}</li>'
@@ -37,6 +48,10 @@
 					'message': 'Hello Vue!',
 					'msg2': 'dfdf',
 					'msg3': '',
+					'msg4': {
+						'one': 'wregwfw',
+						'one2': 'ikhmngk'
+					},
 					'seen': false,
 					'todos': [{
 							text: '学习 JavaScript'
@@ -65,6 +80,12 @@
 				methods: {
 					reverseMessage: function() {
 						this.message = this.message.split('').reverse().join('');
+					}
+				},
+				computed: {
+					//计算属性
+					reversedMessage: function() {
+						return this.message.split('').reverse().join('')
 					}
 				}
 			});
