@@ -11,7 +11,11 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"http://cq.sanguosha.com/bbs/plugin.php?id=dsu_paulsign:sign"
+				"http://cq.sanguosha.com/bbs/plugin.php?id=dsu_paulsign:sign",
+				"http://bbs.u.360.cn/forum-2620-1.html",
+				"http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=200434&extra=page%3D1&page=800",
+				"http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=199474&highlight=%E6%B0%B4%E6%A5%BC",
+				"http://cq.sanguosha.com/bbs/plugin.php?id=yinxingfei_zzza:yinxingfei_zzza_hall"
 			],
 			"js": [
 				"cs.js"
