@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2, //固定的
+	"name": "xishifeng", //插件名称
+	"version": "1.0", //插件使用的版本
+	"description": "The first extension that CC made.", //插件的描述
+	"browser_action": {//插件加载后生成图标
+		"default_icon": "cscs.jpg",//图标的图片
+		"default_title": "Hello xishifeng", //鼠标移到图标显示的文字
+		"default_popup": "cs.html"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"http://cq.sanguosha.com/bbs/plugin.php?id=dsu_paulsign:sign"
+			],
+			"js": [
+				"cs.js"
+			],
+			"run_at": "document_idle"
+		}
+	]
+}
