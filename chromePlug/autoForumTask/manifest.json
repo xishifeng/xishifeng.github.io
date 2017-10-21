@@ -4,21 +4,22 @@
 	"version": "1.0", //插件使用的版本
 	"description": "The first extension that CC made.", //插件的描述
 	"browser_action": {//插件加载后生成图标
-		"default_icon": "cscs.jpg",//图标的图片
+		"default_icon": "surface.jpg",//图标的图片
 		"default_title": "Hello xishifeng", //鼠标移到图标显示的文字
-		"default_popup": "cs.html"
+		"default_popup": "surface.html"
 	},
 	"content_scripts": [
 		{
 			"matches": [
 				"http://cq.sanguosha.com/bbs/plugin.php?id=dsu_paulsign:sign",
 				"http://bbs.u.360.cn/forum-2620-1.html",
-				"http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=200434&extra=page%3D1&page=800",
 				"http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=199474&highlight=%E6%B0%B4%E6%A5%BC",
-				"http://cq.sanguosha.com/bbs/plugin.php?id=yinxingfei_zzza:yinxingfei_zzza_hall"
+				"http://cq.sanguosha.com/bbs/plugin.php?id=yinxingfei_zzza:yinxingfei_zzza_hall",
+				"https://tieba.baidu.com/f?kw=%C8%FD%B9%FA%C9%B1%B4%AB%C6%E6&fr=ala0&tpl=5",
+				"https://web.fujuhaofang.com/mobile4.0/xiazai.html"
 			],
 			"js": [
-				"cs.js"
+				"task.js"
 			],
 			"run_at": "document_idle"
 		}
