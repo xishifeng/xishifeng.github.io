@@ -44,9 +44,10 @@ function forum360Sign(){
 }
 
 function baiduTiebaSign(){
-	document.querySelector('#signstar_wrapper>a').click();
+	var clickBtn = document.querySelector('.j_signbtn.sign_btn_bright.j_cansign');
+	clickBtn.click();
+	clickBtn.click();
 	console.log('qiandao success');
-//	location.replace('http://www.baidu.com');
 }
 
 function forumGuanShuilou(){
