@@ -1,6 +1,6 @@
 console.log('xiuxiu_zhuru==');
 console.log($);
-$('img[src=\'image/but_xiuyixiu.png\']').removeClass('but_xiuyixiu').click(function(e){
+$('img[src=\'image/but_xiuyixiu.png\']').click(function(e){
 	e.preventDefault();
 	e.stopPropagation();
 	tijiao();tijiao();tijiao();tijiao();tijiao();
