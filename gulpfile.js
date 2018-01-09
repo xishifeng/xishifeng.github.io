@@ -5,7 +5,8 @@ var less = require('gulp-less'); //less转css
 var webserver = require('gulp-webserver'); //创建本地服务器环境
 var rev = require('gulp-rev-append'); //自动版本号生成
 var rename = require("gulp-rename"); //重命名文件
-var babel = require("gulp-babel");
+var concat = require('gulp-concat');//js文件合并
+var uglify = require('gulp-uglify');//js文件压缩
 
 //less转css
 gulp.task('style', function() {
@@ -108,3 +109,41 @@ function sel(str) {
 	var _end = str.indexOf(')');
 	return str.slice(_start + 1, _end);
 }
+
+//js文件合并
+var _tempFiles1 = [
+	'./js/libs/rem750_1_min.js',
+	'./js/libs/jquery.min.js',
+	'./js/libs/layer.js',
+	'./js/libs/layerTipsX.min.js'
+];
+gulp.task('concat1', function() {
+	gulp.src(_tempFiles1)
+	.pipe(concat('2017-11-22-1.js'))
+	.pipe(gulp.dest('./js/libs/'));	
+});
+//js文件压缩
+gulp.task('jsmin', function () {
+    gulp.src('./js/libs/layerTipsX.js')
+        .pipe(uglify('layerTipsX.min.js'))
+        .pipe(gulp.dest('./js/libs/'));
+});
+//var uglifyjs = require('uglify-js'); // can be a git checkout 
+//                                   // or another module (such as `uglify-es` for ES6 support) 
+//var composer = require('gulp-uglify/composer');
+//var pump = require('pump');
+// 
+//var minify = composer(uglifyjs, console);
+// 
+//gulp.task('compress', function (cb) {
+//// the same options as described above 
+//var options = {};
+// 
+//pump([
+//    gulp.src('./js/libs/rem750_1.js'),
+//    minify(options),
+//    gulp.dest('./js/libs/rem750_1_min.js')
+//  ],
+//  cb
+//);
+//});

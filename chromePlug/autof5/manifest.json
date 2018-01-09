@@ -1,0 +1,41 @@
+{
+	"manifest_version": 2, //固定的
+	"name": "xishifeng", //插件名称
+	"version": "1.0", //插件使用的版本
+	"description": "The first extension that CC made.", //插件的描述
+	"icons": {
+		"128": "image/autoF5Icon.png"
+	},
+	"permissions": [
+		"http://*.fujuhaofang.com/*",
+		"https://*.fujuhaofang.com/*",
+		"http://*.tonglianjituan.com/*",
+		"https://*.tonglianjituan.com/*"
+	],
+	"background": {
+		"scripts": [
+			"js/jquery.min.js",
+			"js/background.js"
+		]
+	},
+	"browser_action": {//插件加载后生成图标
+		"default_icon": "image/autoF5Icon2.png",//图标的图片
+		"default_title": "Hello xishifeng", //鼠标移到图标显示的文字
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"http://*.fujuhaofang.com/*",
+				"https://*.fujuhaofang.com/*",
+				"http://*.tonglianjituan.com/*",
+				"https://*.tonglianjituan.com/*"
+			],
+			"js": [
+				"js/jquery.min.js",
+				"js/content.js"
+			],
+			"run_at": "document_idle"
+		}
+	]
+}

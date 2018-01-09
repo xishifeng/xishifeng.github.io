@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button id="btn1">点击</button>
+
+		<script type="text/javascript" src="js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="js/libs/sea.js"></script>
+		<script type="text/javascript">
+			/**
+			 * 异步引入本站js或css文件
+			 * #该方法依赖于id为"globalmain"的全局js文件; 动态引入的js文件在id为"globalmain"的全局js文件之后#
+			 * @file: 可以一次性引入一个或多个文件; 若单个文件其值为字符串,需引入多个时,其值为数组,引入的顺序按照数组的先后秩序;
+			 **/
+			function require(file, fun) {
+				if((file == null || typeof(file) == 'undefined')) return; //参数为空则自动返回
+
+				var fileArr = [],
+					fileIndex = 0;
+				typeof(file) == 'string' && (file.indexOf('.js') != -1 || file.indexOf('.css') != -1) && (fileArr = [file.toString()]);
+				typeof(file) == 'object' && isArray(file) && (fileArr = file);
+
+				if(fileArr.length == 0) return; //数组为空则自动返回
+
+				//原生态JavaScript代码-"添加指定元素"
+				var insertAfter = function(newElement, targetElement) {
+					var parent = targetElement.parentNode; // 找到指定元素的父节点  
+					if(parent.lastChild == targetElement) { // 判断指定元素的是否是节点中的最后一个位置 如果是的话就直接使用appendChild方法   
+						parent.appendChild(newElement, targetElement);
+					} else {
+						parent.insertBefore(newElement, targetElement.nextSibling);
+					};
+				};
+
+				//文档引入文件(js或css)
+				var insertEmement = function(_file) {
+					if(_file.indexOf('.js') != -1) {
+						(function(d, s, id) {
+							//添加js文件引入
+							var js, fjs = document.getElementById(s);
+							if(d.getElementById(id) || ((!fjs) && s != '')) return;
+							js = d.createElement('script');
+							js.id = id;
+
+							//此处处理_file的实际路径!!!!!!!!!!!!!!
+
+							js.src = _file + '?version=';
+							insertAfter(js, fjs);
+							js.onload = js.onerror = js.onreadystatechange = function() {
+								if(!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
+									fileIndex++;
+									if(fileIndex < fileArr.length) {
+										insertEmement(fileArr[fileIndex]);
+									} else {
+										fun();
+									}
+								}
+								js.onload = js.onreadystatechange = null;
+							}
+						}(document, 'globalmain', _file.replace('.js', '')))
+					} else {
+						(function(d, s, id) {
+							//添加css文件引入
+							var css, fcss = document.getElementsByTagName(s)[0];
+							if(d.getElementById(id)) return;
+							css = d.createElement(s);
+							css.id = id;
+
+							//此处处理_file的实际路径!!!!!!!!!!!!!!
+
+							css.href = _file + '?version=', css.rel = "stylesheet", css.type = "text/css";
+							insertAfter(css, fcss);
+							css.onload = css.onreadystatechange = function() {
+								if(!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete') {
+									fileIndex++;
+									if(fileIndex < fileArr.length) {
+										insertEmement(fileArr[fileIndex]);
+									} else {
+										fun();
+									}
+								}
+								css.onload = css.onreadystatechange = null;
+							}
+						}(document, 'link', _file.replace('.css', '').replaceAll('/', '-')))
+					}
+				};
+				insertEmement(fileArr[0]); //递归处理,为了确认需引入的静态资源文件全部引入
+			};
+		</script>
+	</body>
+
+</html>

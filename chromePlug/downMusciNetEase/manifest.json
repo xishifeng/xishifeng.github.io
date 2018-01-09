@@ -1,0 +1,23 @@
+{
+	"manifest_version": 2, //固定的
+	"name": "NetEaseMusicDownByXishifeng", //插件名称
+	"version": "1.0", //插件使用的版本
+	"description": "The first extension that xishifeng made.", //插件的描述
+	"browser_action": {//插件加载后生成图标
+		"default_icon": "guojia_touxiang.jpg",//图标的图片
+		"default_title": "Hello xishifeng", //鼠标移到图标显示的文字
+		"default_popup": "surface.html"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"*://music.163.com/*",
+				"*://www.baidu.com/*"
+			],
+			"js": [
+				"task.js"
+			],
+			"run_at": "document_idle"
+		}
+	]
+}

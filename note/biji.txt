@@ -6,16 +6,13 @@ http://192.168.0.154:8020/lianxi0301/location.html?nn=2#name
 location.search:?nn=2  以第一个?开始,至行尾或#结束
 location.hash:#name  以#开始,至行尾结束
 
-console.dir()显示一个对象的所有属性和方法；
 console.dirxml()显示某个节点node所包含的html/xml代码；
-console.trace()用来追踪函数的调用轨迹，(在函数里面添加，查看自身)；
-console.time()console.timeEnd()类似于计时器
 
 document.body.style.backgroundImage;
 var fun2 = new Function("var a = 10; var b = 20; alert(a+b)");fun2();
 function $(id){
 	return document.getElementById(id);
-}
+};
 .header-top>ul>li>a:not(.on):hover//css选择器里也有not选择器
 DOM.children//非标准属性，只返回子元素中的HTML节点(即元素节点nodeType = 1)
 DOM.childNodes//标准属性，返回指定元素的子元素集合，包括HTML节点，所有属性/文本节点(包括空白节点)。
@@ -27,7 +24,7 @@ sandbox沙盒沙箱
 var ob = new Object();//程序逻辑ob =null;//释放变量
 _html += '<p>'+obStr.data[i].title.substring(0,7)+(obStr.data[i].title.length>7?'...':'')+'</p>';
 arguments.callee(xingcan)在函数(多为匿名函数)内部调用自身，不建议使用
-var btn = document.getElementById("btn");btn.onclick = function(){console.log(1);}btn.click();JSclick的立刻执行
+var btn = document.getElementById("btn");btn.onclick = function(){console.log(1);};btn.click();JSclick的立刻执行
 jquery的.unbind() 方法移除被选元素的事件处理程序
 String()与toString()区别和应用,x.toString(): 无法转换null和undefined：,String()可以,x.toString(2)可以转为二进制字符串
 window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();禁止选中文字
@@ -132,7 +129,7 @@ HTML5本地存储只能存字符串，任何格式存储的时候都会被自动
 删除所有数据：localStorage.clear();
 得到某个索引的key：localStorage.key(index);
 
-<body onLoad="checkCookie()">
+<body onLoad="checkCookie()"></body>
 function getCookie(c_name) {
 	console.log(document.cookie);
 	if(document.cookie.length > 0) {
@@ -143,17 +140,17 @@ function getCookie(c_name) {
 			if(c_end == -1) c_end = document.cookie.length;
 			return unescape(document.cookie.substring(c_start, c_end));
 		}
-	}
+	};
 	return "";
-}
+};
 //清楚cookie的函数
 function clearCookie() {
 	var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
 	if(keys) {
 		for(var i = keys.length; i--;)
 			document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString();
-	}
-}
+	};
+};
 
 instanceof 用于判断一个变量是否是某个对象的实例
 
@@ -198,9 +195,9 @@ $("#objid", parent.document)
 代码如下:
 $("#objid",document.frames('iframename').document)
 3.js 在iframe子页面获取父页面元素代码如下:
-indow.parent.document.getElementByIdx_x("元素id");
+window.parent.document.getElementByIdx_x("元素id");
 4.js 在父页面获取iframe子页面元素代码如下:
-window.frames["iframe_ID"].document.getElementByIdx_x("元素id");
+window.frames["iframe_ID"].contentDocument.getElementByIdx_x("元素id");
 5.子类iframe内调用父类函数：
 window.parent.func();
 
@@ -222,9 +219,48 @@ var bb = function (){
 	console.log(111);
 }();//这样也可以生成一个函数的表达式
 
+//数组依据元素的某一数值排序
+var compare = function (x, y) {//比较函数
+	var _num1 = (Number(x['v4']) + Number(x['v2'])*10);
+	var _num2 = (Number(y['v4']) + Number(y['v2'])*10);
+	return (_num1 < _num2)?1:((_num1 > _num2)?-1:0);
+};
+arr.sort(compare);//重新排序,作用于arr本身，不会赋值给新的数组
+
+//存储对象信息
+localStorage.setItem('userinfo',encodeURIComponent(JSON.stringify(data['user'])));//存储用户所有信息
+var _userInfo = JSON.parse(decodeURIComponent(localStorage.getItem('userinfo')));//用户信息
+
 //小括号,这种方法前面一定要有一个;(如函数声明必须要有一个分号)
 //复制操作
 //逻辑运算符!
 //数字运算符+
 
 devtool调试node
+
+
+chrome插件开发
+chrome-extension://kbdnhlhmappejakbbdadjoocgcpfpkdm/background.js
+chrome-extension:// + 扩展插件id + / 文件路径
+
+bookmark
+网页变成可编辑data:text/html,<html contenteditable>
+当前网页可编辑javascript:document.body.contentEditable='true'; document.designMode='on';
+
+笔记转移
+document.getElementById('id') && document.getElementById('id').value = d;
+parseInt(110,2);把二进制的110转成10进制的数字输出
+
+
+<input type="date" />样式修改，兼容的处理最好是在外层加一个div，这样才能保证完全兼容的文字居中
+<img onerror="javascript:this.src='image/aa.jpg'" />onerror可处理图片加载失败时的显示
+
+
+针对手机网页的前端 console面板
+<script src="http://dev0.tonglianjituan.com/vConsole-dev/dist/vconsole.min.js"></script>
+<script>
+    var vConsole = new VConsole();
+    console.log('Hello world');
+</script>
+
+<input type="datetime-local" />可以出现选择时分秒的日期框

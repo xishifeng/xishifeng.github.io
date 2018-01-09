@@ -105,3 +105,9 @@ function cleanWhitespace(element) {
 		}
 	}
 }
+
+//获取对象长度
+
+function getLen(obj){
+	return Object.keys(obj).length;
+};

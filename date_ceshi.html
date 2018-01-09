@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.area-date {
+				background-color: lavender;
+				overflow: hidden;
+			}
+			
+			.area-date>input {
+				font-size: .3rem;
+				float: left;
+				width: 100%;
+				box-sizing: border-box;
+				padding: .3rem .3rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="area-date">
+			<input type="date" id="date1" />
+			<input type="date" id="date2" />
+		</div>
+		<script type="text/javascript" src="js/libs/jquery-1122-min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#date1').change(function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					$('#date2').val(changeDate($(this).val(), 7));
+				});
+
+				function changeDate(_date, _num) {
+					function dealNum(num){
+						return num < 10 ? ('0' + num) : ('' + num);
+					};
+					var _dateTemp = new Date(_date);
+					_dateTemp.setDate(_dateTemp.getDate() + _num);//setDate当参数大于当前月份日期时会自动到下一个月
+					return _dateTemp.getFullYear() + '-' + dealNum(_dateTemp.getMonth() + 1) + '-' + dealNum(_dateTemp.getDate());
+				};
+			});
+		</script>
+	</body>
+
+</html>

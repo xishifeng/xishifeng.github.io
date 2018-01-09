@@ -1,0 +1,1 @@
+;layerTipsX=function(n){layer.open({content:n,skin:"msg",time:2})};

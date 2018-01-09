@@ -1,0 +1,36 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.input-area{
+	background-color: lavender;
+	padding: 20px;
+}
+.input-btn-area{
+	overflow: hidden;
+}
+.input-btn-area>div{
+	float: left;
+	border-radius: 10px;
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: orange;
+}
+
+.btn-area>li{
+	float: left;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: white;
+	list-style: none;
+}
+.btn-area>li:nth-of-type(1){
+	background-color: rosybrown;
+}
+.btn-area>li:nth-of-type(2){
+	background-color: royalblue;
+}

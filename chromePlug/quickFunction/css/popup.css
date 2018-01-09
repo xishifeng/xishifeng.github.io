@@ -1,0 +1,24 @@
+
+ul>li{
+	width: 200px;
+	height: 50px;
+	box-sizing: border-box;
+	overflow: hidden;
+	padding: 5px 10px;
+}
+ul>li>a{
+	width: 100%;
+	line-height: 40px;
+	border-radius: 10px;
+	float: left;
+	color: white;
+	background: lightblue;
+	font-size: 14px;
+}
+ul>li>a::before{
+	content: ' ('attr(data-index)')==>';
+}
+ul>li>a[data-isclick]::after{
+	content: '('attr(data-isclick)')';
+	color: #f40;
+}

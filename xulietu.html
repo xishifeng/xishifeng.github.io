@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.love {
+				display: block;
+				width: 400px;
+				height: 400px;
+				background: url("img/xuliezhen_zhihu.png") 0 0 no-repeat;
+				background-size: 5400%;
+				/*background-size: 21600px 400px;*/
+				animation: heart-burst steps(54) 2.4s infinite both;
+				/*animation: dynamic 2.4s steps(54) infinite;*/
+			}
+			
+			.stop {
+				animation-play-state: paused;
+			}
+			
+			@keyframes heart-burst {
+				0% {
+					background-position: 0%;
+				}
+				100% {
+					background-position: 100%;
+				}
+			}
+			
+			@keyframes heart-burst {
+				0% {
+					background-position: 0 0;
+				}
+				100% {
+					background-position: -21600px 0;
+				}
+			}
+			
+			@keyframes dynamic {
+				0% {
+					background-position: 0 0;
+				}
+				to {
+					/*background-position: -10800px 0;*/
+					background-position: -21600px 0;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<i id="testImg" class="love"></i>
+		<p><input type="button" id="testBtn" value="暂停"></p>
+		
+		<button id="btn1">重置</button>
+		<script type="text/javascript">
+			var image = document.getElementById("testImg"),
+				button = document.getElementById("testBtn");
+
+			if(image.classList && image && button) {
+				button.onclick = function() {
+					if(this.value == '暂停') {
+						image.classList.add('stop');
+						this.value = '播放';
+					} else {
+						image.classList.remove('stop');
+						this.value = '暂停';
+					}
+				};
+			}
+			var _btn1 = document.querySelector('#btn1');
+			_btn1.onclick = function(e){
+				e.preventDefault;
+				image.classList.remove('love');
+				image.offsetWidth = image.offsetWidth;
+				image.classList.add('love');
+			}
+		</script>
+	</body>
+
+</html>

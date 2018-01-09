@@ -1,0 +1,44 @@
+{
+	"manifest_version": 3, //固定的
+	"name": "xishifeng_Sanchuan_forum", //插件名称
+	"version": "2.0", //插件使用的版本
+	"description": "The first extension that xishifeng made.", //插件的描述
+	"icons": {
+		"128": "image/guojia_touxiang.png"
+	},
+	"permissions": [
+		"http://*.fujuhaofang.com/*",
+		"https://*.fujuhaofang.com/*",
+		"http://*.tonglianjituan.com/*",
+		"https://*.tonglianjituan.com/*"
+	],
+	"background": {
+		"scripts": [
+			"js/jquery.min.js",
+			"js/background.js"
+		]
+	},
+	"browser_action": {//插件加载后生成图标
+		"default_icon": "image/guojia_touxiang.png",//图标的图片
+		"default_title": "sanchuan forum task", //鼠标移到图标显示的文字
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=*&extra=page%3D1&page=6000",
+				"http://cq.sanguosha.com/bbs/plugin.php?id=dsu_paulsign:sign",
+				"http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=205647&highlight=%E6%B0%B4%E6%A5%BC",
+				"http://cq.sanguosha.com/bbs/plugin.php?id=yinxingfei_zzza:yinxingfei_zzza_hall",
+				"http://bbs.u.360.cn/forum-2620-1.html",
+				"http://bbs.u.360.cn/thread-7657489-1-1.html",
+				"https://tieba.baidu.com/p/5420056567*"
+			],
+			"js": [
+				"js/jquery.min.js",
+				"js/task.js"
+			],
+			"run_at": "document_idle"
+		}
+	]
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+//			function jsonp(setting) {
+//				setting.data = setting.data || {};
+//				setting.key = setting.key || 'callback';
+//				setting.callback = setting.callback || function() {};
+//				setting.data[setting.key] = '__onGetData__';
+//
+//				window.__onGetData__ = function(data) {
+//					setting.callback(data);
+//				};
+//				var script = document.createElement('script');
+//				var query = [];
+//				for(var key in setting.data) {
+//					query.push(key + '=' + encodeURIComponent(setting.data[key]));
+//				};
+//				script.src = setting.url + '?' + query.join('&');
+//				document.head.appendChild(script);
+//				document.head.removeChild(script);
+//			};
+//
+//			jsonp({
+//				url: 'http://music.ocrosoft.com/GetMusicLink.php',
+//				key: 'callback',
+//				data: {
+//					'id': 190072
+//				},
+//				callback: function(ret) {
+//					console.log(ret);
+//				}
+//			});
+			
+//			var callback = function(data){
+//				console.log(data);
+//			}
+			var _script =document.createElement('script');
+//			_script.src = 'http://music.ocrosoft.com/GetMusicLink.php?id=190072&callback=__onGetData__';
+			_script.src = 'http://music.ocrosoft.com/GetMusicLink.php?id=190072&callback=ff';
+			document.body.appendChild(_script);
+			
+			window.ff = function(data) {
+//				setting.callback(data);
+				console.log(data);
+			};
+		</script>
+	</body>
+
+</html>
