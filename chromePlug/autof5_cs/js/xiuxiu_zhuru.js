@@ -10,7 +10,7 @@ $('img[src=\'image/but_xiuyixiu.png\']').click(function(e){
 		_aObjZhuru.html('STOP');
 		_timer = setInterval(function(e){
 			tijiao();
-		},300);
+		},200);
 	}else{
 		_kaiFlag = true;
 		clearInterval(_timer);
