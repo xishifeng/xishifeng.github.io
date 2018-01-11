@@ -17,41 +17,43 @@
 
 //字符串格式化
 String.prototype.stringFormat = function() {
-	var formatted = this;
-	for(var i = 0; i < arguments.length; i++) {
-		var _regexp = new RegExp('\\{' + i + '\\}', 'gi');
-		formatted = formatted.replace(_regexp, arguments[i]);
+	let formatted = this;
+	for(let i of arguments){
+		formatted = formatted.replace(new RegExp(`\\{${i}\\}`, 'gi'), arguments[0][i]);
 	};
 	return formatted;
-}
-//字符串格式化,第二种形式
-String.prototype.stringFormatObj = function() {
-	var formatted = this;
-	for(var i in arguments[0]) {
-		var _regexp = new RegExp('\\{' + i + '\\}', 'gi');
-		formatted = formatted.replace(_regexp, arguments[0][i]);
-	}
+};
+
+String.prototype.stringFormatObj = function(){
+	let formatted = this;
+	for(let i in arguments[0]){
+		formatted = formatted.replace(new RegExp(`\\{${i}\\}`, 'gi'), arguments[0][i]);
+	};
 	return formatted;
 };
 
 //从location.href里获取参数
+//function getUrlParam(name) {
+//	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+//	var r = decodeURI(window.location.search).substr(1).match(reg);
+//	if(r != null) return unescape(r[2]);
+//	return null;
+//};
 function getUrlParam(name) {
-	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	var r = decodeURI(window.location.search).substr(1).match(reg);
-	if(r != null) return unescape(r[2]);
-	return null;
-}
+	let r = decodeURI(location.search).substr(1).match(new RegExp(`(^|&)${name}=([^&]*)(&|$)`));
+	return r != null?unescape(r[2]):null;
+};
 
 //字符串翻转
 String.prototype.fanzhuan = function() {
-	var arr = this.split("");
-	for(var i = 0, j = arr.length - 1; i < j; i++, j--) {
-		var temp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = temp;
-	}
-	return arr.join("");
-}
+	let arr = this.split('');
+	let [i, j=0] = [0, arr.length - 1];
+	while(i < j){
+		[arr[i], arr[j]] = [arr[j], arr[i]];
+		i++;j--;
+	};
+	return arr.join('');
+};
 
 //数组去重
 Array.prototype.quchong = function() {
