@@ -264,3 +264,13 @@ parseInt(110,2);把二进制的110转成10进制的数字输出
 </script>
 
 <input type="datetime-local" />可以出现选择时分秒的日期框
+
+String.prototype.replaceAll = function(s1, s2) {　　
+	return this.replace(new RegExp(s1, 'gm'), s2);
+};
+
+delete vv['b'];//删除某一个对象的属性
+
+function getLen(obj){
+	return Object.keys(obj).length;//获取一个数组的长度，或者一个对象的属性个数
+};
