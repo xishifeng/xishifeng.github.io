@@ -6,10 +6,10 @@ switch(window.location.href) {
 	case 'http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=205614&extra=page%3D1&page=6000':
 		//forumGuanQianglouSp(6300, '论坛昵称：man17');//官方论坛特殊阶段抢楼
 		break;
-	case 'http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=206206&extra=page%3D1&page=6000':
+	case 'http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=206533&extra=page%3D1&page=6000':
 		forumGuanQianglou({
-			'minute': 10,
-			'floorWei': 8,
+			'minute': 7,
+			'floorWei': 5,
 			'content': '论坛昵称：man17'
 		}); //官方论坛抢楼，群雄争霸，勇闯虎牢关
 		break;
@@ -38,7 +38,7 @@ function forumGuanQianglouSp(_num, _text) {
 	var _arr = document.querySelectorAll('a[id^="postnum"]>em');
 	var _lastNum = Number(_arr[_arr.length - 1].innerHTML);
 	console.log('qianglou==>' + _lastNum);
-	if((_lastNum + 1) == _num) {
+	if(!((_lastNum + 1) ^ _num)) {
 		document.querySelector('#fastpostmessage').innerText = _text;
 		document.querySelector('#fastpostsubmit').click();
 	} else if((_lastNum + 31) <= _num) {
@@ -64,7 +64,7 @@ function forumGuanQianglouSp(_num, _text) {
 function forumGuanQianglou(obj) {
 	//官方论坛抢楼
 	var _arr = document.querySelectorAll('a[id^="postnum"]>em');
-	if(_arr.length !== 0){
+	if(_arr.length ^ 0){
 		var _lastNum = Number(_arr[_arr.length - 1].innerHTML);
 		console.log('qianglou==>' + _lastNum);
 		if(_arr.length < 10) {
@@ -89,9 +89,10 @@ function forumGuanQianglou(obj) {
 			}, 1500);
 		};
 	}else{
+		console.log('daojishi start');
 		setTimeout(function() {
 			window.location.reload();
-		}, obj['minute']*1000);
+		}, obj['minute']*60000);
 	};
 };
 
