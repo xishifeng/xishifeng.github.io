@@ -90,3 +90,9 @@ function comp(num1,num2){
 console.log(_arr3.sort(function(num1, num2) {
 	return num1 - num2;
 }));
+
+var _date = new Date();
+var _date2 = new Date(2018,0,17,15,32,0);
+console.log(+new Date());
+console.log(Date.now());
+console.log(_date2);

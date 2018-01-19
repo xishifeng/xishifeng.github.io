@@ -6,10 +6,10 @@ switch(window.location.href) {
 	case 'http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=205614&extra=page%3D1&page=6000':
 		//forumGuanQianglouSp(6300, '论坛昵称：man17');//官方论坛特殊阶段抢楼
 		break;
-	case 'http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=206533&extra=page%3D1&page=6000':
+	case 'http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=206663&extra=page%3D1&page=6000':
 		forumGuanQianglou({
-			'minute': 7,
-			'floorWei': 5,
+			'minute': 0,
+			'floorWei': 8,
 			'content': '论坛昵称：man17'
 		}); //官方论坛抢楼，群雄争霸，勇闯虎牢关
 		break;
