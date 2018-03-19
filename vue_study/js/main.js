@@ -18,4 +18,7 @@ function getUrlParam(name) {
 	var r = decodeURI(window.location.search).substr(1).match(reg);
 	if(r != null) return unescape(r[2]);
 	return null;
-}
+};
+
+import axios from 'axios'
+Vue.prototype.$http = axios;
