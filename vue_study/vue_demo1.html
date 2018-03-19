@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/css/reset_170324.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<input v-model="msg33.aa" placeholder="请输入">
+			<p>{{ msg33.aa }}</p>
+			<button @click="changeVal">点击增加</button>
+			
+			<currency-input v-model="price"></currency-input>
+		</div>
+
+		<script type="text/javascript" src="/js/libs/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('currency-input', {
+				template: '\
+				    <span>\
+				      $\
+				      <input\
+				        ref="input"\
+				        v-bind:value="value"\
+				        v-on:input="updateValue($event.target.value)"\
+				      >\
+				    </span>\
+				  ',
+				props: ['value'],
+				methods: {
+					// 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
+					updateValue: function(value) {
+						var formattedValue = value
+							// 删除两侧的空格符
+							.trim()
+							// 保留 2 位小数
+							.slice(
+								0,
+								value.indexOf('.') === -1 ?
+								value.length :
+								value.indexOf('.') + 3
+							)
+						// 如果值尚不合规，则手动覆盖为合规的值
+						if(formattedValue !== value) {
+							this.$refs.input.value = formattedValue
+						}
+						// 通过 input 事件带出数值
+						this.$emit('input', Number(formattedValue))
+					}
+				}
+			});
+
+			var app = new Vue({
+				el: '#app',
+				data: {
+					msg33: {
+						aa: 1,
+						price: 0
+					}
+				},
+				methods: {
+					changeVal: function() {
+						this.msg33.aa += 1;
+					}
+				},
+				computed: {
+					//计算属性
+				}
+			});
+		</script>
+	</body>
+
+</html>

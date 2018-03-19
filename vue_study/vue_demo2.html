@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta v-html="rawHtml" />
+		<meta http-equiv="X-UA-Compatible" content="IE=10" />
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/report_achieve.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<header id="header" v-show="seen">
+				<a class="ps-back" href="javascript:(history.length>1?history.go(-1):window.location='/');"></a>
+				<h2 id="title">业绩周报</h2>
+				<a class="word-link" href="javascript:;">我的周报</a>
+			</header>
+			<div class="header_seat"></div>
+
+			<div id="screen_shot_area">
+
+				<div id="tab_table_area">
+					<section>
+
+						<table border="0" cellspacing="0" cellpadding="0" class="table-type2">
+							<tbody>
+								<tr class="table-tr-single table2-sp4">
+									<td colspan="2" id="area_chengnuoshu">承诺书({{_weekly_data['startdate']}}至{{_weekly_data['enddate']}})</td>
+								</tr>
+								<tr class="table-tr-single table2-sp1">
+									<td colspan="2">本人在此郑重承诺，在本周工作中数据承诺如下：</td>
+								</tr>
+								<tr class="lh60 table2-sp3">
+									<td>上周目标</td>
+									<td>区域团队总业绩<input id="sjcn_mb_sz" type="number" placeholder="点击填写">元</td>
+								</tr>
+								<tr class="lh60 table2-sp3">
+									<td>下周目标</td>
+									<td>区域团队总业绩<input id="sjcn_mb_xz" type="number" placeholder="点击填写">元</td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding20">
+									<td>完成将<br>奖励</td>
+									<td>
+										<div id="sjcn_jl" class="div-textarea" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding20">
+									<td>未完成<br>将处罚</td>
+									<td>
+										<div id="sjcn_cf" class="div-textarea" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+								<tr class="table-tr-single table2-sp2">
+									<td colspan="2">监督人：区域所有店长<span>承诺人:<span id="mdzj_div_header_username"></span></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table border="0" cellspacing="0" cellpadding="0" class="table-type8" id="mdzj_table1">
+							<tbody>
+								<tr class="table-tr-single">
+									<td colspan="4">总监业绩总结</td>
+								</tr>
+								<tr>
+									<td>上周业绩（元）</td>
+									<td><input type="number" placeholder="填写" class="yeji_shangzhou" /></td>
+									<td>本月业绩（元）</td>
+									<td><input type="number" placeholder="填写" class="yeji_benyue" /></td>
+								</tr>
+								<tr>
+									<td>本周业绩（元）</td>
+									<td><input type="number" placeholder="填写" class="yeji_benzhou" /></td>
+									<td>人均业绩（元）</td>
+									<td class="yeji_renjun"></td>
+								</tr>
+								<tr>
+									<td>上升下滑（元）</td>
+									<td class="shangsheng_xiahua"></td>
+									<td>目前实收（元）</td>
+									<td><input type="number" placeholder="填写" class="shishou_muqian" /></td>
+								</tr>
+								<tr>
+									<td>盈亏（元）</td>
+									<td class="yingkui"></td>
+									<td>人均实收（元）</td>
+									<td class="shishou_renjun"></td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding20">
+									<td>下周工作重<br />点</td>
+									<td colspan="3">
+										<div class="div-textarea xz_gzzd" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding20">
+									<td>日数据管理<br />方案</td>
+									<td colspan="3">
+										<div class="div-textarea rsj_glfa" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+								<tr class="canshu_data">
+									<td>上周人数</td>
+									<td class="renshu_shangzhou"></td>
+									<td>本周人数</td>
+									<td class="renshu_benzhou"></td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding20">
+									<td>下周人员改<br />善措施</td>
+									<td colspan="3">
+										<div class="div-textarea xz_ry_gscs" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table data="data" data-id="{{data.id}}" border="0" cellspacing="0" cellpadding="0" class="table-type8">
+							<tbody>
+								<tr class="table-tr-single">
+									<td colspan="4">{{data.sub_shopname+'-'+data.agentshopname}}</td>
+								</tr>
+								<tr>
+									<td>上周业绩（元）</td>
+									<td><input type="number" placeholder="填写" class="yeji_shangzhou"></td>
+									<td>本月业绩（元）</td>
+									<td><input type="number" placeholder="填写" class="yeji_benyue"></td>
+								</tr>
+								<tr>
+									<td>本周业绩（元）</td>
+									<td><input type="number" placeholder="填写" class="yeji_benzhou"></td>
+									<td>人均业绩（元）</td>
+									<td class="yeji_renjun"></td>
+								</tr>
+								<tr>
+									<td>上升下滑（元）</td>
+									<td class="shangsheng_xiahua"></td>
+									<td>目前实收（元）</td>
+									<td><input type="number" placeholder="填写" class="shishou_muqian"></td>
+								</tr>
+								<tr>
+									<td>盈亏（元）</td>
+									<td class="yingkui"></td>
+									<td>人均实收（元）</td>
+									<td class="shishou_renjun"></td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding20">
+									<td>点评</td>
+									<td colspan="3">
+										<div class="dianping div-textarea" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+								<tr class="canshu_data">
+									<td>上周人数</td>
+									<td class="renshu_shangzhou">{{data.lastweek_user}}</td>
+									<td>本周人数</td>
+									<td class="renshu_benzhou">{{data.week_user}}</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table border="0" cellspacing="0" cellpadding="0" class="table-type2">
+							<tbody>
+								<tr class="table-tr-single">
+									<td colspan="2">业态分析</td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding20">
+									<td>现在的业<br />态不能做<br />了，你会<br />做什么？</td>
+									<td>
+										<div id="yetaifenxi1" class="div-textarea" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding20">
+									<td>做哪个业<br />态比你现<br />在做的会<br />更赚钱？</td>
+									<td>
+										<div id="yetaifenxi2" class="div-textarea" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+								<tr class="table-tr-single">
+									<td colspan="2">折佣或爆单情况汇报</td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding15">
+									<td>门店和<br />业务员</td>
+									<td>
+										<div id="mendian_yewuyuan" class="div-textarea" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+								<tr class="table-tr-textarea tr-padding15">
+									<td>金额及<br />说明情况</td>
+									<td>
+										<div id="jine_shuomingqingkuang" class="div-textarea" contenteditable="true">点击填写</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</section>
+
+				</div>
+				<div id="time_stamp_area"></div>
+			</div>
+
+			<div class="btn-area">
+				<button id="btn_ok">提交</button>
+			</div>
+
+			<div id="loading_pic" class="week-sp loading_pic">
+				<img src="images/jz2.gif" />
+				<p>正在加载...</p>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="/js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/libs/layer.js"></script>
+		<script type="text/javascript" src="/js/libs/lrz.all.bundle.js"></script>
+		<script type="text/javascript" src="/js/libs/html2canvas.min.js"></script>
+		<script type="text/javascript" src="/js/libs/vue.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/vue_demo2.js"></script>
+	</body>
+
+</html>

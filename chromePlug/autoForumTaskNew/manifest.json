@@ -28,10 +28,10 @@
 			"matches": [
 				"http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=*&extra=page%3D1&page=6000",
 				"http://cq.sanguosha.com/bbs/plugin.php?id=dsu_paulsign:sign",
-				"http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=205647&highlight=%E6%B0%B4%E6%A5%BC",
+				"http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=*&highlight=%E6%B0%B4%E6%A5%BC",
 				"http://cq.sanguosha.com/bbs/plugin.php?id=yinxingfei_zzza:yinxingfei_zzza_hall",
 				"http://bbs.u.360.cn/forum-2620-1.html",
-				"http://bbs.u.360.cn/thread-7657489-1-1.html",
+				"http://bbs.u.360.cn/thread-*-1-1.html",
 				"https://tieba.baidu.com/p/5420056567*"
 			],
 			"js": [

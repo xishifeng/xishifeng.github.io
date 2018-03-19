@@ -1,6 +1,6 @@
 'use strict';
-var _shuilouGuan = 'http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=205647&highlight=%E6%B0%B4%E6%A5%BC' //官方论坛==>2018年1月
-var _shuilou360 = 'http://bbs.u.360.cn/thread-7657489-1-1.html' //360论坛==>2018年1月
+var _shuilouGuan = 'http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=209071&highlight=%E6%B0%B4%E6%A5%BC' //官方论坛==>2018年3月
+var _shuilou360 = 'http://bbs.u.360.cn/thread-7686944-1-1.html' //360论坛==>2018年1月
 
 switch(window.location.href) {
 	case 'http://cq.sanguosha.com/bbs/forum.php?mod=viewthread&tid=205614&extra=page%3D1&page=6000':

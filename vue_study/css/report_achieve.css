@@ -1,0 +1,514 @@
+@charset "utf-8";
+body {
+	background-color: white;
+}
+
+header {
+	width: 750px;
+	border-bottom: 1px solid #CCC;
+	height: 88px;
+}
+header+.header_seat{
+	height: 88px!important;
+}
+#title {
+	font-size: 34px;
+	line-height: 88px;
+	overflow: hidden;
+	height: 88px;
+	padding: 0 88px;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #333;
+}
+
+header .ps-back {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	width: 88px;
+	height: 88px;
+	background: url(../images/ic_back_black@2x.png) no-repeat 30px center;
+	background-size: 36px 28px;
+}
+
+header .word-link {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	font-size: 28px;
+	display: block;
+	padding-right: 30px;
+	height: 88px;
+	line-height: 88px;
+}
+
+#screen_shot_area {
+	width: 750px;
+}
+
+#tab_table_area {
+	width: 750px;
+	box-sizing: border-box;
+	padding-left: 5px;
+}
+
+#tab_table_area>section {
+	/*display: none;*/
+}
+
+#tab_table_area>section.table-area-active {
+	display: block;
+}
+
+
+/*日期显示，截图前的部分*/
+#titile_temp{
+	color: #F13D2F;
+	text-align: right;
+	font-size: 26px;
+	line-height: 50px;
+	padding-right: 30px;
+	display: none;
+}
+#titile_before {
+	color: #333;
+	font-size: 26px;
+	text-align: center;
+	line-height: 60px;
+	font-weight: bold;
+}
+
+
+/*日期显示，截图后的部分*/
+
+#titile_after {
+	background-color: #f5f5f5;
+	height: 120px;
+	box-sizing: border-box;
+	padding: 0 30px;
+	display: none;
+	/*默认是隐藏的，当点击生成图片的时候会显示出来*/
+}
+
+#titile_after>h3 {
+	color: #333;
+	font-size: 30px;
+	height: 70px;
+	box-sizing: border-box;
+	padding-top: 24px;
+}
+
+#titile_after>p {
+	color: #999;
+	font-size: 24px;
+	overflow: hidden;
+}
+
+#span_date {
+	float: left;
+}
+
+#span_reporter {
+	float: right;
+}
+
+
+/*第一个table部分*/
+
+table{
+	font-size: 26px;
+	background-color: white;
+	max-width: 750px;
+	margin: 0 auto;
+	display: block;
+}
+
+table td{
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	text-align: center;
+	overflow: hidden;
+}
+
+table tr.table-tr-header td{
+	color: #333;
+	font-weight: bold;
+	min-height: 60px;
+    line-height: 60px;
+}
+
+table td input {
+	float: left;
+	height: 60px;
+	line-height: 60px;
+	width: 100%;
+	border: none;
+	text-align: center;
+	box-sizing: border-box;
+	font-size: 26px;
+}
+
+.table-tr-add>td {
+	min-height: 200px;
+	box-sizing: border-box;
+}
+tr.table-tr-textarea>td:nth-of-type(1){
+	line-height: 42px!important;
+}
+.tr-padding20>td:nth-of-type(1){
+	padding: 20px 0;
+}
+.tr-padding35>td:nth-of-type(1){
+	padding: 35px 0;
+}
+.tr-padding60>td:nth-of-type(1){
+	padding: 60px 0;
+}
+.tr-lineheight30>td:nth-of-type(1){
+	line-height: 30px;
+}
+.tr-lineheight30>td:nth-of-type(1)>span.span-special1{
+	font-size: 20px!important;
+    font-weight: normal!important;
+}
+
+div.div-textarea {
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+	/*padding: 20px 8px;*/
+	padding: 20px 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	color: #757575;
+	line-height: normal;
+}
+div.div-textarea.color-submit{
+	color: #333;
+	text-align: left;
+}
+div.div-textarea.div-textarea-mdzj-header{
+	color: #F13D2F;
+	padding: 20px 0;
+}
+div.div-textarea.div-textarea-mdzj-header{
+	color: #F13D2F;
+	padding: 20px 0;
+}
+
+.table-tr-single>td {
+	font-size: 26px;
+	font-weight: bold;
+	text-align: center;
+	height: 60px;
+	line-height: 60px;
+	width: 740px!important;
+}
+/*第一个table部分*/
+.table-type1 tr td{
+	line-height: 60px;
+	min-height: 60px;
+}
+.table-type1 tr td:first-child {
+	color: #333;
+	font-weight: bold;
+	width: 120px;
+}
+
+.table-type1 tr td:nth-child(2),
+.table-type1 tr td:nth-child(3),
+.table-type1 tr td:nth-child(4),
+.table-type1 tr td:nth-child(5),
+.table-type1 tr td:nth-child(6) {
+	width: 124px;
+}
+
+/*第二个table部分*/
+.table-type2 tr td:first-child {
+	color: #333;
+	font-weight: bold;
+	width: 180px;
+}
+
+.table-type2 tr td:nth-child(2) {
+	width: 560px;
+}
+
+.table-type2 .table-tr-single.table2-sp1>td,
+.table-type2 .table-tr-single.table2-sp2>td {
+	text-align: left;
+	padding-left: 20px;
+	position: relative;
+}
+.table-type2 .table-tr-single.table2-sp4>td{
+	line-height: 100px;
+	font-size: 30px;
+}
+.table-type2 .table2-sp2>td>span{
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding-right: 20px;
+}
+.table-type2 tr.lh60 td{
+	line-height: 60px;
+	min-height: 60px;
+}
+.table-type2 .table2-sp3>td>input{
+	float: none;
+	width: 200px;
+}
+
+/*第三个table部分*/
+.table-type3 tr td{
+	line-height: 60px;
+	min-height: 60px;
+}
+.table-type3 tr td:first-child {
+	color: #333;
+	font-weight: bold;
+	width: 220px;
+}
+
+.table-type3 tr td:nth-child(2) {
+	width: 260px;
+}
+.table-type3 tr td:nth-child(3) {
+	width: 260px;
+}
+
+/*第四个table部分*/
+
+.table-type4 tr td:first-child {
+	color: #333;
+	font-weight: bold;
+	width: 210px;
+}
+
+.table-type4 tr td:nth-child(2) {
+	width: 100px;
+}
+.table-type4 tr td:nth-child(3) {
+	width: 430px;
+}
+
+/*第五个table部分*/
+
+.table-type5 tr td:first-child {
+	color: #333;
+	font-weight: bold;
+	width: 170px;
+}
+
+.table-type5 tr td:nth-child(2),
+.table-type5 tr td:nth-child(3) {
+	width: 160px;
+}
+.table-type5 tr td:nth-child(4),
+.table-type5 tr td:nth-child(5) {
+	width: 125px;
+}
+/*第六个table部分*/
+.table-type6 tr td{
+	line-height: 60px;
+	min-height: 60px;
+}
+.table-type6 tr td:first-child {
+	color: #333;
+	font-weight: bold;
+	width: 120px;
+}
+
+.table-type6 tr td:nth-child(2),
+.table-type6 tr td:nth-child(3),
+.table-type6 tr td:nth-child(4),
+.table-type6 tr td:nth-child(5) {
+	width: 155px;
+}
+
+/*第七个table部分*/
+.table-type7 tr td{
+	line-height: 60px;
+	min-height: 60px;
+}
+.table-type7 tr td:first-child {
+	color: #333;
+	font-weight: bold;
+	width: 300px;
+}
+
+.table-type7 tr td:nth-child(2) {
+	width: 440px;
+}
+
+/*第八个table部分*/
+
+.table-type8 tr td{
+	line-height: 60px;
+	min-height: 60px;
+}
+.table-type8 tr td:first-child,
+.table-type8 tr td:nth-child(3) {
+	color: #333;
+	font-weight: bold;
+	width: 210px;
+}
+
+.table-type8 tr td:nth-child(2),
+.table-type8 tr td:nth-child(4){
+	width: 160px;
+}
+
+/*第九个table部分*/
+.table-type9 tr:nth-of-type(2) td{
+	min-height: 66px;
+	line-height: 66px;
+	font-weight: bold;
+	color: #333;
+}
+.table-type9 tr td:first-child {
+	color: #333;
+	font-weight: bold;
+	width: 180px;
+}
+
+.table-type9 tr td:nth-child(2) {
+	width: 120px;
+}
+.table-type9 tr td:nth-child(3) {
+	width: 440px;
+}
+
+/*第10个table部分*/
+.table-type10 tr td:first-child {
+	color: #333;
+	font-weight: bold;
+	width: 116px;
+}
+
+.table-type10 tr td:nth-child(2),
+.table-type10 tr td:nth-child(3),
+.table-type10 tr td:nth-child(4) {
+	width: 208px;
+}
+/*第11个table部分*/
+.table-type10 tr td {
+	color: #333;
+	width: 148px;
+}
+
+
+/*同联的门店总监业绩周报，顶部文字区域部分*/
+.mdzj_div_header{
+	padding: 0 20px 30px;
+	box-sizing: border-box;
+}
+.mdzj_div_header>h2{
+	font-size: 30px;
+	text-align: center;
+	height: 90px;
+	line-height: 90px;
+	font-weight: bold;
+}
+.mdzj_div_header>p{
+	font-size: 26px;
+	color: #333;
+}
+.mdzj_div_header>p>input{
+	width: 150px;
+	font-size: inherit;
+	color: #F13D2F;
+	text-align: center;
+	border-bottom: 1px solid #F13D2F;
+}
+.mdzj_div_header>p>input::-webkit-input-placeholder{
+	color: #F13D2F;
+}
+.mdzj_div_header .p-bold{
+	font-weight: bold;
+}
+.mdzj_div_header .mb10{
+	margin-bottom: 10px;
+}
+.mdzj_div_header .mb20{
+	margin-bottom: 20px;
+}
+.mdzj_div_header .mb30{
+	margin-bottom: 30px;
+}
+
+/*底部时间戳区域*/
+
+#time_stamp_area {
+	text-align: right;
+	height: 60px;
+	line-height: 60px;
+	font-size: 26px;
+	box-sizing: border-box;
+	padding-right: 26px;
+	display: none;
+	color: #999;
+}
+
+
+/*点击提交按钮区域*/
+
+.btn-area {
+	padding: 30px 30px 60px;
+}
+
+.btn-area>button {
+	display: block;
+	width: 100%;
+	background-color: #ff9419;
+	text-align: center;
+	line-height: 80px;
+	height: 80px;
+	color: white;
+	font-size: 32px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+
+/*loading图样式*/
+
+.loading_pic.week-sp {
+	font-size: 20px;
+	text-align: center;
+	width: 100%;
+	position: fixed;
+	top: 700px;
+	display: none;
+}
+
+.loading_pic.week-sp>img {
+	width: 120px;
+	display: block;
+	margin: 0 auto;
+}
+
+.loading_pic.week-sp>p {
+	font-size: 20px;
+	color: #333;
+	text-align: center;
+	margin-top: 10px;
+	color: rgb(51, 51, 51);
+}
+
+/*确认按钮补充样式*/
+.layui-m-layercont{
+	font-size: 34px!important;
+}
+.layui-m-layerbtn{
+	height: 80px!important;
+}
+.layui-m-layerbtn>span{
+	font-size: 26px!important;
+	line-height: 80px!important;
+}
