@@ -115,49 +115,7 @@
 							</tbody>
 						</table>
 
-						<table data="data" data-id="{{data.id}}" border="0" cellspacing="0" cellpadding="0" class="table-type8">
-							<tbody>
-								<tr class="table-tr-single">
-									<td colspan="4">{{data.sub_shopname+'-'+data.agentshopname}}</td>
-								</tr>
-								<tr>
-									<td>上周业绩（元）</td>
-									<td><input type="number" placeholder="填写" class="yeji_shangzhou"></td>
-									<td>本月业绩（元）</td>
-									<td><input type="number" placeholder="填写" class="yeji_benyue"></td>
-								</tr>
-								<tr>
-									<td>本周业绩（元）</td>
-									<td><input type="number" placeholder="填写" class="yeji_benzhou"></td>
-									<td>人均业绩（元）</td>
-									<td class="yeji_renjun"></td>
-								</tr>
-								<tr>
-									<td>上升下滑（元）</td>
-									<td class="shangsheng_xiahua"></td>
-									<td>目前实收（元）</td>
-									<td><input type="number" placeholder="填写" class="shishou_muqian"></td>
-								</tr>
-								<tr>
-									<td>盈亏（元）</td>
-									<td class="yingkui"></td>
-									<td>人均实收（元）</td>
-									<td class="shishou_renjun"></td>
-								</tr>
-								<tr class="table-tr-textarea tr-padding20">
-									<td>点评</td>
-									<td colspan="3">
-										<div class="dianping div-textarea" contenteditable="true">点击填写</div>
-									</td>
-								</tr>
-								<tr class="canshu_data">
-									<td>上周人数</td>
-									<td class="renshu_shangzhou">{{data.lastweek_user}}</td>
-									<td>本周人数</td>
-									<td class="renshu_benzhou">{{data.week_user}}</td>
-								</tr>
-							</tbody>
-						</table>
+						<simple-counter v-for="item in listMain" v-bind:data="item" :key="item.id" data-id="{{item.id}}"></simple-counter>
 
 						<table border="0" cellspacing="0" cellpadding="0" class="table-type2">
 							<tbody>
@@ -211,12 +169,57 @@
 
 		</div>
 
-		<script type="text/javascript" src="/js/libs/jquery.min.js"></script>
-		<script type="text/javascript" src="/js/libs/layer.js"></script>
-		<script type="text/javascript" src="/js/libs/lrz.all.bundle.js"></script>
-		<script type="text/javascript" src="/js/libs/html2canvas.min.js"></script>
-		<script type="text/javascript" src="/js/libs/vue.min.js"></script>
-		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/libs/layer.js"></script>
+		<script type="text/javascript" src="../js/libs/lrz.all.bundle.js"></script>
+		<script type="text/javascript" src="../js/libs/html2canvas.min.js"></script>
+		<script type="text/javascript" src="../js/libs/vue.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/x-template" id="myComponent">//注意 type 和id。
+            <table border="0" cellspacing="0" cellpadding="0" class="table-type8">
+				<tbody>
+					<tr class="table-tr-single">
+						<td colspan="4">{{data.sub_shopname+'-'+data.agentshopname}}</td>
+					</tr>
+					<tr>
+						<td>上周业绩（元）</td>
+						<td><input type="number" placeholder="填写" class="yeji_shangzhou"></td>
+						<td>本月业绩（元）</td>
+						<td><input type="number" placeholder="填写" class="yeji_benyue"></td>
+					</tr>
+					<tr>
+						<td>本周业绩（元）</td>
+						<td><input type="number" placeholder="填写" class="yeji_benzhou"></td>
+						<td>人均业绩（元）</td>
+						<td class="yeji_renjun"></td>
+					</tr>
+					<tr>
+						<td>上升下滑（元）</td>
+						<td class="shangsheng_xiahua"></td>
+						<td>目前实收（元）</td>
+						<td><input type="number" placeholder="填写" class="shishou_muqian"></td>
+					</tr>
+					<tr>
+						<td>盈亏（元）</td>
+						<td class="yingkui"></td>
+						<td>人均实收（元）</td>
+						<td class="shishou_renjun"></td>
+					</tr>
+					<tr class="table-tr-textarea tr-padding20">
+						<td>点评</td>
+						<td colspan="3">
+							<div class="dianping div-textarea" contenteditable="true">点击填写</div>
+						</td>
+					</tr>
+					<tr class="canshu_data">
+						<td>上周人数</td>
+						<td class="renshu_shangzhou">{{data.lastweek_user}}</td>
+						<td>本周人数</td>
+						<td class="renshu_benzhou">{{data.week_user}}</td>
+					</tr>
+				</tbody>
+			</table>
+        </script>
 		<script type="text/javascript" src="js/vue_demo2.js"></script>
 	</body>
 
