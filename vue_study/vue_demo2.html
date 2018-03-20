@@ -115,7 +115,7 @@
 							</tbody>
 						</table>
 
-						<simple-counter v-for="item in listMain" v-bind:data="item" :key="item.id" data-id="{{item.id}}"></simple-counter>
+						<simple-counter v-for="item in listMain" v-bind:data="item" :key="item.id" v-bind:data-id="item.id"></simple-counter>
 
 						<table border="0" cellspacing="0" cellpadding="0" class="table-type2">
 							<tbody>
@@ -175,7 +175,7 @@
 		<script type="text/javascript" src="../js/libs/html2canvas.min.js"></script>
 		<script type="text/javascript" src="../js/libs/vue.min.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
-		<script type="text/x-template" id="myComponent">//注意 type 和id。
+		<script type="text/x-template" id="myComponent">
             <table border="0" cellspacing="0" cellpadding="0" class="table-type8">
 				<tbody>
 					<tr class="table-tr-single">
@@ -183,21 +183,21 @@
 					</tr>
 					<tr>
 						<td>上周业绩（元）</td>
-						<td><input type="number" placeholder="填写" class="yeji_shangzhou"></td>
+						<td><input type="number" placeholder="填写" class="yeji_shangzhou" v-model.number="szyj"></td>
 						<td>本月业绩（元）</td>
-						<td><input type="number" placeholder="填写" class="yeji_benyue"></td>
+						<td><input type="number" placeholder="填写" class="yeji_benyue" v-model.number="byyj"></td>
 					</tr>
 					<tr>
 						<td>本周业绩（元）</td>
-						<td><input type="number" placeholder="填写" class="yeji_benzhou"></td>
+						<td><input type="number" placeholder="填写" class="yeji_benzhou" v-model.number="bzyj"></td>
 						<td>人均业绩（元）</td>
 						<td class="yeji_renjun"></td>
 					</tr>
 					<tr>
 						<td>上升下滑（元）</td>
-						<td class="shangsheng_xiahua"></td>
+						<td class="shangsheng_xiahua">{{bzyj-szyj}}</td>
 						<td>目前实收（元）</td>
-						<td><input type="number" placeholder="填写" class="shishou_muqian"></td>
+						<td><input type="number" placeholder="填写" class="shishou_muqian" v-model.number="mqss"></td>
 					</tr>
 					<tr>
 						<td>盈亏（元）</td>

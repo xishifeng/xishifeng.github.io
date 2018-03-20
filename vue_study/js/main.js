@@ -20,5 +20,5 @@ function getUrlParam(name) {
 	return null;
 };
 
-import axios from 'axios'
-Vue.prototype.$http = axios;
+//import axios from 'axios'
+//Vue.prototype.$http = axios;

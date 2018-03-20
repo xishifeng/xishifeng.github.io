@@ -11,7 +11,12 @@ Vue.component('simple-counter', {
 	props: ['data'],
 	template: '#myComponent',
 	data: function() {
-		return {};
+		return {
+			szyj: '',
+			bzyj: '',
+			byyj: '',
+			mqss: ''
+		}
 	}
 });
 
@@ -33,7 +38,7 @@ var vm = new Vue({
 	data: {
 		seen: true,
 		_weekly_data: JSON.parse(decodeURIComponent(getUrlParam('weekly_data'))),
-		listMain :[]
+		listMain: []
 	},
 	computed: {
 		// 仅读取
