@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			p {
+				overflow: hidden;
+				font-size: .3rem;
+				display: flex;
+			}
+			
+			p>span {
+				float: left;
+				flex: 1;
+				text-align: center;
+			}
+			
+			p>span.active {
+				color: red;
+			}
+			
+			.div-tri {
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.box-tri-1 {
+				height: 0.1rem;
+				border-bottom: 1px solid #ff9419;
+			}
+			
+			.box-tri-2 {
+				width: 0.1rem;
+				height: 0.1rem;
+				border: 1px solid #f13d2f;
+				-webkit-transform: rotate(45deg);
+				transform: rotate(45deg);
+				position: absolute;
+				top: 0.07rem;
+				left: 1.85rem;
+				background-color: white;
+			}
+		</style>
+		<script type="text/javascript">
+			! function(n, e) {
+				var t = n.documentElement,
+					i = "orientationchange" in window ? "orientationchange" : "resize",
+					d = function() {
+						var n = t.clientWidth;
+						n && (t.style.fontSize = n / 750 * 100 + "px")
+					};
+				n.addEventListener && (e.addEventListener(i, d, !1),
+					n.addEventListener("DOMContentLoaded", d, !1))
+			}(document, window);
+		</script>
+	</head>
+
+	<body>
+
+		<p class="ul_title ul_title_zz"><span class="active">门店业绩排行榜</span><span class="">业务员业绩排行榜</span></p>
+		<div class="div-tri">
+			<div class="box-tri-1"></div>
+			<div class="box-tri-2" style="left: 1.85rem;"></div>
+		</div>
+		
+		
+	</body>
+
+</html>

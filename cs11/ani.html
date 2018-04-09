@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			p {
+				overflow: hidden;
+				font-size: .3rem;
+				display: flex;
+			}
+			
+			p>span {
+				float: left;
+				flex: 1;
+				text-align: center;
+			}
+			
+			p>span.active {
+				color: red;
+			}
+			
+			.div-tri {
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.box-tri-1 {
+				height: 0.1rem;
+				border-bottom: 1px solid #ff9419;
+			}
+			
+			.box-tri-2 {
+				width: 0.1rem;
+				height: 0.1rem;
+				border: 1px solid #f13d2f;
+				-webkit-transform: rotate(45deg);
+				transform: rotate(45deg);
+				position: absolute;
+				top: 0.07rem;
+				left: 1.85rem;
+				background-color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<p class="ul_title ul_title_zz">
+				<span :class="{active:flagOne}" @click="changeOne('A')">AA</span>
+				<span :class="{active:!flagOne}" @click="changeOne('B')">BB</span>
+			</p>
+			<div class="div-tri">
+				<div class="box-tri-1"></div>
+				<div class="box-tri-2" :style="'left:'+lenGet+'rem;'"></div>
+			</div>
+		</div>
+		<script type="text/javascript" src="vue.min.js"></script>
+		<script type="text/javascript">
+			document.documentElement.style.fontSize=100*(document.documentElement.clientWidth/750)+'px';
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					flagOne: true,
+					msg: ''
+				},
+				methods: {
+					changeOne: function(str) {
+						var _this = this;
+						_this.flagOne = (str === 'A') ? true : false;
+					}
+				},
+				computed: {
+					lenGet: function() {
+						var _this = this;
+						return _this.flagOne ? 1.85 : 5.65
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

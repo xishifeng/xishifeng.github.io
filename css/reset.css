@@ -62,3 +62,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+input[type="text"],input[type="password"]{
+	-webkit-appearance: none;/*解决苹果机上input的内阴影*/
+}
