@@ -274,3 +274,10 @@ delete vv['b'];//删除某一个对象的属性
 function getLen(obj){
 	return Object.keys(obj).length;//获取一个数组的长度，或者一个对象的属性个数
 };
+
+url中传递中文，避免乱码，需要先转码
+location.href = "fukuanfangshi.html?bank="+encodeURI(encodeURI($(this).text()));//发送的位置
+newsid = decodeURI(decodeURI(newsid));//接收的位置
+
+closest() 方法获得匹配选择器的第一个祖先元素，从当前元素开始沿 DOM 树向上。
+.closest('li')
