@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<input type="date" id="one" />
+		
+		<script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+			    $('#one').change(function(){
+			    	var _this = $(this);
+			    	var _newTime = getMoon(_this.val(), 2, 'jian');
+			    	console.log(_newTime);
+			    });
+			    
+			    
+			    
+			    
+			    
+			    function getMoon(date1, moons, countType){
+					var d = new Date(date1);
+					if(countType === 'jia') {
+						d.setMonth(d.getMonth() + moons);
+					} else if(countType === 'jian') {
+						d.setMonth(d.getMonth() - moons);
+					} else {};
+					var m = (d.getMonth() + 1) < 10 ? "0" + (d.getMonth() + 1) : (d.getMonth() + 1); //获取当前月份的日期，不足10补0
+					var ddd = d.getDate() < 10 ? "0" + d.getDate() : d.getDate();
+					return d.getFullYear() + '-' + m + '-' + ddd;
+				};
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+console.debug();(无效)
+console.info();(无效)
+console.warn();
+console.error();
+这四个方法的使用方法跟 console.log() 一模一样，差别在于输出的颜色与图标不同。
+console.table()以表格的形式输出js对象，不好用
+
+console.time("for-test");
+要执行的代码
+const arr = [];
+for(let i = 0; i < 100000; i++) {
+    arr.push({"key": i});
+}
+console.timeEnd("for-test");
+输出一段代码的执行时间
+
+function func() {
+    console.count("label");
+}
+
+for(let i = 0; i < 3; i++) {
+    func();
+}
+输出一段代码的执行次数
+
+console.group("1");
+
+console.log("1-1");
+
+console.log("1-2");
+
+console.log("1-3");
+
+console.groupEnd();
+
+console.groupCollapsed("2");
+
+console.log("2-1");
+
+console.log("2-2");
+
+console.log("2-3");
+
+console.groupEnd();
+group默认为展开运行结果
+groupCollapsed默认为折叠运行结果
+
+sessionStorage.setItem('pcUserInfo',encodeURIComponent(JSON.stringify(data.data)));//存储PC后台登录用户所有信息
+var  user_info_obj = JSON.parse(decodeURIComponent(sessionStorage.getItem('pcUserInfo')));  //读取缓存
+
+变量必须是字母，下划线_或$开头，变量可以包含中文，如var _企鹅 = 'gg';
+
+强制转换成boolean型,如var num = 100;console.log(!!num);
+
+var a = '15.15abc',b='10.15';c='10.0abc';
+alert(parseInt(a)+Number(b)+parseFloat(c));15 + 10.15 + 10.0;
+parseInt(110, 2);把2进制的110转换为10进制输出
+
+$("button").click(function(){
+  $("input").trigger("select");
+});
+trigger() 方法触发被选元素的指定事件类型。
+
+NumberObject.toFixed(num);
+如3.14159265358.toFixed(2);//可把Number四舍五入为指定小数位置的数字
+str.substr(str.lastIndexOf('.')).toLowerCase();//取文件字符串后缀名转为小写
+
+e.stoppropagation();//阻止冒泡事件
+e.preventdefault();//阻止默认事件
+
+Math.ceil();向上取整
+Math.floor();向上取整
+Math.round();向上取整

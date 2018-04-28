@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -8,18 +9,18 @@
 		<link rel="stylesheet" href="../css/reset_xsf0409.css" />
 		<script type="text/javascript">
 			! function(n, e) {
-			var t = n.documentElement,
-				i = "orientationchange" in window ? "orientationchange" : "resize",
-				d = function() {
-					var n = t.clientWidth;
-					n && (t.style.fontSize = n / 750 * 100 + "px")
-				};
-			n.addEventListener && (e.addEventListener(i, d, !1),
-				n.addEventListener("DOMContentLoaded", d, !1))
-		}(document, window);
+				var t = n.documentElement,
+					i = "orientationchange" in window ? "orientationchange" : "resize",
+					d = function() {
+						var n = t.clientWidth;
+						n && (t.style.fontSize = n / 750 * 100 + "px")
+					};
+				n.addEventListener && (e.addEventListener(i, d, !1),
+					n.addEventListener("DOMContentLoaded", d, !1))
+			}(document, window);
 		</script>
 		<style type="text/css">
-			.box{
+			.box {
 				display: flex;
 				/*flex-direction: column-reverse;*/
 				flex-direction: row;
@@ -29,18 +30,55 @@
 				height: 7.5rem;
 				background-color: #AFEEEE;
 			}
-			.box-item{
+			
+			.box-item {
 				flex: .5;
 				background-color: aquamarine;
 				height: 1rem;
 				line-height: 1rem;
 				text-align: center;
 			}
-			.box-item:nth-of-type(3){
+			
+			.box-item:nth-of-type(3) {
 				flex: 2;
 			}
+			
+			footer.achieve-footer{
+				position: fixed;
+			    bottom: 0;
+			    left: 0;
+			    width: 7.5rem;
+			    height: 1.5rem;
+			    border-top: 1px solid #ccc;
+			    box-sizing: border-box;
+			    padding: 0 .5rem;
+			    display: flex;
+			    flex-wrap: wrap;
+			}
+			footer.achieve-footer>div {
+			    flex: 1;
+			    height: 1.5rem;
+			    box-sizing: border-box;
+			    display: flex;
+			    text-align: center;
+			    align-items: center;
+			    justify-content: center;
+			}
+			footer.achieve-footer>div>a {
+			    width: 2.05rem;
+			    height: .68rem;
+			    border-radius: .34rem;
+			    line-height: .68rem;
+			    text-align: center;
+			    display: block;
+			    background-color: #FFA132;
+			    color: white;
+			    box-shadow: 0 0.3rem 0.5rem rgba(255,161,50,.5);
+			}
+			
 		</style>
 	</head>
+
 	<body>
 		<div class="box">
 			<div class="box-item">rwerw1</div>
@@ -48,42 +86,55 @@
 			<div class="box-item">rwerw3</div>
 			<div class="box-item">rwerw4</div>-->
 		</div>
+		
+		<footer class="achieve-footer">
+			<div><a href="javascript:;">个人业绩</a></div>
+			<div><a href="javascript:;">区域业绩</a></div>
+		</footer>
+		
+		
+		<div class="box-shili">
+			<
+		</div>
 		<style type="text/css">
 			.Grid {
-  display: flex;
-}
-
-.Grid-cell {
-  flex: 1;
-  background-color: cyan;
-  text-align: center;
-  height: .6rem;
-  line-height: .6rem;
-}
-
-.Grid-cell.u-full {
-  flex: 0 0 100%;
-}
-
-.Grid-cell.u-1of2 {
-  flex: 0 0 50%;
-}
-
-.Grid-cell.u-1of3 {
-  /*flex: 0 0 33.3333%;*/
- background-color: olivedrab;
-}
-
-.Grid-cell.u-1of4 {
-  /*flex: 0 0 25%;*/
-  flex: 0 0 1rem;
-  background-color: orange;
-}
+				display: flex;
+			}
+			
+			.Grid-cell {
+				flex: 1;
+				background-color: cyan;
+				text-align: center;
+				height: .6rem;
+				line-height: .6rem;
+			}
+			
+			.Grid-cell.u-full {
+				flex: 0 0 100%;
+			}
+			
+			.Grid-cell.u-1of2 {
+				flex: 0 0 50%;
+			}
+			
+			.Grid-cell.u-1of3 {
+				/*flex: 0 0 33.3333%;*/
+				background-color: olivedrab;
+			}
+			
+			.Grid-cell.u-1of4 {
+				/*flex: 0 0 25%;*/
+				flex: 0 0 1rem;
+				background-color: orange;
+			}
 		</style>
 		<div class="Grid">
-  <div class="Grid-cell u-1of4">...</div>
-  <div class="Grid-cell">...</div>
-  <div class="Grid-cell u-1of3">xxx...</div>
-</div>
+			<div class="Grid-cell u-1of4">...</div>
+			<div class="Grid-cell">...</div>
+			<div class="Grid-cell u-1of3">xxx...</div>
+		</div>
+		
+		<div></div>
 	</body>
+
 </html>
