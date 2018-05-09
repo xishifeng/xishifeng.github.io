@@ -1,73 +1,74 @@
-console.debug();(ÎŞĞ§)
-console.info();(ÎŞĞ§)
+ï»¿console.debug();(æ— æ•ˆ)
+console.info();(æ— æ•ˆ)
 console.warn();
 console.error();
-ÕâËÄ¸ö·½·¨µÄÊ¹ÓÃ·½·¨¸ú console.log() Ò»Ä£Ò»Ñù£¬²î±ğÔÚÓÚÊä³öµÄÑÕÉ«ÓëÍ¼±ê²»Í¬¡£
-console.table()ÒÔ±í¸ñµÄĞÎÊ½Êä³öjs¶ÔÏó£¬²»ºÃÓÃ
+è¿™å››ä¸ªæ–¹æ³•çš„ä½¿ç”¨æ–¹æ³•è·Ÿ console.log() ä¸€æ¨¡ä¸€æ ·ï¼Œå·®åˆ«åœ¨äºè¾“å‡ºçš„é¢œè‰²ä¸å›¾æ ‡ä¸åŒã€‚
+console.table()ä»¥è¡¨æ ¼çš„å½¢å¼è¾“å‡ºjså¯¹è±¡ï¼Œä¸å¥½ç”¨
 
 console.time("for-test");
-ÒªÖ´ĞĞµÄ´úÂë
+è¦æ‰§è¡Œçš„ä»£ç 
 const arr = [];
 for(let i = 0; i < 100000; i++) {
     arr.push({"key": i});
 }
 console.timeEnd("for-test");
-Êä³öÒ»¶Î´úÂëµÄÖ´ĞĞÊ±¼ä
+è¾“å‡ºä¸€æ®µä»£ç çš„æ‰§è¡Œæ—¶é—´
 
 function func() {
     console.count("label");
 }
-
 for(let i = 0; i < 3; i++) {
     func();
 }
-Êä³öÒ»¶Î´úÂëµÄÖ´ĞĞ´ÎÊı
+è¾“å‡ºä¸€æ®µä»£ç çš„æ‰§è¡Œæ¬¡æ•°
 
 console.group("1");
-
 console.log("1-1");
-
 console.log("1-2");
-
 console.log("1-3");
-
 console.groupEnd();
-
 console.groupCollapsed("2");
-
 console.log("2-1");
-
 console.log("2-2");
-
 console.log("2-3");
-
 console.groupEnd();
-groupÄ¬ÈÏÎªÕ¹¿ªÔËĞĞ½á¹û
-groupCollapsedÄ¬ÈÏÎªÕÛµşÔËĞĞ½á¹û
+groupé»˜è®¤ä¸ºå±•å¼€è¿è¡Œç»“æœ
+groupCollapsedé»˜è®¤ä¸ºæŠ˜å è¿è¡Œç»“æœ
 
-sessionStorage.setItem('pcUserInfo',encodeURIComponent(JSON.stringify(data.data)));//´æ´¢PCºóÌ¨µÇÂ¼ÓÃ»§ËùÓĞĞÅÏ¢
-var  user_info_obj = JSON.parse(decodeURIComponent(sessionStorage.getItem('pcUserInfo')));  //¶ÁÈ¡»º´æ
+sessionStorage.setItem('pcUserInfo',encodeURIComponent(JSON.stringify(data.data)));//å­˜å‚¨PCåå°ç™»å½•ç”¨æˆ·æ‰€æœ‰ä¿¡æ¯
+var  user_info_obj = JSON.parse(decodeURIComponent(sessionStorage.getItem('pcUserInfo')));  //è¯»å–ç¼“å­˜
 
-±äÁ¿±ØĞëÊÇ×ÖÄ¸£¬ÏÂ»®Ïß_»ò$¿ªÍ·£¬±äÁ¿¿ÉÒÔ°üº¬ÖĞÎÄ£¬Èçvar _Æó¶ì = 'gg';
+å˜é‡å¿…é¡»æ˜¯å­—æ¯ï¼Œä¸‹åˆ’çº¿_æˆ–$å¼€å¤´ï¼Œå˜é‡å¯ä»¥åŒ…å«ä¸­æ–‡ï¼Œå¦‚var _ä¼é¹… = 'gg';
 
-Ç¿ÖÆ×ª»»³ÉbooleanĞÍ,Èçvar num = 100;console.log(!!num);
+å¼ºåˆ¶è½¬æ¢æˆbooleanå‹,å¦‚var num = 100;console.log(!!num);
 
 var a = '15.15abc',b='10.15';c='10.0abc';
 alert(parseInt(a)+Number(b)+parseFloat(c));15 + 10.15 + 10.0;
-parseInt(110, 2);°Ñ2½øÖÆµÄ110×ª»»Îª10½øÖÆÊä³ö
+parseInt(110, 2);æŠŠ2è¿›åˆ¶çš„110è½¬æ¢ä¸º10è¿›åˆ¶è¾“å‡º
 
 $("button").click(function(){
   $("input").trigger("select");
 });
-trigger() ·½·¨´¥·¢±»Ñ¡ÔªËØµÄÖ¸¶¨ÊÂ¼şÀàĞÍ¡£
+trigger() æ–¹æ³•è§¦å‘è¢«é€‰å…ƒç´ çš„æŒ‡å®šäº‹ä»¶ç±»å‹ã€‚
 
 NumberObject.toFixed(num);
-Èç3.14159265358.toFixed(2);//¿É°ÑNumberËÄÉáÎåÈëÎªÖ¸¶¨Ğ¡ÊıÎ»ÖÃµÄÊı×Ö
-str.substr(str.lastIndexOf('.')).toLowerCase();//È¡ÎÄ¼ş×Ö·û´®ºó×ºÃû×ªÎªĞ¡Ğ´
+å¦‚3.14159265358.toFixed(2);//å¯æŠŠNumberå››èˆäº”å…¥ä¸ºæŒ‡å®šå°æ•°ä½ç½®çš„æ•°å­—
+str.substr(str.lastIndexOf('.')).toLowerCase();//å–æ–‡ä»¶å­—ç¬¦ä¸²åç¼€åè½¬ä¸ºå°å†™
 
-e.stoppropagation();//×èÖ¹Ã°ÅİÊÂ¼ş
-e.preventdefault();//×èÖ¹Ä¬ÈÏÊÂ¼ş
+e.stoppropagation();//é˜»æ­¢å†’æ³¡äº‹ä»¶
+e.preventdefault();//é˜»æ­¢é»˜è®¤äº‹ä»¶
 
-Math.ceil();ÏòÉÏÈ¡Õû
-Math.floor();ÏòÉÏÈ¡Õû
-Math.round();ÏòÉÏÈ¡Õû
+Math.ceil();å‘ä¸Šå–æ•´
+Math.floor();å‘ä¸Šå–æ•´
+Math.round();å‘ä¸Šå–æ•´
+
+str.charAt(index);//è¿”å›å­—ç¬¦ä¸²ç´¢å¼•å¤„çš„å­—ç¬¦
+str.indexOf('a');//è¿”å›å­—ç¬¦ä¸²çš„ç´¢å¼•å€¼
+str.lastIndexOf('a');//è¿”å›å­—ç¬¦ä¸²çš„ç´¢å¼•å€¼,ä»åå¾€å‰ç´¢å¼•
+str.slice(index);//è¿”å›å­—ç¬¦ä¸²ç´¢å¼•å€¼ä¹‹åçš„å­—ç¬¦ä¸²éƒ¨åˆ†
+str.slice(3,6);//è¿”å›ç´¢å¼•ä»3å¼€å§‹6ç»“æŸçš„å­—ç¬¦ä¸²éƒ¨åˆ†
+
+btn.onclick=function(event){};
+event.target;event.data;event.type;event.clientX;
+
+<header><footer><main><nav><aside><article><section><figure><figcaption><mark>
