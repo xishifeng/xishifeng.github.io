@@ -1,4 +1,11 @@
-﻿console.debug();(无效)
+﻿/****js相关*******************************************************/
+
+btn.onclick=function(event){};
+event.target;event.data;event.type;event.clientX;
+e.stoppropagation();//阻止冒泡事件
+e.preventdefault();//阻止默认事件
+
+console.debug();(无效)
 console.info();(无效)
 console.warn();
 console.error();
@@ -45,18 +52,9 @@ var  user_info_obj = JSON.parse(decodeURIComponent(sessionStorage.getItem('pcUse
 var a = '15.15abc',b='10.15';c='10.0abc';
 alert(parseInt(a)+Number(b)+parseFloat(c));15 + 10.15 + 10.0;
 parseInt(110, 2);把2进制的110转换为10进制输出
-
-$("button").click(function(){
-  $("input").trigger("select");
-});
-trigger() 方法触发被选元素的指定事件类型。
-
 NumberObject.toFixed(num);
 如3.14159265358.toFixed(2);//可把Number四舍五入为指定小数位置的数字
 str.substr(str.lastIndexOf('.')).toLowerCase();//取文件字符串后缀名转为小写
-
-e.stoppropagation();//阻止冒泡事件
-e.preventdefault();//阻止默认事件
 
 Math.ceil();向上取整
 Math.floor();向上取整
@@ -68,7 +66,334 @@ str.lastIndexOf('a');//返回字符串的索引值,从后往前索引
 str.slice(index);//返回字符串索引值之后的字符串部分
 str.slice(3,6);//返回索引从3开始6结束的字符串部分
 
-btn.onclick=function(event){};
-event.target;event.data;event.type;event.clientX;
+var exist = this.classList.contains('active');
+this.classList.toggle('active', !exist);
+add('active'),remove('active')
+this.className.split(' ')
+
+new Date().toLocaleDateString();//返回2018/5/11这样的日期
+new Date().toLocaleTimeString();//返回下午1:43:45这样的时间
+
+'use strict';//启用严格模式
+
+isFinite() 函数用于检查其参数是否是无穷大。
+isNaN() 函数用于检查其参数是否是非数字值。
+
+_arr1.push.apply(_arr1, _arr2);//把数组_arr2的元素添加到_arr1中
+urlStr.replace(/(http|https):\/\//g, 'https://');
+
+let aa = new Date().getTime();
+let bb = Date.now();
+//两者效果一致
+
+/****js相关*******************************************************/
+
+
+
+
+
+/****vue相关*******************************************************/
+
+npm install vue-cli -g
+vue init webpack projectname
+cd projectname
+npm install axios vue-axios qs vue-awesome-swiper --save
+npm run dev
+npm run build
+
+事件修饰符
+.stop
+.prevent
+.capture
+.self
+.once
+
+vm.$data,vm.$el,
+vm.$watch('a', function(newValue, oldValue){});
+this.$nextTick(()=>{});//dom更新之后执行
+
+<my-component></my-component>自定义组件的名字必须是中划线链接，不能是驼峰规则，不能含有数字
+
+@click="change($event)";
+change(e){console.log(e.target);//得到dom节点信息}
+
+如果要在手机上预览到vue项目效果
+config->index.js文件里的host:'localhost'改为host:'0.0.0.0'
+
+上线时，把build后边的assetsPublicPath:'/'改为'./'，可使文件路径正确
+dev后边的autoOpenBrowser值改为true可在运行npm run dev时自动打开本地浏览器
+
+/****vue相关*******************************************************/
+
+
+
+
+
+/****jquery相关*******************************************************/
+
+有input的页面，考虑页面载入之后的自动foucs事件
+a标签等inline-block元素，在执行jq的show()和hide()方法时，默认show()为inline-block元素
+border必须用px为单位，用rem会出现无法显示的情况
+outline的写法和box-shadow类似，不占空间，在border外围
+
+$("button").click(function(){
+  $("input").trigger("select");
+});
+trigger() 方法触发被选元素的指定事件类型。
+
+[].forEach(function(value, index, array){});
+$.each([],function(index, value,array){});
+
+(function(){})();
+$(function(){});
+$(document).ready(function(){});//有一个独立的作用域
+
+//jq ajax中传图片文件的操作
+new _fd = new FormData();
+_fd.append('image', e.target.files[0]);
+$.ajax中要有data:_fd,processData:false,contentType:false
+
+.hasClass('');
+
+$('script[src*="js/jq.js"]');//属性选择器
+
+页面跳转并滚动到指定位置
+执行.animate()之前加上.stop()比较实用
+var s_o = $('#id').offset();
+$('body,html').stop().animate({
+	scrollTop: s_o.top
+},0);//设置动画时间为0
+
+/****jquery相关*******************************************************/
+
+
+
+
+
+/****css相关*******************************************************/
+
+一个标签浮动之后就不再区分行内、块元素了，都能直接设置宽和高,所以对于块元素float:left;和diplay:block;没必要同时出现
+background: red url(1.jpg) no-repeat fixed center center/.45rem .45rem;
+box-shadow: 10px 10px 5px #888;
+
+line-height:2;和2em类似，都是2倍的font-size
+
+div{white-space:pre;}设置文本原格式，和<pre>标签效果一致
+div{direction:rtl;unicode-bidi:bidi-override;}设置文本方向,设置文本是否被重写
+html方法:<bdo dir="rtl"></bdo>
+
+not选择器
+*:not(input, textarea){
+	user-select: none;//css禁止选中文字
+}
+
+div::after{
+	content: '';
+	width: .3rem;
+	height: .3rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: url(1.jpg) no-repeat center center/.45rem .45rem;
+}
+
+'>'图标css画法
+.my-list::after{
+	content: '';
+	float: right;
+	width: .1rem;
+	height: .1rem;
+	border: solid #ccc;
+	border-width: 2px 2px 0 0;
+	transform: rotate(45deg);
+}
+
+img{
+	position: absolute;
+	clip: rect(0px, 60px, 200px, 0px);//可裁剪图片
+	object-fit: cover;//cover是充满盒子，contain是全部显示保持图片比例
+}
+
+selector{
+	letter-spacing: .5rem;//letter-spacing在每个字的右边，所以最后一个字后面肯定有一点空白距离
+	padding-left: .25rem;
+}
+
+居中的几种实现
+selector{
+	width: 5rem;
+	height: 5rem;
+	position: absolute;
+	top: 0;left:0;bottom:0;right:0;
+	margin: auto;
+}
+selector{
+	width: 5rem;
+	height: 5rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -2.5rem;
+	margin-left: -2.5rem;
+}
+selector父元素{
+	display: flex;
+	width: 5rem;
+	height: 5rem;
+	align-items: center;
+	justify-content: center;
+}
+
+//定义文字并调用
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?smj7ux#iefix') format('embedded-opentype'),
+		url('../fonts/icomoon.ttf?smj7ux') format('truetype'),
+		url('../fonts/icomoon.woff?smj7ux') format('woff'),
+		url('../fonts/icomoon.svg?smj7ux#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+header>a.header-back::before {
+	font-family: "icomoon";
+	content: "\e90f";
+}
+
+box-sizing: border-box;
+
+section:nth-of-type(2n+1)奇数选中
+section:nth-of-type(2n)偶数选中
+section:nth-of-type(n+3)第3个之后选中
+section:nth-of-type(-n+3)前3个
+section:nth-last-of-type(2)最后两个
+
+命名规则
+avatar头像，content-wrapper容器，description描述
+
+/****css相关*******************************************************/
+
+
+
+
+
+/****html相关*******************************************************/
 
 <header><footer><main><nav><aside><article><section><figure><figcaption><mark>
+
+<html lang="en"></html>英文
+<html lang="zh-cmn"></html>中文国语
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta name="Author" content="" />
+
+网页载入iocn图标
+<link rel="shortcut" type="iamge/x-icon" href="img/xxx.ico" />
+
+UTF-8,字符全，每个汉字3个字节，所以文件尺寸大；
+gb2312(gbk),字符少，每个汉字2个字节，所以文件尺寸小；
+
+<link rel="prev" href="aa.html" />
+rel用来描述指定链接与当前文档的关系，便于机器理解文档结构
+
+条件注释判断浏览器版本
+<!--[if !IE]><!--> 除IE外都可识别 <!--<![endif]-->
+<!--[if IE]> 所有的IE可识别 <![endif]-->
+<!--[if IE 6]> 仅IE6可识别 <![endif]-->
+<!--[if lt IE 6]> IE6以及IE6以下版本可识别 <![endif]-->
+<!--[if gte IE 6]> IE6以及IE6以上版本可识别 <![endif]-->
+<!--[if IE 7]> 仅IE7可识别 <![endif]-->
+<!--[if lt IE 7]> IE7以及IE7以下版本可识别 <![endif]-->
+<!--[if gte IE 7]> IE7以及IE7以上版本可识别 <![endif]-->
+<!--[if IE 8]> 仅IE8可识别 <![endif]-->
+<!--[if IE 9]> 仅IE9可识别 <![endif]-->
+
+LiElement.onclick=function(){};和window.onload=function(){};
+赋值操作导致只能给元素注册一次事件，若多次注册，后写的会覆盖前面写的
+通过绑定事件添加的内容可以避免这种覆盖
+document.getElementById("myBtn").addEventListener("click", function(){
+    document.getElementById("demo").innerHTML = "Hello World";
+});
+
+<input type="image" />type="image"作用大于等于type="submit"
+file,text,password,radio,checkbox,button,submit,reset,hidden
+time,date,tel,search,number,url,email,color,range
+date,datetime,datetime-local,week,month,time
+<input type="datetime-local" />可以出现选择时分秒的日期框
+
+input的pattern属性可写正则表达式做验证处理
+
+<svg data-src="demo.svg"></svg>
+ajax请求demo.svg返回的是dom对象，append到<svg>里，就可以用css控制了
+svg是用xml语言编写的
+
+ul unordered list
+li list item
+ol ordered list
+dl definition list
+dt definition ttitle
+dd definition description
+
+accept="image/*"会每一个文件都遍历一次所有的"image/*"文件类型
+<input type="file" accept="image/*" />
+<input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/bmp,image/svg" />
+capture="camera"可设置只打开照相机(兼容性欠佳)，但有multiple(设置多选)属性时会失效
+
+/****html相关*******************************************************/
+
+
+
+
+
+/****其他相关*******************************************************/
+
+chrome控制台的settings->Preferences->Elements->Show user agent shadow Dom勾选，可查看-webkit-appearance相关自带元素样式
+浏览器控制台输入document.body.contentEditable=true;可使网页变得可编辑
+data:text/html,<html contenteditable />
+浏览器地址栏输入，可直接渲染一个可编辑的空白html文件
+
+cd D:\Develop\hifangH5
+切换至指定目录(同一个盘符内)
+f:
+切换至f盘
+按住ctrl键，两次c键，退出当前命令
+cls
+清空控制台
+dir
+查看当前目录下的所有文件
+set
+打印环境变量
+mkdir demo
+在当前目录创建demo文件夹
+
+MVC(Model-View-Controller)
+MVP(Model-View-Presenter)
+MVVM(Model-View-ViewModel)
+
+XSS攻击，跨站脚本攻击
+SQL注入漏洞
+
+/****其他相关*******************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
