@@ -86,6 +86,39 @@ let aa = new Date().getTime();
 let bb = Date.now();
 //两者效果一致
 
+http://192.168.0.154:8020/lianxi0301/location.html?nn=2#name
+location.search:?nn=2  以第一个?开始,至行尾或#结束
+location.hash:#name  以#开始,至行尾结束
+
+document.body.style.backgroundImage;
+
+document.getElementById("span1").outerHTML
+
+HTML5本地存储只能存字符串，任何格式存储的时候都会被自动转为字符串，所以读取的时候，需要自己进行类型的转换
+保存数据：localStorage.setItem(key,value);
+读取数据：localStorage.getItem(key);
+删除单个数据：localStorage.removeItem(key);
+删除所有数据：localStorage.clear();
+
+不论鼠标指针离开被选元素还是任何子元素，都会触发 mouseout,mouseover事件.//尽量不要用
+只有在鼠标指针离开被选元素时，才会触发 mouseleave,mouseenter事件.//用的情况更多
+
+//数组依据元素的某一数值排序
+var compare = function (x, y) {//比较函数
+	var _num1 = (Number(x['v4']) + Number(x['v2'])*10);
+	var _num2 = (Number(y['v4']) + Number(y['v2'])*10);
+	return (_num1 < _num2)?1:((_num1 > _num2)?-1:0);
+};
+arr.sort(compare);//重新排序,作用于arr本身，不会赋值给新的数组
+
+<input type="date" />样式修改，兼容的处理最好是在外层加一个div，这样才能保证完全兼容的文字居中
+<img onerror="javascript:this.src='image/aa.jpg'" />onerror可处理图片加载失败时的显示
+
+<input type="date" />样式修改，兼容的处理最好是在外层加一个div，这样才能保证完全兼容的文字居中
+<img onerror="javascript:this.src='image/aa.jpg'" />onerror可处理图片加载失败时的显示
+
+delete vv['b'];//删除某一个对象的属性
+
 /****js相关*******************************************************/
 
 
@@ -93,6 +126,11 @@ let bb = Date.now();
 
 
 /****vue相关*******************************************************/
+
+运行vue，如果出现
+'vue' is not recognized as an internal or external command, operable program
+则添加环境变量
+全局PATH里加一条C:\Develop\nvm\npm(此目录下有vue vue-list vue-init)
 
 npm install vue-cli -g
 vue init webpack projectname
@@ -122,6 +160,9 @@ config->index.js文件里的host:'localhost'改为host:'0.0.0.0'
 
 上线时，把build后边的assetsPublicPath:'/'改为'./'，可使文件路径正确
 dev后边的autoOpenBrowser值改为true可在运行npm run dev时自动打开本地浏览器
+
+当你给一个vue组件绑定事件时候，要加上native，如
+<phone-mask-li v-for="(item,index) in dataListMain" :key="index" :data="item" :class="{'call-select':index===activeIndex}" @click.native="selLi(index)"></phone-mask-li>
 
 /****vue相关*******************************************************/
 
@@ -164,6 +205,32 @@ $('body,html').stop().animate({
 	scrollTop: s_o.top
 },0);//设置动画时间为0
 
+$(this).get(0)与$(this)[0]等价，获取的是DOM对象，不是jq对象。
+document.referrer 可返回载入当前文档的文档的 URL。
+$.trim()是jQuery提供的函数，用于去掉字符串首尾的空白字符。
+
+//事件委托
+$("ul").on('click','li',function(e){
+    //fun 代码
+    $(this).off('click');
+});
+
+//iframe相关事件
+1. jquery 在iframe子页面获取父页面元素代码如下:
+$("#objid", parent.document)
+2. jquery在父页面 获取iframe子页面的元素
+代码如下:
+$("#objid",document.frames('iframename').document)
+3.js 在iframe子页面获取父页面元素代码如下:
+window.parent.document.getElementByIdx_x("元素id");
+4.js 在父页面获取iframe子页面元素代码如下:
+window.frames["iframe_ID"].contentDocument.getElementByIdx_x("元素id");
+5.子类iframe内调用父类函数：
+window.parent.func();
+
+closest() 方法获得匹配选择器的第一个祖先元素，从当前元素开始沿 DOM 树向上。
+.closest('li')
+
 /****jquery相关*******************************************************/
 
 
@@ -182,6 +249,7 @@ div{white-space:pre;}设置文本原格式，和<pre>标签效果一致
 div{direction:rtl;unicode-bidi:bidi-override;}设置文本方向,设置文本是否被重写
 html方法:<bdo dir="rtl"></bdo>
 
+.header-top>ul>li>a:not(.on):hover//css选择器里也有not选择器
 not选择器
 *:not(input, textarea){
 	user-select: none;//css禁止选中文字
@@ -267,6 +335,18 @@ section:nth-of-type(2n)偶数选中
 section:nth-of-type(n+3)第3个之后选中
 section:nth-of-type(-n+3)前3个
 section:nth-last-of-type(2)最后两个
+
+table{border-collapse:collapse;}//collapse这个属性比较实用
+separate	默认值。边框会被分开。不会忽略 border-spacing 和 empty-cells 属性。
+collapse	如果可能，边框会合并为一个单一的边框。会忽略 border-spacing 和 empty-cells 属性。
+表格运用圆角需要要 border-collapse: separate;
+
+background-clip：border-box|padding-box|content-box
+该属性指定了背景在哪些区域可以显示，但与背景开始绘制的位置无关，背景的绘制的位置可以出现在不显示背景的区域，这时就相当于背景图片被不显示背景的区域裁剪了一部分一样。
+background-origin：padding-box|border-box|content-box
+该属性指定了背景从哪个区域(边框、补白或内容)开始绘制,但也仅仅能控制背景开始绘制的位置，你可以用这个属性在边框上绘制背景，但边框上的背景显不显示出来那就要由background-clip来决定了
+
+网页里禁止选中图片，可以在图片上方加一个透明的div遮罩，这样右键就不会有另存为的选项了
 
 命名规则
 avatar头像，content-wrapper容器，description描述
@@ -376,24 +456,15 @@ MVVM(Model-View-ViewModel)
 XSS攻击，跨站脚本攻击
 SQL注入漏洞
 
+sandbox沙盒沙箱
+
+chrome插件开发
+chrome-extension://kbdnhlhmappejakbbdadjoocgcpfpkdm/background.js
+chrome-extension:// + 扩展插件id + / 文件路径
+
+bookmark
+网页变成可编辑data:text/html,<html contenteditable>
+当前网页可编辑javascript:document.body.contentEditable='true'; document.designMode='on';
+
 /****其他相关*******************************************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
