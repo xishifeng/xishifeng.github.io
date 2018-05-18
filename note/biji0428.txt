@@ -119,6 +119,10 @@ arr.sort(compare);//重新排序,作用于arr本身，不会赋值给新的数�
 
 delete vv['b'];//删除某一个对象的属性
 
+arrTemp.splice(arrTemp.indexOf(data.id), 1);//数组移除指定元素
+
+html{font-size: calc(100vw/7.5 + 0px)};//可以代替js做移动端适配处理
+
 /****js相关*******************************************************/
 
 
@@ -163,6 +167,8 @@ dev后边的autoOpenBrowser值改为true可在运行npm run dev时自动打开�
 
 当你给一个vue组件绑定事件时候，要加上native，如
 <phone-mask-li v-for="(item,index) in dataListMain" :key="index" :data="item" :class="{'call-select':index===activeIndex}" @click.native="selLi(index)"></phone-mask-li>
+
+说明：代码<my-comp :foo.sync="bar"></my-comp>会被扩展成<comp :foo="bar" @update:foo="val => bar = val"></comp>，就是一个语法糖。
 
 /****vue相关*******************************************************/
 
@@ -239,6 +245,10 @@ closest() 方法获得匹配选择器的第一个祖先元素，从当前元素�
 
 /****css相关*******************************************************/
 
+html{font-size: calc(100vw/7.5 + 0px)};//可以代替js做移动端适配处理
+div{
+   height: calc(100vh - 1.5rem);     
+}
 一个标签浮动之后就不再区分行内、块元素了，都能直接设置宽和高,所以对于块元素float:left;和diplay:block;没必要同时出现
 background: red url(1.jpg) no-repeat fixed center center/.45rem .45rem;
 box-shadow: 10px 10px 5px #888;
